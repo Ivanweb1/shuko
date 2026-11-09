@@ -356,6 +356,44 @@ ul { list-style: none; margin: 0; padding: 0; }
   object-fit: cover;
 }
 
+/* ---------- Манифест ---------- */
+.manifest { padding: 80px var(--gutter); }
+.manifest__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 16px;
+  border-top: 1px solid var(--c-line);
+}
+.manifest__title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.manifest__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 40px;
+}
+.manifest__text {
+  max-width: 486px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 18px;
+  opacity: .8;
+}
+.manifest__link {
+  font-size: 16px;
+  line-height: 22px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: .8;
+  transition: opacity var(--ease);
+}
+.manifest__link:hover { opacity: .5; }
+
 /* ---------- Планшет (макет 834) ---------- */
 @media (max-width: 1199px) {
   :root { --gutter: 20px; }
@@ -402,6 +440,9 @@ ul { list-style: none; margin: 0; padding: 0; }
     padding-top: 13px;
   }
   .menu__cta { align-self: end; justify-self: end; }
+
+  .manifest { padding: 40px var(--gutter); }
+  .manifest__text { max-width: none; }
 }
 
 /* ---------- Мобильный (макет 400) ---------- */
@@ -457,6 +498,13 @@ ul { list-style: none; margin: 0; padding: 0; }
   .header { position: relative; }
 
   .hero__media { aspect-ratio: 400 / 220; }
+
+  .manifest__inner {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .manifest__body { gap: 12px; }
+  .manifest__text { opacity: .7; }
 }
 
 @media (prefers-reduced-motion: reduce) {
