@@ -996,14 +996,18 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .journal__link:hover svg { transform: rotate(45deg); }
 .journal__media {
+  position: relative;
   display: block;
   aspect-ratio: 1839 / 730;
   overflow: hidden;
 }
 .journal__media img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 50% 85%; /* дом в нижней части кадра — держим его по центру блока */
   transition: transform .6s cubic-bezier(.215, .61, .355, 1);
 }
 
