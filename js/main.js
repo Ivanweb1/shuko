@@ -171,26 +171,126 @@
   track.addEventListener('dragstart', function (e) { e.preventDefault(); });
 })();
 
-// Карта партнёров: клик по партнёру раскрывает контакты (открыт один).
-// На планшете и мобильном по макету первый партнёр раскрыт сразу.
+// Карта партнёров: живая карта (Leaflet + OpenStreetMap) и список партнёров.
+// Данные — выгрузка /include/contacts.php старого сайта (assets/data/partners.json).
+// Клик по партнёру раскрывает контакты и показывает его на карте, клик по метке — наоборот.
+// На планшете и мобильном карта переезжает внутрь раскрытого партнёра (как в макете).
 (function () {
-  var items = Array.prototype.slice.call(document.querySelectorAll('.partner'));
-  if (!items.length) return;
+  var list = document.querySelector('.pmap__list');
+  var canvas = document.getElementById('partners-map');
+  if (!list || !canvas) return;
 
-  function setOpen(item, open) {
-    item.classList.toggle('is-open', open);
-    item.querySelector('.partner__row').setAttribute('aria-expanded', String(open));
+  var wide = window.matchMedia('(min-width: 1200px)');
+  var home = canvas.parentElement;
+  var MOSCOW = [55.75, 37.62];
+  var map = null, items = [], current = null;
+
+  function esc(v) {
+    return String(v).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
   }
 
-  items.forEach(function (item) {
-    item.querySelector('.partner__row').addEventListener('click', function () {
-      var open = !item.classList.contains('is-open');
-      items.forEach(function (it) { setOpen(it, false); });
-      setOpen(item, open);
-    });
-  });
+  function row(label, html) {
+    return '<div><dt>' + label + '</dt><dd>' + html + '</dd></div>';
+  }
 
-  if (!window.matchMedia('(min-width: 1200px)').matches) setOpen(items[0], true);
+  function render(p) {
+    var c = '';
+    if (p.address) c += row('Адрес:', esc(p.address));
+    if (p.work) c += row('Часы работы:', esc(p.work));
+    if (p.phone) c += row('Телефон:', '<a href="' + esc(p.phoneHref || 'tel:' + p.phone.replace(/[^\d+]/g, '')) + '">' + esc(p.phone) + '</a>');
+    if (p.email) c += row('Почта:', '<a href="mailto:' + esc(p.email) + '">' + esc(p.email) + '</a>');
+    if (p.site) {
+      var url = /^https?:/.test(p.site) ? p.site : 'https://' + p.site;
+      c += row('Сайт:', '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(p.site.replace(/^https?:\/\//, '').replace(/\/$/, '')) + '</a>');
+    }
+    var li = document.createElement('li');
+    li.className = 'partner';
+    li.innerHTML =
+      '<button class="partner__row" type="button" aria-expanded="false">' +
+        '<span class="partner__name">' + esc(p.name) + '</span>' +
+        '<span class="partner__desc">' + esc(p.text || p.address) + '</span>' +
+      '</button>' +
+      '<div class="partner__more"><div class="partner__more-in">' +
+        '<dl class="partner__contacts">' + c + '</dl>' +
+        '<div class="partner__map"></div>' +
+      '</div></div>';
+    return li;
+  }
+
+  function icon(active) {
+    return L.icon({
+      iconUrl: 'assets/img/map/partner_icon' + (active ? '-active' : '') + '.svg',
+      iconSize: [40, 53],
+      iconAnchor: [20, 46],
+      className: 'partner-marker'
+    });
+  }
+
+  // Карта живёт в одном контейнере: на десктопе — слева, на узких экранах — в раскрытом партнёре
+  function placeCanvas() {
+    var slot = !wide.matches && current ? current.el.querySelector('.partner__map') : home;
+    if (canvas.parentElement !== slot) slot.appendChild(canvas);
+    if (map) setTimeout(function () { map.invalidateSize(); }, 320);
+  }
+
+  function open(item, opts) {
+    opts = opts || {};
+    var same = current === item;
+    items.forEach(function (it) {
+      it.el.classList.remove('is-open');
+      it.el.querySelector('.partner__row').setAttribute('aria-expanded', 'false');
+      if (it.marker) it.marker.setIcon(icon(false)).setZIndexOffset(0);
+    });
+    if (same && !opts.keep) { current = null; placeCanvas(); return; }
+    current = item;
+    item.el.classList.add('is-open');
+    item.el.querySelector('.partner__row').setAttribute('aria-expanded', 'true');
+    placeCanvas();
+    if (map && item.marker) {
+      item.marker.setIcon(icon(true)).setZIndexOffset(1000);
+      var go = function () {
+        if (opts.instant) map.setView(item.latlng, 13);
+        else map.flyTo(item.latlng, 13, { duration: .8 });
+      };
+      wide.matches ? go() : setTimeout(go, 330);
+    }
+    if (opts.scroll && wide.matches) {
+      list.scrollTo({ top: item.el.offsetTop - list.offsetTop, behavior: 'smooth' });
+    }
+  }
+
+  fetch(list.getAttribute('data-src'))
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      // Сервис-партнёров на старом сайте по умолчанию не показывали — здесь тоже
+      data.filter(function (p) { return !p.service; }).forEach(function (p) {
+        var el = render(p);
+        list.appendChild(el);
+        var item = { el: el, latlng: [p.lat, p.lng] };
+        items.push(item);
+        el.querySelector('.partner__row').addEventListener('click', function () { open(item); });
+      });
+
+      if (window.L) {
+        map = L.map(canvas, { center: MOSCOW, zoom: 9, scrollWheelZoom: false, zoomControl: false });
+        L.control.zoom({ position: 'bottomright' }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 18,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+        items.forEach(function (item) {
+          item.marker = L.marker(item.latlng, { icon: icon(false), title: item.el.querySelector('.partner__name').textContent })
+            .addTo(map)
+            .on('click', function () { open(item, { keep: true, scroll: true }); });
+        });
+      }
+
+      if (!wide.matches && items.length) open(items[0], { instant: true });
+    });
+
+  wide.addEventListener('change', placeCanvas);
 })();
 
 // Меню под бургером

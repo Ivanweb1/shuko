@@ -7,6 +7,7 @@
   <title>Schüco — мы знаем, как сделать ваш дом ярче</title>
   <meta name="description" content="Помогаем в создании уютных и защищенных домов. Используем новейшие технологии и разрабатываем уникальный дизайн.">
   <link rel="preload" href="assets/fonts/Stem_Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -484,170 +485,16 @@
         <p class="pmap__text">С 1951 года Schüco разрабатывает простые системные решения, которые предлагают дополнительную ценность и представляют качество, инновации и устойчивое развитие.</p>
       </div>
       <div class="pmap__body">
-        <!-- Пока скриншот карты из макета; позже заменим живой картой -->
-        <div class="pmap__map"><img src="assets/img/map/map.jpg" alt="Карта партнёров Schüco" width="1919" height="1079" loading="lazy"></div>
+        <!-- Живая карта (Leaflet + OpenStreetMap), метки и список — партнёры со старого сайта -->
+        <div class="pmap__map"><div class="pmap__canvas" id="partners-map" aria-label="Карта партнёров"></div></div>
         <div class="pmap__side">
           <div class="pmap__thead">
             <span>Партнёр</span>
             <span class="pmap__th-about">О партнёре</span>
             <span class="pmap__th-contacts">Контакты</span>
           </div>
-          <!-- Партнёры и контакты — заглушки из макета (контакты у всех от ALSECO) -->
-          <ul class="pmap__list">
-            <li class="partner">
-              <button class="partner__row" type="button" aria-expanded="false">
-                <span class="partner__name">ALSECO</span>
-                <span class="partner__desc">Индивидуальные решения по панорамному остеклению частных резиденций, вилл, загородных домов, квартир.</span>
-              </button>
-              <div class="partner__more">
-                <div class="partner__more-in">
-                  <dl class="partner__contacts">
-                    <div><dt>Телефон:</dt><dd><a href="tel:+74956657770">+7(495)665-77-70</a></dd></div>
-                    <div><dt>Почта:</dt><dd><a href="mailto:info@alseco.net">info@alseco.net</a></dd></div>
-                    <div><dt>Сайт:</dt><dd><a href="https://alseco.net" target="_blank" rel="noopener">https://alseco.net</a></dd></div>
-                    <div><dt>Мессенджеры:</dt><dd><a class="partner__msg" href="#" aria-label="Написать в MAX"><img src="assets/img/map/messenger.png" alt="" width="24" height="24"></a></dd></div>
-                  </dl>
-                  <div class="partner__map"><img src="assets/img/map/map.jpg" alt="" loading="lazy"></div>
-                </div>
-              </div>
-            </li>
-            <li class="partner">
-              <button class="partner__row" type="button" aria-expanded="false">
-                <span class="partner__name">Ergohaus</span>
-                <span class="partner__desc">Индивидуальные решения по панорамному остеклению частных резиденций, вилл, загородных домов, квартир.</span>
-              </button>
-              <div class="partner__more">
-                <div class="partner__more-in">
-                  <dl class="partner__contacts">
-                    <div><dt>Телефон:</dt><dd><a href="tel:+74956657770">+7(495)665-77-70</a></dd></div>
-                    <div><dt>Почта:</dt><dd><a href="mailto:info@alseco.net">info@alseco.net</a></dd></div>
-                    <div><dt>Сайт:</dt><dd><a href="https://alseco.net" target="_blank" rel="noopener">https://alseco.net</a></dd></div>
-                    <div><dt>Мессенджеры:</dt><dd><a class="partner__msg" href="#" aria-label="Написать в MAX"><img src="assets/img/map/messenger.png" alt="" width="24" height="24"></a></dd></div>
-                  </dl>
-                  <div class="partner__map"><img src="assets/img/map/map.jpg" alt="" loading="lazy"></div>
-                </div>
-              </div>
-            </li>
-            <li class="partner">
-              <button class="partner__row" type="button" aria-expanded="false">
-                <span class="partner__name">Frameless studio</span>
-                <span class="partner__desc">Индивидуальные решения по панорамному остеклению частных резиденций, вилл, загородных домов, квартир.</span>
-              </button>
-              <div class="partner__more">
-                <div class="partner__more-in">
-                  <dl class="partner__contacts">
-                    <div><dt>Телефон:</dt><dd><a href="tel:+74956657770">+7(495)665-77-70</a></dd></div>
-                    <div><dt>Почта:</dt><dd><a href="mailto:info@alseco.net">info@alseco.net</a></dd></div>
-                    <div><dt>Сайт:</dt><dd><a href="https://alseco.net" target="_blank" rel="noopener">https://alseco.net</a></dd></div>
-                    <div><dt>Мессенджеры:</dt><dd><a class="partner__msg" href="#" aria-label="Написать в MAX"><img src="assets/img/map/messenger.png" alt="" width="24" height="24"></a></dd></div>
-                  </dl>
-                  <div class="partner__map"><img src="assets/img/map/map.jpg" alt="" loading="lazy"></div>
-                </div>
-              </div>
-            </li>
-            <li class="partner">
-              <button class="partner__row" type="button" aria-expanded="false">
-                <span class="partner__name">LUXAL GROUP</span>
-                <span class="partner__desc">Индивидуальные решения по панорамному остеклению частных резиденций, вилл, загородных домов, квартир.</span>
-              </button>
-              <div class="partner__more">
-                <div class="partner__more-in">
-                  <dl class="partner__contacts">
-                    <div><dt>Телефон:</dt><dd><a href="tel:+74956657770">+7(495)665-77-70</a></dd></div>
-                    <div><dt>Почта:</dt><dd><a href="mailto:info@alseco.net">info@alseco.net</a></dd></div>
-                    <div><dt>Сайт:</dt><dd><a href="https://alseco.net" target="_blank" rel="noopener">https://alseco.net</a></dd></div>
-                    <div><dt>Мессенджеры:</dt><dd><a class="partner__msg" href="#" aria-label="Написать в MAX"><img src="assets/img/map/messenger.png" alt="" width="24" height="24"></a></dd></div>
-                  </dl>
-                  <div class="partner__map"><img src="assets/img/map/map.jpg" alt="" loading="lazy"></div>
-                </div>
-              </div>
-            </li>
-            <li class="partner">
-              <button class="partner__row" type="button" aria-expanded="false">
-                <span class="partner__name">LUXAL GROUP</span>
-                <span class="partner__desc">Индивидуальные решения по панорамному остеклению частных резиденций, вилл, загородных домов, квартир.</span>
-              </button>
-              <div class="partner__more">
-                <div class="partner__more-in">
-                  <dl class="partner__contacts">
-                    <div><dt>Телефон:</dt><dd><a href="tel:+74956657770">+7(495)665-77-70</a></dd></div>
-                    <div><dt>Почта:</dt><dd><a href="mailto:info@alseco.net">info@alseco.net</a></dd></div>
-                    <div><dt>Сайт:</dt><dd><a href="https://alseco.net" target="_blank" rel="noopener">https://alseco.net</a></dd></div>
-                    <div><dt>Мессенджеры:</dt><dd><a class="partner__msg" href="#" aria-label="Написать в MAX"><img src="assets/img/map/messenger.png" alt="" width="24" height="24"></a></dd></div>
-                  </dl>
-                  <div class="partner__map"><img src="assets/img/map/map.jpg" alt="" loading="lazy"></div>
-                </div>
-              </div>
-            </li>
-            <li class="partner">
-              <button class="partner__row" type="button" aria-expanded="false">
-                <span class="partner__name">LUXAL GROUP</span>
-                <span class="partner__desc">Индивидуальные решения по панорамному остеклению частных резиденций, вилл, загородных домов, квартир.</span>
-              </button>
-              <div class="partner__more">
-                <div class="partner__more-in">
-                  <dl class="partner__contacts">
-                    <div><dt>Телефон:</dt><dd><a href="tel:+74956657770">+7(495)665-77-70</a></dd></div>
-                    <div><dt>Почта:</dt><dd><a href="mailto:info@alseco.net">info@alseco.net</a></dd></div>
-                    <div><dt>Сайт:</dt><dd><a href="https://alseco.net" target="_blank" rel="noopener">https://alseco.net</a></dd></div>
-                    <div><dt>Мессенджеры:</dt><dd><a class="partner__msg" href="#" aria-label="Написать в MAX"><img src="assets/img/map/messenger.png" alt="" width="24" height="24"></a></dd></div>
-                  </dl>
-                  <div class="partner__map"><img src="assets/img/map/map.jpg" alt="" loading="lazy"></div>
-                </div>
-              </div>
-            </li>
-            <li class="partner">
-              <button class="partner__row" type="button" aria-expanded="false">
-                <span class="partner__name">LUXAL GROUP</span>
-                <span class="partner__desc">Индивидуальные решения по панорамному остеклению частных резиденций, вилл, загородных домов, квартир.</span>
-              </button>
-              <div class="partner__more">
-                <div class="partner__more-in">
-                  <dl class="partner__contacts">
-                    <div><dt>Телефон:</dt><dd><a href="tel:+74956657770">+7(495)665-77-70</a></dd></div>
-                    <div><dt>Почта:</dt><dd><a href="mailto:info@alseco.net">info@alseco.net</a></dd></div>
-                    <div><dt>Сайт:</dt><dd><a href="https://alseco.net" target="_blank" rel="noopener">https://alseco.net</a></dd></div>
-                    <div><dt>Мессенджеры:</dt><dd><a class="partner__msg" href="#" aria-label="Написать в MAX"><img src="assets/img/map/messenger.png" alt="" width="24" height="24"></a></dd></div>
-                  </dl>
-                  <div class="partner__map"><img src="assets/img/map/map.jpg" alt="" loading="lazy"></div>
-                </div>
-              </div>
-            </li>
-            <li class="partner">
-              <button class="partner__row" type="button" aria-expanded="false">
-                <span class="partner__name">LUXAL GROUP</span>
-                <span class="partner__desc">Индивидуальные решения по панорамному остеклению частных резиденций, вилл, загородных домов, квартир.</span>
-              </button>
-              <div class="partner__more">
-                <div class="partner__more-in">
-                  <dl class="partner__contacts">
-                    <div><dt>Телефон:</dt><dd><a href="tel:+74956657770">+7(495)665-77-70</a></dd></div>
-                    <div><dt>Почта:</dt><dd><a href="mailto:info@alseco.net">info@alseco.net</a></dd></div>
-                    <div><dt>Сайт:</dt><dd><a href="https://alseco.net" target="_blank" rel="noopener">https://alseco.net</a></dd></div>
-                    <div><dt>Мессенджеры:</dt><dd><a class="partner__msg" href="#" aria-label="Написать в MAX"><img src="assets/img/map/messenger.png" alt="" width="24" height="24"></a></dd></div>
-                  </dl>
-                  <div class="partner__map"><img src="assets/img/map/map.jpg" alt="" loading="lazy"></div>
-                </div>
-              </div>
-            </li>
-            <li class="partner">
-              <button class="partner__row" type="button" aria-expanded="false">
-                <span class="partner__name">LUXAL GROUP</span>
-                <span class="partner__desc">Индивидуальные решения по панорамному остеклению частных резиденций, вилл, загородных домов, квартир.</span>
-              </button>
-              <div class="partner__more">
-                <div class="partner__more-in">
-                  <dl class="partner__contacts">
-                    <div><dt>Телефон:</dt><dd><a href="tel:+74956657770">+7(495)665-77-70</a></dd></div>
-                    <div><dt>Почта:</dt><dd><a href="mailto:info@alseco.net">info@alseco.net</a></dd></div>
-                    <div><dt>Сайт:</dt><dd><a href="https://alseco.net" target="_blank" rel="noopener">https://alseco.net</a></dd></div>
-                    <div><dt>Мессенджеры:</dt><dd><a class="partner__msg" href="#" aria-label="Написать в MAX"><img src="assets/img/map/messenger.png" alt="" width="24" height="24"></a></dd></div>
-                  </dl>
-                  <div class="partner__map"><img src="assets/img/map/map.jpg" alt="" loading="lazy"></div>
-                </div>
-              </div>
-            </li>
-          </ul>
+          <!-- Список строится из assets/data/partners.json (выгрузка /include/contacts.php старого сайта) -->
+          <ul class="pmap__list" data-src="assets/data/partners.json"></ul>
           <a class="people__all pmap__all" href="#">
             <span class="people__all-text">Смотреть всех партнёров</span>
             <svg class="people__all-arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
@@ -700,6 +547,7 @@
   </footer>
 
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
