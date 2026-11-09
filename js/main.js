@@ -399,7 +399,13 @@
       });
 
       if (window.L) {
-        map = L.map(canvas, { center: MOSCOW, zoom: 9, scrollWheelZoom: false, zoomControl: false });
+        map = L.map(canvas, {
+          center: MOSCOW,
+          zoom: 9,
+          scrollWheelZoom: false,
+          zoomControl: false,
+          attributionControl: false
+        });
         L.control.zoom({ position: 'bottomright' }).addTo(map);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 18,
