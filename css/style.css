@@ -957,6 +957,56 @@ ul { list-style: none; margin: 0; padding: 0; }
   }
 }
 
+/* ---------- Журнал Schüco ---------- */
+.journal { padding: 80px var(--gutter); }
+.journal__head {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 40px;
+  padding: 0 88px 40px 0;
+}
+.journal__title {
+  /* текст начинается с середины блока, как в «Манифесте» (88px — отступ под стрелку) */
+  flex: 0 0 calc((100% + 88px) / 2 - 40px);
+  margin: 0;
+  font-size: 60px;
+  line-height: 75px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.journal__text {
+  max-width: 432px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(0, 0, 0, .8);
+}
+.journal__link {
+  position: absolute;
+  right: 0;
+  bottom: 40px;
+  width: 48px;
+  height: 48px;
+}
+.journal__link svg {
+  width: 100%;
+  height: 100%;
+  transition: transform .3s cubic-bezier(.215, .61, .355, 1);
+}
+.journal__link:hover svg { transform: rotate(45deg); }
+.journal__media {
+  display: block;
+  aspect-ratio: 1839 / 730;
+  overflow: hidden;
+}
+.journal__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .6s cubic-bezier(.215, .61, .355, 1);
+}
+
 /* ---------- Планшет (макет 834) ---------- */
 @media (max-width: 1199px) {
   :root { --gutter: 20px; }
@@ -1078,6 +1128,16 @@ ul { list-style: none; margin: 0; padding: 0; }
   .people__all { background: #000; color: #fff; }
   .people__all-text { opacity: 1; }
   .people__all-arrow { left: calc(100% - 64px); transform: rotate(45deg); }
+
+  .journal { padding: 40px var(--gutter); }
+  .journal__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .journal__title { flex: none; font-size: 40px; line-height: 48px; }
+  .journal__link { top: 0; bottom: auto; }
+  .journal__media { aspect-ratio: 794 / 315; }
 }
 
 /* ---------- Мобильный (макет 400) ---------- */
@@ -1268,6 +1328,18 @@ ul { list-style: none; margin: 0; padding: 0; }
     height: 32px;
     transform: rotate(45deg);
   }
+
+  /* Журнал: заголовок и стрелка в одну строку, ниже текст и фото */
+  .journal__head { padding: 0 0 20px; }
+  .journal__title {
+    padding: 2px 52px 2px 0; /* строка высотой 32, как стрелка */
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 1px;
+  }
+  .journal__text { max-width: none; font-size: 16px; line-height: 22px; }
+  .journal__link { top: 0; width: 32px; height: 32px; }
+  .journal__media { aspect-ratio: 376 / 220; }
 }
 
 @media (prefers-reduced-motion: reduce) {
