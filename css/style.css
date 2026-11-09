@@ -118,8 +118,6 @@ ul { list-style: none; margin: 0; padding: 0; }
 .is-docked .header__nav { pointer-events: auto; }
 .is-docked .header__nav a { opacity: 1; }
 
-/* Временный отступ под первым экраном, чтобы было куда скроллить, пока нет следующих блоков */
-.page-spacer { height: 100vh; }
 .menu-open .header__nav { visibility: hidden; }
 
 /* Пока меню открыто, шапка закреплена сверху, страница под ней не прокручивается */
@@ -1150,6 +1148,134 @@ ul { list-style: none; margin: 0; padding: 0; }
 /* Кнопка под списком есть только в мобильном макете */
 .pmap__all { display: none; }
 
+/* ---------- Шоурум (только мобильный) ---------- */
+.showroom { display: none; }
+
+/* ---------- Футер ---------- */
+.footer { padding: 40px var(--gutter); }
+.footer__grid {
+  display: grid;
+  grid-template-columns: 618px 342px 1fr;
+  grid-template-areas:
+    "logo links contacts"
+    "btns btns btns"
+    "copy copy policies";
+}
+/* Тонкие линии над рядами: у соседних ячеек сливаются в одну */
+.footer__logo,
+.footer__links,
+.footer__contacts,
+.footer__copy,
+.footer__policies {
+  padding-top: 12px;
+  border-top: 1px solid #f4f4f5;
+}
+.footer__logo { grid-area: logo; }
+.footer__logo img { width: 241px; height: 87px; }
+.footer__links {
+  grid-area: links;
+  display: flex;
+  gap: 168px;
+  white-space: nowrap;
+}
+.footer__links ul { display: flex; flex-direction: column; gap: 12px; }
+.footer__links a,
+.footer__contacts a,
+.footer__policies a { transition: opacity var(--ease); }
+.footer__links a:hover,
+.footer__contacts a:hover,
+.footer__policies a:hover { opacity: .5; }
+.footer__links a {
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: .4px;
+}
+.footer__contacts {
+  grid-area: contacts;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+  font-style: normal;
+  text-align: right;
+}
+.footer__phone {
+  font-size: 60px;
+  line-height: 68px;
+  white-space: nowrap;
+}
+.footer__email,
+.footer__address {
+  font-size: 14px;
+  line-height: 18px;
+}
+.footer__address { max-width: 233px; }
+
+.footer__btns {
+  grid-area: btns;
+  display: flex;
+  gap: 12px;
+  margin: 120px 0 40px;
+}
+/* Светлые плашки-кнопки; чёрная заливка при наведении — как у остальных плашек сайта */
+.fbtn {
+  --fb-ease: .3s cubic-bezier(.215, .61, .355, 1);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 948 1 0;
+  height: 80px;
+  padding: 20px 24px;
+  background: #f4f4f5;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+  isolation: isolate;
+  transition: color var(--fb-ease);
+}
+.fbtn + .fbtn { flex: 880 1 0; }
+.fbtn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #000;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--fb-ease);
+}
+.fbtn__arrow {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  transform: rotate(45deg);
+  transition: transform var(--fb-ease);
+}
+@media (hover: hover) {
+  .fbtn:hover,
+  .fbtn:focus-visible { color: #fff; }
+  .fbtn:hover::before,
+  .fbtn:focus-visible::before { transform: scaleY(1); }
+  .fbtn:hover .fbtn__arrow,
+  .fbtn:focus-visible .fbtn__arrow { transform: rotate(45deg) translate(3px, -3px); }
+}
+
+.footer__copy,
+.footer__policies a {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: .4px;
+  font-weight: 400; /* в макете Stem Semi Light — ближайшее Regular */
+}
+.footer__copy { grid-area: copy; margin: 0; }
+.footer__policies {
+  grid-area: policies;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
 /* ---------- Планшет (макет 834) ---------- */
 @media (max-width: 1199px) {
   :root { --gutter: 20px; }
@@ -1332,6 +1458,30 @@ ul { list-style: none; margin: 0; padding: 0; }
   }
   /* В макете планшета 7 партнёров, на десктопе список прокручивается */
   .partner:nth-child(n+8) { display: none; }
+
+  /* Футер планшета: логотип + контакты, ссылки + политики, кнопки столбиком */
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "logo contacts"
+      "links policies"
+      "btns btns"
+      "copy copy";
+  }
+  .footer__logo img { width: 200px; height: 72px; }
+  .footer__phone { font-size: 40px; line-height: 48px; }
+  .footer__contacts { padding-bottom: 20px; } /* ряд в макете высотой 162 */
+  .footer__links,
+  .footer__policies { margin-top: 40px; }
+  .footer__links { gap: 106px; }
+  .footer__policies {
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+  .footer__btns { flex-direction: column; margin: 40px 0; }
+  .fbtn, .fbtn + .fbtn { flex: none; }
 }
 
 /* ---------- Мобильный (макет 400) ---------- */
@@ -1549,6 +1699,51 @@ ul { list-style: none; margin: 0; padding: 0; }
   .partner__contacts { margin-top: 12px; }
   /* В мобильном макете 4 партнёра, остальные — по кнопке «Смотреть всех» */
   .partner:nth-child(n+5) { display: none; }
+
+  .showroom { display: block; padding: 40px var(--gutter) 0; }
+  .showroom__list { margin: 0; }
+  .showroom__list div {
+    display: grid;
+    grid-template-columns: 101px 1fr;
+    gap: 24px;
+    padding: 12px 0 20px;
+    border-top: 1px solid var(--c-line);
+    font-size: 14px;
+    line-height: 20px;
+  }
+  .showroom__list dt { text-transform: uppercase; }
+  .showroom__list dd { margin: 0; }
+
+  /* Футер мобильного: всё в одну колонку, логотип справа */
+  .footer__grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "logo" "links" "contacts" "btns" "policies" "copy";
+  }
+  .footer__logo { text-align: right; }
+  .footer__logo img { display: inline-block; vertical-align: top; }
+  .footer__contacts { padding-bottom: 0; }
+  .footer__links { margin-top: 40px; }
+  .footer__links ul { gap: 20px; }
+  .footer__contacts {
+    align-items: flex-start;
+    margin-top: 40px;
+    text-align: left;
+  }
+  .footer__phone { font-size: min(40px, 10.5vw); }
+  .footer__address { max-width: 259px; }
+  .fbtn {
+    height: 64px;
+    padding: 16px 12px 16px 20px;
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .fbtn__arrow { width: 32px; height: 32px; }
+  .footer__btns { margin: 40px 0 0; }
+  .footer__policies {
+    align-items: flex-start;
+    margin-top: 40px;
+  }
+  .footer__copy { margin-top: 40px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
