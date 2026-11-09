@@ -394,6 +394,133 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .manifest__link:hover { opacity: .5; }
 
+/* ---------- Решения Schüco ---------- */
+.solutions { padding: 120px 0; }
+.solutions__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 0 var(--gutter) 16px;
+  margin-bottom: 40px;
+}
+.solutions__title {
+  margin: 0;
+  font-size: 60px;
+  line-height: 68px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.solutions__count {
+  margin: 0;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+.solutions__list li + li { margin-top: -1px; }
+
+.sol {
+  --sol-ease: .3s cubic-bezier(.215, .61, .355, 1);
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: clamp(40px, 8.33vw, 160px);
+  /* 19 + рамка 1px = 20, как в макете (обводка внутри строки) */
+  padding: 19px var(--gutter);
+  border-top: 1px solid var(--c-line);
+  border-bottom: 1px solid var(--c-line);
+  isolation: isolate;
+  transition: color var(--sol-ease);
+}
+/* Чёрная заливка поднимается снизу при наведении */
+.sol::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #000;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--sol-ease);
+}
+
+.sol__main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0 1 458px;
+  min-width: 0;
+  padding: 20px 0;
+}
+.sol__title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.sol__cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+.sol__more {
+  font-size: 16px;
+  line-height: 24px;
+  opacity: 0;
+  transition: opacity var(--sol-ease);
+}
+.sol__arrow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  transition: left var(--sol-ease), transform var(--sol-ease);
+}
+
+.sol__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 0 1 382px;
+  min-width: 0;
+  padding: 20px 0;
+  font-size: 14px;
+  line-height: 18px;
+}
+.sol__num,
+.sol__desc { opacity: .8; }
+.sol__desc { max-width: 302px; margin: 0; }
+
+.sol__media {
+  flex: 0 1 434px;
+  min-width: 260px;
+  margin-left: auto;
+  aspect-ratio: 434 / 229;
+  overflow: hidden;
+}
+.sol__media img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (hover: hover) {
+  .sol:hover,
+  .sol:focus-visible { color: #fff; }
+  .sol:hover::before,
+  .sol:focus-visible::before { transform: scaleY(1); }
+  .sol:hover .sol__more,
+  .sol:focus-visible .sol__more { opacity: 1; }
+  .sol:hover .sol__arrow,
+  .sol:focus-visible .sol__arrow {
+    left: calc(100% - 40px);
+    transform: rotate(45deg);
+  }
+}
+
 /* ---------- Планшет (макет 834) ---------- */
 @media (max-width: 1199px) {
   :root { --gutter: 20px; }
@@ -443,6 +570,25 @@ ul { list-style: none; margin: 0; padding: 0; }
 
   .manifest { padding: 40px var(--gutter); }
   .manifest__text { max-width: none; }
+
+  .solutions { padding: 40px 0; }
+  .solutions__title { font-size: 40px; line-height: 48px; }
+  .solutions__count { font-size: 14px; line-height: 20px; }
+
+  .sol { gap: 20px; }
+  .sol__main { flex: 0 1 180px; padding: 8px 0; }
+  .sol__info {
+    flex: 0 1 251px;
+    padding: 8px 0;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .sol__desc { max-width: none; }
+  .sol__media { flex-basis: 303px; min-width: 200px; aspect-ratio: 303 / 160; }
+  .sol__cta { height: 32px; }
+  .sol__arrow { width: 32px; height: 32px; }
+  .sol:hover .sol__arrow,
+  .sol:focus-visible .sol__arrow { left: calc(100% - 32px); }
 }
 
 /* ---------- Мобильный (макет 400) ---------- */
@@ -505,6 +651,40 @@ ul { list-style: none; margin: 0; padding: 0; }
   }
   .manifest__body { gap: 12px; }
   .manifest__text { opacity: .7; }
+
+  .solutions { padding: 0; }
+  .solutions__head {
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px var(--gutter);
+    margin: 0;
+  }
+  .solutions__title { font-size: 32px; line-height: 40px; }
+  .solutions__count { font-size: 16px; line-height: 22px; letter-spacing: 0; opacity: .8; }
+
+  /* Строка: название со стрелкой, фото, номер и описание */
+  .sol {
+    flex-direction: column;
+    gap: 12px;
+    padding: 19px var(--gutter);
+  }
+  .sol__main {
+    flex: none;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+  }
+  .sol__more { display: none; }
+  .sol__cta { width: 32px; }
+  .sol__media { order: 1; flex: none; width: 100%; min-width: 0; margin: 0; aspect-ratio: 376 / 198; }
+  .sol__info {
+    order: 2;
+    flex: none;
+    flex-direction: row;
+    gap: 12px;
+    padding: 0;
+  }
+  .sol__desc { max-width: 251px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
