@@ -101,6 +101,34 @@
   });
 })();
 
+// Реализованные проекты: на десктопе наведение на строку меняет фото слева,
+// на планшете и мобильном первый тап раскрывает фото под строкой, второй ведёт по ссылке
+(function () {
+  var list = document.querySelector('.projects__list');
+  if (!list) return;
+  var items = Array.prototype.slice.call(list.querySelectorAll('.project'));
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.projects__slide'));
+  var wide = window.matchMedia('(min-width: 1200px)');
+
+  function activate(item) {
+    items.forEach(function (it) { it.classList.toggle('is-active', it === item); });
+    var img = item.getAttribute('data-img');
+    slides.forEach(function (s) { s.classList.toggle('is-active', s.getAttribute('data-img') === img); });
+  }
+
+  items.forEach(function (item) {
+    var row = item.querySelector('.project__row');
+    row.addEventListener('mouseenter', function () { if (wide.matches) activate(item); });
+    row.addEventListener('focus', function () { activate(item); });
+    row.addEventListener('click', function (e) {
+      if (!wide.matches && !item.classList.contains('is-active')) {
+        e.preventDefault();
+        activate(item);
+      }
+    });
+  });
+})();
+
 // Меню под бургером
 (function () {
   var root = document.documentElement;

@@ -521,6 +521,139 @@ ul { list-style: none; margin: 0; padding: 0; }
   }
 }
 
+/* ---------- Реализованные проекты ---------- */
+.projects {
+  display: grid;
+  grid-template-columns: 879fr 960fr;
+  padding: 120px var(--gutter);
+}
+
+/* Кадр проекта: та же фотография выбеленным фоном и по центру крупно */
+.pframe {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+.pframe__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pframe::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, .86);
+}
+.pframe__photo {
+  position: relative;
+  z-index: 1;
+  width: 84.2%;
+  aspect-ratio: 740 / 429;
+  object-fit: cover;
+}
+
+.projects__visual { display: grid; align-self: start; }
+.projects__slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transition: opacity .2s linear;
+}
+.projects__slide.is-active { opacity: 1; }
+
+.projects__side {
+  display: flex;
+  flex-direction: column;
+}
+.projects__all { margin-top: auto !important; }
+
+.projects__head,
+.project__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  line-height: 22px;
+}
+.projects__head {
+  margin: 0 32px 80px;
+  padding: 15px 8px 0; /* +1px рамки = 16 */
+  border-top: 1px solid var(--c-line);
+  text-transform: uppercase;
+}
+.project__name { flex: 0 1 446px; min-width: 0; }
+.project__loc { flex: 0 0 175px; text-align: right; }
+.project__year { flex: 0 0 102px; text-align: right; }
+
+.projects__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.project__row {
+  padding: 0 40px;
+  color: rgba(0, 0, 0, .24);
+  transition: color .1s linear;
+}
+.project__row > span { opacity: .8; }
+.project.is-active .project__row { color: #000; }
+
+/* На десктопе фото справа не раскрывается — оно слева */
+.project__media { display: none; }
+
+.projects__all {
+  --pa-ease: .3s cubic-bezier(.215, .61, .355, 1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  margin: 0 20px;
+  padding: 8px 20px;
+  background: #f8fafd;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+  isolation: isolate;
+  transition: color var(--pa-ease);
+}
+.projects__all::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #000;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--pa-ease);
+}
+.projects__all-text { opacity: 0; transition: opacity var(--pa-ease); }
+.projects__arrow {
+  position: absolute;
+  top: 8px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  transition: left var(--pa-ease), transform var(--pa-ease);
+}
+@media (hover: hover) {
+  .projects__all:hover,
+  .projects__all:focus-visible { color: #fff; }
+  .projects__all:hover::before,
+  .projects__all:focus-visible::before { transform: scaleY(1); }
+  .projects__all:hover .projects__all-text,
+  .projects__all:focus-visible .projects__all-text { opacity: 1; }
+  .projects__all:hover .projects__arrow,
+  .projects__all:focus-visible .projects__arrow {
+    left: calc(100% - 60px);
+    transform: rotate(45deg);
+  }
+}
+
 /* ---------- Планшет (макет 834) ---------- */
 @media (max-width: 1199px) {
   :root { --gutter: 20px; }
@@ -589,6 +722,31 @@ ul { list-style: none; margin: 0; padding: 0; }
   .sol__arrow { width: 32px; height: 32px; }
   .sol:hover .sol__arrow,
   .sol:focus-visible .sol__arrow { left: calc(100% - 32px); }
+
+  /* Проекты: аккордеон, фото раскрывается под активной строкой */
+  .projects {
+    display: block;
+    padding: 40px var(--gutter);
+  }
+  .projects__visual { display: none; }
+  .projects__list { margin-bottom: 40px; }
+  .projects__head { margin: 0 0 40px; padding: 15px 0 0; }
+  .project__row { padding: 0; }
+  .project { transition: background-color .2s linear; }
+  .project.is-active { background: #f4f4f5; }
+  .project.is-active .project__row { padding-top: 8px; }
+
+  .project__media {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows .3s cubic-bezier(.215, .61, .355, 1);
+  }
+  .project.is-active .project__media { grid-template-rows: 1fr; }
+  .project__media-in { overflow: hidden; min-height: 0; }
+  .project__media .pframe { margin-top: 12px; aspect-ratio: 794 / 669; }
+  .project__media .pframe__photo { width: 93.2%; }
+
+  .projects__all { margin: 0; }
 }
 
 /* ---------- Мобильный (макет 400) ---------- */
@@ -685,6 +843,20 @@ ul { list-style: none; margin: 0; padding: 0; }
     padding: 0;
   }
   .sol__desc { max-width: 251px; }
+
+  .projects__list { margin-bottom: 24px; }
+  .projects__head {
+    font-size: 12px;
+    line-height: 17px;
+  }
+  .project__row { font-size: 14px; line-height: 20px; }
+  .project__name { flex: 1 1 125px; }
+  .project__loc { flex: 0 1 167px; }
+  .project__year { flex: 0 0 83px; }
+  .projects__head .project__name { flex: 1 1 auto; white-space: nowrap; }
+  .projects__head .project__loc { flex: 0 0 auto; }
+  .project__media .pframe { aspect-ratio: 376 / 344; }
+  .project__media .pframe__photo { width: 84.3%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
