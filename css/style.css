@@ -654,6 +654,106 @@ ul { list-style: none; margin: 0; padding: 0; }
   }
 }
 
+/* ---------- 75-летие Schüco ---------- */
+.jubilee {
+  display: grid;
+  grid-template-columns: 920fr 879fr;
+  gap: 40px;
+  padding: 120px var(--gutter);
+}
+.jubilee__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+}
+.jubilee__title {
+  max-width: 805px;
+  margin: 0;
+  font-size: 60px;
+  line-height: normal; /* в макете «100%» от автоматического интервала шрифта */
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.jubilee__lead {
+  max-width: 618px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.jubilee__collage {
+  display: grid;
+  grid-template-columns: 434fr 437fr;
+  gap: 8px;
+}
+.jubilee__col {
+  display: grid;
+  grid-template-rows: 229fr 392fr;
+  gap: 8px;
+}
+.jubilee__img { position: relative; overflow: hidden; min-height: 0; }
+.jubilee__img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.jubilee__img--tall { aspect-ratio: 437 / 629; }
+
+/* Карточка «Узнать больше»: ховер как у строк «Решений» */
+.jubilee__card {
+  --j-ease: .3s cubic-bezier(.215, .61, .355, 1);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 24px;
+  border: 1px solid var(--c-line);
+  isolation: isolate;
+  transition: color var(--j-ease), border-color var(--j-ease);
+}
+.jubilee__card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background: #000;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--j-ease);
+}
+.jubilee__more {
+  padding-bottom: 12px;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity var(--j-ease);
+}
+.jubilee__arrow {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  width: 48px;
+  height: 48px;
+  transition: left var(--j-ease), transform var(--j-ease);
+}
+@media (hover: hover) {
+  .jubilee__card:hover,
+  .jubilee__card:focus-visible { color: #fff; border-color: #000; }
+  .jubilee__card:hover::before,
+  .jubilee__card:focus-visible::before { transform: scaleY(1); }
+  .jubilee__card:hover .jubilee__more,
+  .jubilee__card:focus-visible .jubilee__more { opacity: 1; }
+  .jubilee__card:hover .jubilee__arrow,
+  .jubilee__card:focus-visible .jubilee__arrow {
+    left: calc(100% - 72px);
+    transform: rotate(45deg);
+  }
+}
+
 /* ---------- Планшет (макет 834) ---------- */
 @media (max-width: 1199px) {
   :root { --gutter: 20px; }
@@ -747,6 +847,16 @@ ul { list-style: none; margin: 0; padding: 0; }
   .project__media .pframe__photo { width: 93.2%; }
 
   .projects__all { margin: 0; }
+
+  .jubilee {
+    grid-template-columns: 1fr;
+    padding: 40px var(--gutter);
+  }
+  .jubilee__text { justify-content: flex-start; gap: 16px; }
+  .jubilee__title { max-width: 521px; font-size: 40px; line-height: 48px; }
+  .jubilee__collage { grid-template-columns: 368fr 418fr; }
+  .jubilee__col { grid-template-rows: 184fr 348fr; }
+  .jubilee__img--tall { aspect-ratio: 418 / 540; }
 }
 
 /* ---------- Мобильный (макет 400) ---------- */
@@ -857,6 +967,30 @@ ul { list-style: none; margin: 0; padding: 0; }
   .projects__head .project__loc { flex: 0 0 auto; }
   .project__media .pframe { aspect-ratio: 376 / 344; }
   .project__media .pframe__photo { width: 84.3%; }
+
+  /* 75-летие: текст, под ним коллаж; в карточке стрелка сверху, подпись снизу */
+  .jubilee { gap: 0; padding: 40px var(--gutter); }
+  .jubilee__text { gap: 20px; padding-bottom: 40px; }
+  .jubilee__title { max-width: 328px; font-size: 20px; line-height: 28px; }
+  .jubilee__lead { font-size: 16px; line-height: 22px; }
+  .jubilee__collage { grid-template-columns: 189fr 183fr; gap: 4px; }
+  .jubilee__col { grid-template-rows: 88fr 178fr; gap: 4px; }
+  .jubilee__img--tall { aspect-ratio: 183 / 270; }
+  .jubilee__card { padding: 12px; }
+  .jubilee__more {
+    padding: 0;
+    font-size: 14px;
+    line-height: 22px;
+    opacity: 1;
+  }
+  .jubilee__arrow {
+    top: 12px;
+    right: 12px;
+    bottom: auto;
+    left: auto;
+    width: 32px;
+    height: 32px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
