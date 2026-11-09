@@ -171,6 +171,28 @@
   track.addEventListener('dragstart', function (e) { e.preventDefault(); });
 })();
 
+// Карта партнёров: клик по партнёру раскрывает контакты (открыт один).
+// На планшете и мобильном по макету первый партнёр раскрыт сразу.
+(function () {
+  var items = Array.prototype.slice.call(document.querySelectorAll('.partner'));
+  if (!items.length) return;
+
+  function setOpen(item, open) {
+    item.classList.toggle('is-open', open);
+    item.querySelector('.partner__row').setAttribute('aria-expanded', String(open));
+  }
+
+  items.forEach(function (item) {
+    item.querySelector('.partner__row').addEventListener('click', function () {
+      var open = !item.classList.contains('is-open');
+      items.forEach(function (it) { setOpen(it, false); });
+      setOpen(item, open);
+    });
+  });
+
+  if (!window.matchMedia('(min-width: 1200px)').matches) setOpen(items[0], true);
+})();
+
 // Меню под бургером
 (function () {
   var root = document.documentElement;

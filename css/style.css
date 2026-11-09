@@ -1011,6 +1011,145 @@ ul { list-style: none; margin: 0; padding: 0; }
   transition: transform .6s cubic-bezier(.215, .61, .355, 1);
 }
 
+/* ---------- Карта партнёров ---------- */
+.pmap { padding: 80px var(--gutter); }
+.pmap__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+.pmap__title {
+  margin: 0;
+  font-size: 60px;
+  line-height: 75px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.pmap__text {
+  max-width: 433px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(0, 0, 0, .8);
+}
+
+.pmap__body {
+  --pc1: 438px;
+  --pc2: 390px;
+  display: grid;
+  grid-template-columns: 920fr 879fr;
+  gap: 40px;
+  height: 730px;
+}
+.pmap__map { position: relative; overflow: hidden; }
+.pmap__map img,
+.partner__map img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pmap__side { display: flex; flex-direction: column; min-height: 0; }
+
+.pmap__thead {
+  display: grid;
+  grid-template-columns: var(--pc1) var(--pc2);
+  margin: 0 43px 80px 0;
+  padding: 15px 8px 0;
+  border-top: 1px solid var(--c-line);
+  font-size: 16px;
+  line-height: 22px;
+  text-transform: uppercase;
+}
+.pmap__th-contacts { display: none; }
+
+/* Список прокручивается внутри блока, тонкая серая полоса справа */
+.pmap__list {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 0 39px 0 8px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc #efeff0;
+}
+.pmap__list::-webkit-scrollbar { width: 4px; }
+.pmap__list::-webkit-scrollbar-track { background: #efeff0; }
+.pmap__list::-webkit-scrollbar-thumb { background: #ccc; }
+
+.partner { flex: none; transition: padding .3s linear; }
+.partner__row {
+  display: grid;
+  grid-template-columns: var(--pc1) var(--pc2);
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+.partner__name {
+  font-size: 16px;
+  line-height: 22px;
+  color: rgba(0, 0, 0, .19);
+  transition: color .1s linear;
+}
+.partner__desc {
+  font-size: 14px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, .19);
+  transition: color .3s linear;
+}
+.partner__row:hover .partner__name,
+.partner.is-open .partner__name,
+.partner.is-open .partner__desc { color: rgba(0, 0, 0, .8); }
+
+/* Раскрытый партнёр: линии сверху и снизу, под описанием контакты */
+.partner.is-open {
+  padding: 15px 0 39px;
+  border-top: 1px solid var(--c-line);
+  border-bottom: 1px solid var(--c-line);
+}
+.partner__more {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s linear;
+}
+.partner.is-open .partner__more { grid-template-rows: 1fr; }
+.partner__more-in {
+  display: grid;
+  grid-template-columns: var(--pc1) var(--pc2);
+  min-height: 0;
+  overflow: hidden;
+}
+.partner__contacts {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0 0;
+}
+.partner__contacts div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.partner__contacts dt { color: rgba(0, 0, 0, .32); }
+.partner__contacts dd { margin: 0; color: rgba(0, 0, 0, .8); }
+.partner__contacts a { transition: opacity var(--ease); }
+.partner__contacts a:hover { opacity: .5; }
+.partner__msg img { width: 24px; height: 24px; }
+.partner__map { display: none; }
+
+/* Кнопка под списком есть только в мобильном макете */
+.pmap__all { display: none; }
+
 /* ---------- Планшет (макет 834) ---------- */
 @media (max-width: 1199px) {
   :root { --gutter: 20px; }
@@ -1142,6 +1281,57 @@ ul { list-style: none; margin: 0; padding: 0; }
   .journal__title { flex: none; font-size: 40px; line-height: 48px; }
   .journal__link { top: 0; bottom: auto; }
   .journal__media { aspect-ratio: 794 / 315; }
+
+  /* Карта партнёров: аккордеон, карта раскрывается под активным партнёром */
+  .pmap { padding: 40px var(--gutter); }
+  .pmap__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: 60px;
+  }
+  .pmap__title { font-size: 40px; line-height: 48px; }
+  .pmap__text {
+    max-width: 401px;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: .4px;
+    color: #000;
+  }
+  .pmap__body {
+    --pc1: 1fr;
+    --pc2: 393px;
+    display: block;
+    height: auto;
+  }
+  .pmap__map { display: none; }
+  .pmap__thead { margin: 0 0 40px; padding: 15px 0 0; }
+  .pmap__th-about { display: none; }
+  .pmap__th-contacts { display: block; }
+  .pmap__list {
+    gap: 24px;
+    padding: 0;
+    overflow: visible;
+  }
+  .partner__row { align-items: center; min-height: 40px; }
+  .partner { transition: background-color .2s linear; }
+  .partner.is-open {
+    padding: 8px 0 0;
+    border: 0;
+    background: #f4f4f5;
+  }
+  .partner.is-open .partner__row { align-items: start; }
+  .partner__desc,
+  .partner__contacts { padding-right: 12px; }
+  .partner__map {
+    position: relative;
+    display: block;
+    grid-column: 1 / -1;
+    margin-top: 12px;
+    aspect-ratio: 794 / 330;
+  }
+  /* В макете планшета 7 партнёров, на десктопе список прокручивается */
+  .partner:nth-child(n+8) { display: none; }
 }
 
 /* ---------- Мобильный (макет 400) ---------- */
@@ -1344,6 +1534,21 @@ ul { list-style: none; margin: 0; padding: 0; }
   .journal__text { max-width: none; font-size: 16px; line-height: 22px; }
   .journal__link { top: 0; width: 32px; height: 32px; }
   .journal__media { aspect-ratio: 376 / 220; }
+
+  .pmap__head { gap: 12px; padding-bottom: 40px; }
+  .pmap__title { font-size: 32px; line-height: 40px; letter-spacing: 1px; }
+  .pmap__text { max-width: none; font-size: 14px; line-height: 20px; }
+  .pmap__body { --pc1: 1fr; --pc2: 251px; }
+  .pmap__thead { font-size: 12px; line-height: 17px; }
+  .pmap__list { gap: 20px; }
+  .partner.is-open { padding: 8px 0 0 8px; }
+  .partner.is-open .partner__name { font-size: 14px; line-height: 20px; }
+  .partner__row { align-items: start; }
+  .partner__map { margin-left: -8px; aspect-ratio: 376 / 181; }
+  .pmap__all { display: flex; margin: 20px 0 0; }
+  .partner__contacts { margin-top: 12px; }
+  /* В мобильном макете 4 партнёра, остальные — по кнопке «Смотреть всех» */
+  .partner:nth-child(n+5) { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
