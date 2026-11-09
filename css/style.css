@@ -1044,6 +1044,8 @@ ul { list-style: none; margin: 0; padding: 0; }
 .pmap__map { position: relative; overflow: hidden; background: #e5e5e5; }
 .pmap__canvas {
   position: absolute;
+  z-index: 0;
+  isolation: isolate;
   inset: 0;
   background: #e5e5e5;
   font-family: inherit;
@@ -1778,7 +1780,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .dialog-layer[hidden] { display: none; }
 .dialog-layer {
   position: fixed;
-  z-index: 80;
+  z-index: 2000;
   inset: 0;
   display: grid;
   place-items: start center;
