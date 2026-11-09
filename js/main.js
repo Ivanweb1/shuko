@@ -1,6 +1,9 @@
 // Группы навигации на первом экране: на устройствах без наведения подпункты открываются по тапу
 (function () {
   var groups = document.querySelectorAll('.nav-group');
+  var headerNav = document.querySelector('.header__nav');
+  // Страница может быть без ряда разделов (страница проекта) — тогда блок не нужен
+  if (!groups.length || !headerNav) return;
 
   groups.forEach(function (group) {
     var title = group.querySelector('.nav-group__title');
@@ -16,7 +19,6 @@
   // перелетают в её центр, при скролле обратно — возвращаются на место.
   var root = document.documentElement;
   var header = document.querySelector('.header');
-  var headerNav = document.querySelector('.header__nav');
   var titles = Array.prototype.slice.call(document.querySelectorAll('.nav-group__title'));
   var items = Array.prototype.slice.call(headerNav.querySelectorAll('a'));
   var DUR = 500;
