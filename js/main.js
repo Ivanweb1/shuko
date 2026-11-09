@@ -129,6 +129,48 @@
   });
 })();
 
+// Наши люди: переключение вкладок и перетаскивание ленты мышью
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.people__tab'));
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) {
+        t.classList.toggle('is-active', t === tab);
+        t.setAttribute('aria-selected', String(t === tab));
+      });
+      tab.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'smooth' });
+    });
+  });
+
+  var track = document.querySelector('.people__track');
+  if (!track) return;
+  var startX = 0, startScroll = 0, down = false, moved = false;
+
+  track.addEventListener('pointerdown', function (e) {
+    if (e.pointerType !== 'mouse' || e.button !== 0) return;
+    down = true;
+    moved = false;
+    startX = e.clientX;
+    startScroll = track.scrollLeft;
+  });
+  window.addEventListener('pointermove', function (e) {
+    if (!down) return;
+    var dx = e.clientX - startX;
+    if (!moved && Math.abs(dx) > 5) {
+      moved = true;
+      track.classList.add('is-dragging');
+    }
+    if (moved) track.scrollLeft = startScroll - dx;
+  });
+  window.addEventListener('pointerup', function () {
+    if (!down) return;
+    down = false;
+    // снимаем флаг после click, чтобы перетаскивание не открыло карточку
+    setTimeout(function () { track.classList.remove('is-dragging'); }, 0);
+  });
+  track.addEventListener('dragstart', function (e) { e.preventDefault(); });
+})();
+
 // Меню под бургером
 (function () {
   var root = document.documentElement;

@@ -754,6 +754,209 @@ ul { list-style: none; margin: 0; padding: 0; }
   }
 }
 
+/* ---------- Наши люди ---------- */
+.people { padding: 120px 0; }
+.people__heading { display: none; }
+
+.people__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin: 0 var(--gutter) 80px;
+  padding-top: 15px; /* +1px рамки = 16 */
+  border-top: 1px solid var(--c-line);
+}
+.people__title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+.people__tabs {
+  display: flex;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.people__tabs::-webkit-scrollbar { display: none; }
+.people__tab {
+  position: relative;
+  flex: none;
+  padding: 0 24px;
+  font-size: 16px;
+  line-height: 22px;
+  text-transform: uppercase;
+  opacity: .2;
+  transition: opacity var(--ease);
+}
+.people__tab:last-child { padding-right: 0; }
+.people__tab:hover { opacity: .6; }
+.people__tab.is-active { opacity: 1; }
+/* Активная вкладка отмечена чёрным отрезком на верхней линии */
+.people__tab::before {
+  content: "";
+  position: absolute;
+  top: -16px;
+  left: 24px;
+  right: 24px;
+  height: 1px;
+  background: #000;
+  transform: scaleX(0);
+  transition: transform var(--ease);
+}
+.people__tab:last-child::before { right: 0; }
+.people__tab.is-active::before { transform: scaleX(1); }
+.people__tabs { padding-top: 16px; margin-top: -16px; }
+
+/* Лента карточек, уходящая за край экрана */
+.people__track {
+  display: flex;
+  overflow-x: auto;
+  padding: 0 var(--gutter);
+  margin-bottom: 20px;
+  scroll-padding: 0 var(--gutter);
+  scrollbar-width: none;
+  cursor: grab;
+}
+.people__track::-webkit-scrollbar { display: none; }
+.people__track.is-dragging { cursor: grabbing; user-select: none; }
+.people__track.is-dragging a { pointer-events: none; }
+.people__track li { flex: none; }
+.people__track li + li { margin-left: -1px; }
+
+.pcard {
+  --pc-ease: .2s cubic-bezier(.215, .61, .355, 1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 599px;
+  height: 387px;
+  border: 1px solid var(--c-line);
+  background: #fff;
+  isolation: isolate;
+  transition: color var(--pc-ease), border-color var(--pc-ease);
+}
+.pcard::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background: #000;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--pc-ease);
+}
+.pcard__name {
+  /* В макете Stem Semi Light — такого начертания на сайте нет, ближайшее Regular */
+  padding: 24px 24px 23px;
+  border-bottom: 1px solid var(--c-line);
+  font-size: 60px;
+  line-height: 64px;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: border-color var(--pc-ease);
+}
+.pcard__desc {
+  max-width: 541px;
+  margin-top: 24px;
+  padding: 0 24px;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, .4);
+  transition: color var(--pc-ease);
+}
+.pcard__cta {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 96px;
+  margin-top: auto;
+  padding: 24px;
+}
+.pcard__more {
+  font-size: 16px;
+  line-height: 24px;
+  opacity: 0;
+  transition: opacity var(--pc-ease);
+}
+.pcard__arrow {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  width: 48px;
+  height: 48px;
+  transition: left var(--pc-ease), transform var(--pc-ease);
+}
+@media (hover: hover) {
+  .pcard:hover,
+  .pcard:focus-visible { color: #fff; border-color: #000; }
+  .pcard:hover::before,
+  .pcard:focus-visible::before { transform: scaleY(1); }
+  .pcard:hover .pcard__name,
+  .pcard:focus-visible .pcard__name { border-color: rgba(255, 255, 255, .12); }
+  .pcard:hover .pcard__desc,
+  .pcard:focus-visible .pcard__desc { color: rgba(255, 255, 255, .6); }
+  .pcard:hover .pcard__more,
+  .pcard:focus-visible .pcard__more { opacity: 1; }
+  .pcard:hover .pcard__arrow,
+  .pcard:focus-visible .pcard__arrow {
+    left: calc(100% - 72px);
+    transform: rotate(45deg);
+  }
+}
+
+/* Кнопка «Смотреть всех партнёров» */
+.people__all {
+  --pa2-ease: .3s cubic-bezier(.215, .61, .355, 1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  margin: 0 var(--gutter);
+  padding: 8px 24px;
+  background: #f4f4f5;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+  isolation: isolate;
+  transition: color var(--pa2-ease);
+}
+.people__all::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #000;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--pa2-ease);
+}
+.people__all-text { opacity: 0; transition: opacity var(--pa2-ease); }
+.people__all-arrow {
+  position: absolute;
+  top: 8px;
+  left: 24px;
+  width: 40px;
+  height: 40px;
+  transition: left var(--pa2-ease), transform var(--pa2-ease);
+}
+@media (hover: hover) {
+  .people__all:hover,
+  .people__all:focus-visible { color: #fff; }
+  .people__all:hover::before,
+  .people__all:focus-visible::before { transform: scaleY(1); }
+  .people__all:hover .people__all-text,
+  .people__all:focus-visible .people__all-text { opacity: 1; }
+  .people__all:hover .people__all-arrow,
+  .people__all:focus-visible .people__all-arrow {
+    left: calc(100% - 64px);
+    transform: rotate(45deg);
+  }
+}
+
 /* ---------- Планшет (макет 834) ---------- */
 @media (max-width: 1199px) {
   :root { --gutter: 20px; }
@@ -857,6 +1060,24 @@ ul { list-style: none; margin: 0; padding: 0; }
   .jubilee__collage { grid-template-columns: 368fr 418fr; }
   .jubilee__col { grid-template-rows: 184fr 348fr; }
   .jubilee__img--tall { aspect-ratio: 418 / 540; }
+
+  /* Наши люди: вкладки прокручиваются вбок, карточки меньше */
+  .people { padding: 40px 0; }
+  .people__bar { justify-content: flex-start; margin-right: 0; }
+  .people__title { flex: none; }
+  .people__tab { padding: 0 12px; }
+  .people__tab::before { left: 12px; right: 12px; }
+  .people__tab:last-child { padding-right: var(--gutter); }
+  .people__tab:last-child::before { right: var(--gutter); }
+
+  .pcard { width: 431px; height: 300px; }
+  .pcard__name { font-size: 40px; line-height: 48px; }
+  .pcard__desc { max-width: 431px; }
+
+  /* В макете планшета кнопка сразу в тёмном состоянии с подписью */
+  .people__all { background: #000; color: #fff; }
+  .people__all-text { opacity: 1; }
+  .people__all-arrow { left: calc(100% - 64px); transform: rotate(45deg); }
 }
 
 /* ---------- Мобильный (макет 400) ---------- */
@@ -990,6 +1211,62 @@ ul { list-style: none; margin: 0; padding: 0; }
     left: auto;
     width: 32px;
     height: 32px;
+  }
+
+  /* Наши люди: крупный заголовок над вкладками, компактные карточки */
+  .people__heading {
+    display: block;
+    margin: 0 var(--gutter) 20px;
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .people__title { display: none; }
+  .people__bar { margin-bottom: 40px; padding-top: 11px; }
+  .people__tabs { padding-top: 12px; margin-top: -12px; }
+  .people__tab { padding-top: 3px; padding-bottom: 3px; }
+  .people__tab::before { top: -12px; }
+  .people__tab:first-child { padding-left: 0; }
+  .people__tab:first-child::before { left: 0; }
+
+  .pcard { width: 276px; height: 173px; }
+  .pcard__name {
+    padding: 15px 56px 15px 12px;
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .pcard__desc {
+    margin-top: 12px;
+    padding: 0 12px 12px;
+    font-size: 11px;
+    line-height: 17px;
+  }
+  .pcard__cta {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    height: 32px;
+    padding: 0;
+  }
+  .pcard__more { display: none; }
+  .pcard__arrow { position: static; width: 32px; height: 32px; }
+
+  .people__all {
+    justify-content: space-between;
+    height: 64px;
+    padding: 16px 12px 16px 20px;
+    background: #f4f4f5;
+    color: #000;
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .people__all-arrow {
+    position: static;
+    width: 32px;
+    height: 32px;
+    transform: rotate(45deg);
   }
 }
 
