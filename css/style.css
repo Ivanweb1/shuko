@@ -2026,3 +2026,326 @@ ul { list-style: none; margin: 0; padding: 0; }
   .project-hero__place { margin-top: 20px; font-size: 14px; line-height: 20px; }
   .project-hero__media { aspect-ratio: 400 / 220; }
 }
+
+/* ---------- Страница проекта: о проекте ---------- */
+.pabout { padding: 80px var(--gutter); }
+.pabout__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1040px minmax(0, 1fr);
+  padding-top: 16px;
+}
+.pabout__row + .pabout__row { margin-top: 40px; }
+.pabout__term {
+  position: relative;
+  margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+/* Линия под термином шире текста и висит ниже строки — как в макете */
+.pabout__term::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 68px;
+  width: 210px;
+  height: 3px;
+  background: currentColor;
+}
+.pabout__text,
+.pabout__value {
+  margin: 0;
+  max-width: 486px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+/* ---------- Страница проекта: галерея ---------- */
+.pgallery { position: relative; padding: 80px 0; }
+.pgallery__head { padding: 0 var(--gutter); }
+.pgallery__title {
+  margin: 0;
+  font-size: 60px;
+  line-height: 75px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.pgallery__track {
+  display: flex;
+  gap: 8px;
+  margin-top: 40px;
+  padding: 0 var(--gutter);
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.pgallery__track::-webkit-scrollbar { display: none; }
+.pgallery__item {
+  flex: 0 0 956px;
+  height: 700px;
+  overflow: hidden;
+}
+.pgallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pgallery__controls {
+  position: absolute;
+  top: 107px;
+  right: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.pgallery__btn {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  transition: opacity var(--ease);
+}
+.pgallery__btn:hover { opacity: .5; }
+.pgallery__btn--prev svg { transform: rotate(180deg); }
+.pgallery__count { font-size: 14px; line-height: 18px; }
+
+/* ---------- Страница проекта: системы Schüco ---------- */
+.psystems { padding: 120px 0 0; }
+.psystems__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  height: 84px;
+  padding: 0 var(--gutter);
+}
+.psystems__title {
+  margin: 0;
+  font-size: 60px;
+  line-height: 68px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.psystems__count {
+  margin: 0;
+  white-space: nowrap;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.psystems__list { margin-top: 40px; }
+.psystem {
+  display: flex;
+  align-items: flex-start;
+  height: 116px;
+  padding: 20px var(--gutter) 0;
+  transition: background var(--ease);
+}
+.psystem__name {
+  flex: 0 0 618px;
+  font-size: 20px;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+.psystem__desc {
+  max-width: 342px;
+  font-size: 14px;
+  line-height: 18px;
+}
+.psystem__arrow { flex: none; margin-left: auto; }
+/* В макете первая строка уже подсвечена */
+.psystems__list li:first-child .psystem { background: #f4f4f5; }
+.psystem:hover { background: #f4f4f5; }
+
+/* ---------- Страница проекта: контакты и форма ---------- */
+.pform { padding: 96px var(--gutter) 80px; }
+.pform__inner {
+  display: grid;
+  grid-template-columns: 880px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+.pform__contacts { margin: 0; }
+.pform__contacts > div {
+  position: relative;
+  display: grid;
+  grid-template-columns: 241px minmax(0, 260px);
+  min-height: 117px;
+  padding-top: 16px;
+}
+.pform__contacts dt {
+  position: relative;
+  font-size: 20px;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+.pform__contacts dt::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 68px;
+  width: 210px;
+  height: 3px;
+  background: currentColor;
+}
+.pform__contacts dd { margin: 0; font-size: 14px; line-height: 18px; }
+
+.pform__card {
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+  color: #fff;
+  background: #000;
+}
+.pform__title {
+  margin: 0;
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.pform__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+  margin-top: 80px;
+}
+.pfield { display: block; border-bottom: 1px solid rgba(255, 255, 255, .4); }
+.pfield input,
+.pfield textarea {
+  display: block;
+  width: 100%;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #fff;
+  font: inherit;
+  font-size: 20px;
+  line-height: 26px;
+  resize: none;
+}
+.pfield input::placeholder,
+.pfield textarea::placeholder { color: #fff; opacity: 1; }
+.pform__message { display: flex; align-items: flex-start; gap: 40px; }
+.pform__message .pfield { flex: 1 1 auto; }
+.pfile {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 259px;
+  height: 74px;
+  padding: 0 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, .4);
+  font-size: 20px;
+  line-height: 26px;
+  cursor: pointer;
+}
+.pfile input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.pform__submit {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  height: 80px;
+  margin-top: 80px;
+  padding: 0 30px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, .12);
+  transition: background var(--ease);
+}
+.pform__submit:hover { background: rgba(255, 255, 255, .24); }
+.pform__legal {
+  margin: 16px 0 0;
+  max-width: 748px;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(255, 255, 255, .4);
+}
+.pform__status { margin: 12px 0 0; font-size: 14px; line-height: 18px; color: #fff; }
+.pform__status:empty { display: none; }
+
+/* ---------- Планшет: блоки страницы проекта ---------- */
+@media (max-width: 1199px) {
+  .pabout { padding: 40px var(--gutter); }
+  .pabout__row { grid-template-columns: 397px minmax(0, 1fr); gap: 20px; }
+  .pabout__row + .pabout__row { margin-top: 24px; }
+  /* На планшете строки идут плотнее: линия садится под термин, а не на следующий */
+  .pabout__term::after { top: 36px; }
+  .pabout__text,
+  .pabout__value { max-width: 397px; }
+
+  .pgallery { padding: 40px 0; }
+  .pgallery__title { font-size: 40px; line-height: 48px; }
+  .pgallery__track { margin-top: 40px; }
+  .pgallery__item { flex-basis: 595px; height: 436px; }
+  .pgallery__controls { top: 67px; }
+
+  .psystems { padding: 40px 0 0; }
+  .psystems__head { height: 128px; padding-top: 40px; }
+  .psystems__title { font-size: 40px; line-height: 48px; }
+  .psystem { padding: 40px var(--gutter) 0; }
+  .psystem__name { flex-basis: 200px; }
+
+  .pform { padding: 40px var(--gutter); }
+  .pform__inner { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .pform__card { padding: 40px; }
+  .pform__fields { margin-top: 40px; }
+}
+
+/* ---------- Мобильный: блоки страницы проекта ---------- */
+@media (max-width: 599px) {
+  .pabout { padding: 40px var(--gutter); }
+  .pabout__row { display: block; }
+  /* На мобильном линия уходит под значение */
+  .pabout__term::after { top: 68px; }
+  .pabout__row + .pabout__row { margin-top: 40px; }
+  .pabout__text,
+  .pabout__value { margin-top: 12px; max-width: none; }
+
+  .pgallery__title { font-size: 32px; line-height: 40px; }
+  .pgallery__track { margin-top: 24px; }
+  .pgallery__item { flex-basis: 307px; height: 225px; }
+  .pgallery__controls {
+    position: static;
+    margin-top: 24px;
+    padding: 0 var(--gutter);
+  }
+  .pgallery__count { margin: 0 auto; }
+
+  .psystems__head { height: 120px; }
+  .psystems__title { font-size: 32px; line-height: 40px; }
+  .psystems__count { font-size: 12px; line-height: 24px; }
+  .psystems__list { margin-top: 0; }
+  .psystem { height: 72px; padding: 12px var(--gutter) 0; }
+  .psystem__name { flex-basis: 125px; font-size: 14px; line-height: 22px; }
+  .psystem__desc { font-size: 12px; line-height: 16px; }
+  .psystem__arrow svg { width: 32px; height: 32px; }
+
+  .pform { padding: 28px var(--gutter) 40px; }
+  .pform__contacts > div { grid-template-columns: 125px minmax(0, 1fr); min-height: 0; padding-top: 16px; }
+  .pform__contacts > div + div { margin-top: 56px; }
+  .pform__contacts dt { font-size: 14px; line-height: 20px; }
+  .pform__contacts dt::after { top: 32px; width: 100%; }
+  .pform__contacts dd { font-size: 14px; line-height: 20px; }
+  .pform__card { margin-top: 28px; padding: 20px; }
+  .pform__title { font-size: 20px; line-height: 28px; }
+  .pform__fields { gap: 40px; margin-top: 40px; }
+  .pfield input,
+  .pfield textarea { font-size: 14px; line-height: 22px; height: 34px; }
+  .pform__message { display: block; }
+  .pfile { width: 100%; height: 48px; margin-top: 40px; padding: 0; font-size: 14px; line-height: 22px; }
+  .pform__submit { height: 56px; margin-top: 40px; padding: 0 16px; font-size: 14px; line-height: 22px; }
+  .pform__submit svg { width: 32px; height: 32px; }
+  .pform__legal { font-size: 12px; line-height: 18px; }
+}
