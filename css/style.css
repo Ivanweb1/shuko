@@ -113,7 +113,21 @@ ul { list-style: none; margin: 0; padding: 0; }
   align-items: flex-end;
   gap: 12px;
   padding: 40px var(--gutter) 20px;
-  min-height: 280px;
+  height: 280px;
+  overflow: hidden;
+  transition: height var(--ease), padding var(--ease);
+}
+.hero__nav > .nav-group { transition: opacity var(--ease); }
+
+/* Состояние Variant2 из прототипа: после скролла вниз ряд схлопывается до 40px, фото поднимается */
+.hero.is-collapsed .hero__nav {
+  height: 40px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.hero.is-collapsed .hero__nav > .nav-group {
+  opacity: 0;
+  pointer-events: none;
 }
 .nav-group {
   display: flex;
@@ -186,7 +200,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   .hero__title { max-width: none; width: 100%; }
 
   .hero__nav {
-    min-height: 231px;
+    height: 231px;
     padding: 0 var(--gutter) 20px;
   }
 }
