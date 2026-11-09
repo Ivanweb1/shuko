@@ -20,6 +20,7 @@
   var lastY = window.scrollY;
 
   function setCollapsed(on) {
+    if (document.documentElement.classList.contains('menu-open')) return;
     if (hero.classList.contains('is-collapsed') === on) return;
     hero.classList.toggle('is-collapsed', on);
     if (on) groups.forEach(function (g) { g.classList.remove('is-open'); });
@@ -55,6 +56,52 @@
   document.addEventListener('click', function (e) {
     if (!e.target.closest('.nav-group')) {
       groups.forEach(function (g) { g.classList.remove('is-open'); });
+    }
+  });
+})();
+
+// Меню под бургером
+(function () {
+  var root = document.documentElement;
+  var burger = document.querySelector('.burger');
+  var menu = document.getElementById('menu');
+  var overlay = document.querySelector('.menu-overlay');
+  var hideTimer = null;
+
+  function open() {
+    clearTimeout(hideTimer);
+    menu.hidden = false;
+    overlay.hidden = false;
+    menu.scrollTop = 0;
+    // даём браузеру отрисовать скрытое состояние, чтобы сработала анимация
+    void menu.offsetHeight;
+    root.classList.add('menu-open');
+    burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', 'Закрыть меню');
+  }
+
+  function close() {
+    if (!root.classList.contains('menu-open')) return;
+    root.classList.remove('menu-open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Открыть меню');
+    hideTimer = setTimeout(function () {
+      menu.hidden = true;
+      overlay.hidden = true;
+    }, 300);
+  }
+
+  burger.addEventListener('click', function () {
+    root.classList.contains('menu-open') ? close() : open();
+  });
+  overlay.addEventListener('click', close);
+  menu.addEventListener('click', function (e) {
+    if (e.target.closest('a')) close();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && root.classList.contains('menu-open')) {
+      close();
+      burger.focus();
     }
   });
 })();

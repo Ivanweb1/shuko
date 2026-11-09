@@ -80,6 +80,161 @@ ul { list-style: none; margin: 0; padding: 0; }
 .burger span:last-child { bottom: 0; }
 .burger:hover span:first-child { transform: translateX(-8px); }
 .burger:hover span:last-child { transform: translateX(8px); }
+.burger span { transition: transform var(--ease), width var(--ease), height var(--ease), top var(--ease), bottom var(--ease), left var(--ease); }
+
+/* Открытое меню: бургер превращается в крестик 24×24 из тонких линий */
+.menu-open .burger span {
+  left: 15px;
+  width: 33px;
+  height: 1px;
+}
+.menu-open .burger span:first-child { top: 7.5px; transform: rotate(45deg); }
+.menu-open .burger span:last-child { bottom: 7.5px; transform: rotate(-45deg); }
+
+/* ---------- Меню ---------- */
+:root { --header-h: 114px; }
+
+.header { position: relative; z-index: 30; }
+
+/* Пока меню открыто, шапка закреплена сверху, страница под ней не прокручивается */
+.menu-open { overflow: hidden; }
+.menu-open body { padding-top: var(--header-h); }
+.menu-open .header { position: fixed; top: 0; left: 0; right: 0; }
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, .4);
+  opacity: 0;
+  transition: opacity var(--ease);
+}
+.menu {
+  position: fixed;
+  top: var(--header-h);
+  left: 0;
+  right: 0;
+  z-index: 20;
+  max-height: calc(100vh - var(--header-h));
+  max-height: calc(100dvh - var(--header-h));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--c-bg);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path var(--ease);
+}
+.menu-open .menu-overlay { opacity: 1; }
+.menu-open .menu { clip-path: inset(0 0 0 0); }
+
+.menu a { transition: opacity var(--ease); }
+.menu a:hover { opacity: .5; }
+
+.menu__inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "links contacts"
+    "sections sections";
+}
+.menu__compact-only,
+.menu__short,
+.menu__cta { display: none; }
+
+.menu__links {
+  grid-area: links;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.menu__links a,
+.menu__short a {
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: .4px;
+}
+
+.menu__contacts {
+  grid-area: contacts;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+  font-style: normal;
+  text-align: right;
+}
+.menu__phone {
+  font-size: 60px;
+  line-height: 68px;
+  white-space: nowrap;
+}
+.menu__email,
+.menu__address {
+  font-size: 14px;
+  line-height: 18px;
+}
+.menu__address { max-width: 259px; }
+
+/* Верхний ряд: ссылки и контакты, под ним полупрозрачная линия */
+.menu__links,
+.menu__contacts {
+  padding: 40px 0 60px;
+  border-bottom: 1px solid rgba(204, 204, 204, .4);
+}
+.menu__links { padding-left: var(--gutter); }
+.menu__contacts { padding-right: var(--gutter); }
+
+.menu__sections {
+  grid-area: sections;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+  padding: 60px var(--gutter) 40px;
+}
+.menu-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 160px;
+}
+.menu-col--right { align-items: flex-end; text-align: right; }
+.menu-col__title {
+  margin: 0;
+  font-size: 14px;
+  line-height: 12.6px;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+.menu-col__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.menu-col__list a {
+  display: block;
+  font-size: 14px;
+  line-height: 12.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.menu__cta {
+  grid-area: cta;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 376px;
+  max-width: 100%;
+  height: 64px;
+  padding: 16px 12px 16px 20px;
+  background: #f4f4f5;
+  font-size: 14px;
+  line-height: 22px;
+  text-transform: uppercase;
+}
+.menu__cta svg { flex: none; transition: transform var(--ease); }
+.menu__cta:hover { opacity: 1 !important; }
+.menu__cta:hover svg { transform: translateX(4px); }
 
 /* ---------- Первый экран ---------- */
 .hero__head {
@@ -203,11 +358,76 @@ ul { list-style: none; margin: 0; padding: 0; }
     height: 231px;
     padding: 0 var(--gutter) 20px;
   }
+
+  /* Меню планшета: ссылки + контакты, линия, короткие разделы + кнопка */
+  .menu__inner {
+    grid-template-areas:
+      "links contacts"
+      "short cta";
+    padding: 40px 40px;
+  }
+  .menu__sections,
+  .menu__wide-only { display: none; }
+  .menu__compact-only { display: list-item; }
+  .menu__short,
+  .menu__cta { display: flex; }
+
+  .menu__links,
+  .menu__contacts {
+    padding: 0 0 40px;
+    border-bottom: 1px solid #f4f4f5;
+  }
+  .menu__contacts { gap: 10px; }
+  .menu__phone { font-size: 40px; line-height: 48px; }
+
+  .menu__short {
+    grid-area: short;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 13px;
+  }
+  .menu__cta { align-self: end; justify-self: end; }
 }
 
 /* ---------- Мобильный (макет 400) ---------- */
 @media (max-width: 599px) {
   :root { --gutter: 12px; }
+
+  :root { --header-h: 64px; }
+
+  /* Меню мобильного: контакты, ссылки в две колонки, кнопка на всю ширину */
+  .menu__inner {
+    grid-template-columns: auto 1fr;
+    grid-template-areas:
+      "contacts contacts"
+      "links short"
+      "cta cta";
+    padding: 40px 20px 12px;
+  }
+  .menu__contacts {
+    align-items: flex-start;
+    gap: 20px;
+    padding: 13px 0 0;
+    border-top: 1px solid #f4f4f5;
+    border-bottom: 0;
+    text-align: left;
+  }
+  .menu__phone { font-size: min(40px, 10.5vw); }
+  .menu__email { margin-top: 0; }
+  .menu__links,
+  .menu__short {
+    margin-top: 80px;
+    padding: 13px 0 0;
+    border-top: 1px solid #f4f4f5;
+    border-bottom: 0;
+  }
+  .menu__links { padding-right: 106px; }
+  .menu__cta {
+    justify-self: stretch;
+    width: auto;
+    max-width: none;
+    margin: 80px -8px 0;
+  }
 
   .header { height: 64px; padding: 0 20px; }
   .header__logo img { width: 88px; height: 32px; }
