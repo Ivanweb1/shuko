@@ -12,46 +12,87 @@
     });
   });
 
-  // Сворачивание ряда навигации при скролле вниз.
-  // Раскрываем только по явному жесту вверх у самого верха страницы: если страница
-  // после схлопывания станет короче экрана, браузер сам сбросит скролл в 0,
-  // и раскрытие по позиции скролла зациклило бы анимацию.
-  var hero = document.querySelector('.hero');
-  var lastY = window.scrollY;
+  // Закреплённая шапка: когда ряд разделов доезжает до шапки, пункты
+  // перелетают в её центр, при скролле обратно — возвращаются на место.
+  var root = document.documentElement;
+  var header = document.querySelector('.header');
+  var headerNav = document.querySelector('.header__nav');
+  var titles = Array.prototype.slice.call(document.querySelectorAll('.nav-group__title'));
+  var items = Array.prototype.slice.call(headerNav.querySelectorAll('a'));
+  var DUR = 500;
+  var EASE = 'cubic-bezier(.22, .61, .36, 1)';
+  var docked = false;
+  var token = 0;
 
-  function setCollapsed(on) {
-    if (document.documentElement.classList.contains('menu-open')) return;
-    if (hero.classList.contains('is-collapsed') === on) return;
-    hero.classList.toggle('is-collapsed', on);
-    if (on) groups.forEach(function (g) { g.classList.remove('is-open'); });
+  // Положение самого текста (у правой группы кнопка шире текста)
+  function textRect(el) {
+    var r = document.createRange();
+    r.selectNodeContents(el);
+    return r.getBoundingClientRect();
   }
 
-  if (window.scrollY > 0) setCollapsed(true);
+  function shouldDock() {
+    if (getComputedStyle(headerNav).display === 'none') return false;
+    return textRect(titles[0]).top < header.getBoundingClientRect().bottom;
+  }
 
-  window.addEventListener('scroll', function () {
-    var y = window.scrollY;
-    if (y > lastY && y > 0) setCollapsed(true);
-    lastY = y;
-  }, { passive: true });
+  function fly(back) {
+    var tok = ++token;
+    var wasDocked = root.classList.contains('is-docked');
 
-  window.addEventListener('wheel', function (e) {
-    if (e.deltaY > 0) setCollapsed(true);
-    else if (e.deltaY < 0 && window.scrollY <= 0) setCollapsed(false);
-  }, { passive: true });
+    items.forEach(function (a, i) {
+      var cur = wasDocked ? getComputedStyle(a).transform : null;
+      a.style.transition = 'none';
+      a.style.transform = '';
+      var base = a.getBoundingClientRect();
+      var t = textRect(titles[i]);
+      var atTitle = 'translate(' + (t.left - base.left) + 'px, ' + (t.top - base.top) + 'px)';
+      a.style.transform = cur === null ? atTitle : (cur === 'none' ? '' : cur);
+      a._end = back ? atTitle : '';
+    });
 
-  var touchY = null;
-  window.addEventListener('touchstart', function (e) { touchY = e.touches[0].clientY; }, { passive: true });
-  window.addEventListener('touchmove', function (e) {
-    if (touchY === null) return;
-    var dy = e.touches[0].clientY - touchY;
-    if (dy < -10) setCollapsed(true);
-    else if (dy > 10 && window.scrollY <= 0) setCollapsed(false);
-  }, { passive: true });
+    root.classList.add('is-docked');
+    groups.forEach(function (g) { g.classList.remove('is-open'); });
+    void header.offsetWidth;
 
-  window.addEventListener('keydown', function (e) {
-    if (['ArrowDown', 'PageDown', ' ', 'End'].indexOf(e.key) !== -1) setCollapsed(true);
-    if (['ArrowUp', 'PageUp', 'Home'].indexOf(e.key) !== -1 && window.scrollY <= 0) setCollapsed(false);
-  });
+    items.forEach(function (a) {
+      a.style.transition = 'transform ' + DUR + 'ms ' + EASE;
+      a.style.transform = a._end;
+    });
+
+    setTimeout(function () {
+      if (tok !== token || !back) return;
+      root.classList.remove('is-docked');
+      items.forEach(function (a) {
+        a.style.transition = 'none';
+        a.style.transform = '';
+      });
+    }, DUR);
+  }
+
+  function update() {
+    var want = shouldDock();
+    if (want === docked) return;
+    docked = want;
+    fly(!want);
+  }
+
+  if (shouldDock()) {
+    docked = true;
+    root.classList.add('is-docked');
+  }
+
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+      if (!root.classList.contains('menu-open')) update();
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
 
   document.addEventListener('click', function (e) {
     if (!e.target.closest('.nav-group')) {

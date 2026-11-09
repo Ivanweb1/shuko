@@ -15,6 +15,12 @@
     <a class="header__logo" href="/" aria-label="Schüco — на главную">
       <img src="assets/img/logo.svg" alt="Schüco" width="138" height="50">
     </a>
+    <!-- Появляется, когда ряд разделов первого экрана доезжает до шапки -->
+    <nav class="header__nav" aria-label="Разделы" aria-hidden="true">
+      <a href="#" tabindex="-1">Решения</a>
+      <a href="#" tabindex="-1">Партнёры</a>
+      <a href="#" tabindex="-1">Сообщество</a>
+    </nav>
     <div class="header__actions">
       <a class="header__login" href="#">Вход</a>
       <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu">
@@ -140,7 +146,7 @@
             <li><a href="#">Архмосква</a></li>
             <li><a href="#">Schüco Home</a></li>
           </ul>
-          <button class="nav-group__title" type="button">Спецпроекты</button>
+          <button class="nav-group__title" type="button">Сообщество</button>
         </div>
       </nav>
 
@@ -148,6 +154,9 @@
         <img src="assets/img/hero.jpg" alt="Белый дом с панорамным остеклением на склоне холма в сумерках" width="1280" height="422">
       </div>
     </section>
+
+    <!-- Временно: место под следующие блоки главной -->
+    <div class="page-spacer" aria-hidden="true"></div>
   </main>
 
   <script src="js/main.js"></script>

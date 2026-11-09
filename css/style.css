@@ -94,7 +94,33 @@ ul { list-style: none; margin: 0; padding: 0; }
 /* ---------- Меню ---------- */
 :root { --header-h: 114px; }
 
-.header { position: relative; z-index: 30; }
+.header { position: sticky; top: 0; z-index: 30; }
+
+/* Пункты разделов в закреплённой шапке: по центру, шаг 80px */
+.header__nav {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  gap: 80px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.header__nav a {
+  font-size: 14px;
+  line-height: 12.6px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0;
+  will-change: transform;
+}
+.header__nav a:hover { opacity: .5 !important; }
+.is-docked .header__nav { pointer-events: auto; }
+.is-docked .header__nav a { opacity: 1; }
+
+/* Временный отступ под первым экраном, чтобы было куда скроллить, пока нет следующих блоков */
+.page-spacer { height: 100vh; }
+.menu-open .header__nav { visibility: hidden; }
 
 /* Пока меню открыто, шапка закреплена сверху, страница под ней не прокручивается */
 .menu-open { overflow: hidden; }
@@ -269,21 +295,10 @@ ul { list-style: none; margin: 0; padding: 0; }
   gap: 12px;
   padding: 40px var(--gutter) 20px;
   height: 280px;
-  overflow: hidden;
-  transition: height var(--ease), padding var(--ease);
 }
-.hero__nav > .nav-group { transition: opacity var(--ease); }
-
-/* Состояние Variant2 из прототипа: после скролла вниз ряд схлопывается до 40px, фото поднимается */
-.hero.is-collapsed .hero__nav {
-  height: 40px;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.hero.is-collapsed .hero__nav > .nav-group {
-  opacity: 0;
-  pointer-events: none;
-}
+/* Пока пункты «переехали» в шапку, в ряду их не показываем */
+.is-docked .nav-group__title { visibility: hidden; }
+.is-docked .nav-group__list a { opacity: 0 !important; pointer-events: none !important; }
 .nav-group {
   display: flex;
   flex-direction: column;
@@ -437,7 +452,9 @@ ul { list-style: none; margin: 0; padding: 0; }
   .hero__lead { max-width: none; font-size: 14px; line-height: 20px; }
 
   /* На мобильном разделы живут в меню под бургером */
-  .hero__nav { display: none; }
+  .hero__nav,
+  .header__nav { display: none; }
+  .header { position: relative; }
 
   .hero__media { aspect-ratio: 400 / 220; }
 }
