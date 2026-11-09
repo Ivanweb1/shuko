@@ -39,7 +39,7 @@
         <li class="menu__compact-only"><a href="#">Партнёры</a></li>
         <li><a href="#">Кейсы</a></li>
         <li><a href="#">Блог</a></li>
-        <li class="menu__wide-only"><a href="#">Обсудить проект</a></li>
+        <li class="menu__wide-only"><a href="#project-dialog" data-dialog-open="project">Обсудить проект</a></li>
       </ul>
 
       <address class="menu__contacts">
@@ -104,7 +104,7 @@
         <li><a href="#">Сообщество</a></li>
       </ul>
 
-      <a class="menu__cta" href="#">
+      <a class="menu__cta" href="#project-dialog" data-dialog-open="project">
         <span>Обсудить проект</span>
         <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><path fill="currentColor" transform="matrix(.7071 .7071 -.7071 .7071 16 3.979)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
       </a>
@@ -462,8 +462,9 @@
             </a>
           </li>
       </ul>
-      <a class="people__all" href="#">
-        <span class="people__all-text">Смотреть всех партнёров</span>
+      <a class="people__all" href="#" data-dialog-open-mobile="project">
+        <span class="people__all-text people__all-text--wide">Смотреть всех партнёров</span>
+        <span class="people__all-text people__all-text--mobile">Заказать консультацию</span>
         <svg class="people__all-arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
       </a>
     </section>
@@ -535,8 +536,8 @@
         <span class="footer__address">г. Химки, ул. Ленинградская, 39, стр. 5, Химки Бизнес парк, 9 этаж</span>
       </address>
       <div class="footer__btns">
-        <a class="fbtn" href="#"><span>Обсудить проект</span><svg class="fbtn__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></a>
-        <a class="fbtn" href="#"><span>Подписка на рассылку</span><svg class="fbtn__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></a>
+        <a class="fbtn" href="#project-dialog" data-dialog-open="project"><span>Обсудить проект</span><svg class="fbtn__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></a>
+        <a class="fbtn" href="#newsletter-dialog" data-dialog-open="newsletter"><span>Подписка на рассылку</span><svg class="fbtn__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></a>
       </div>
       <div class="footer__policies">
         <a href="#">Политика конфиденциальности</a>
@@ -545,6 +546,52 @@
       <p class="footer__copy">Schüco©2026. Все права защищены.</p>
     </div>
   </footer>
+
+  <div class="dialog-layer" id="project-dialog" data-dialog="project" hidden>
+    <button class="dialog-layer__backdrop" type="button" data-dialog-close aria-label="Закрыть форму"></button>
+    <section class="dialog dialog--project" role="dialog" aria-modal="true" aria-labelledby="project-dialog-title">
+      <button class="dialog__close" type="button" data-dialog-close aria-label="Закрыть">
+        <span></span><span></span>
+      </button>
+      <form class="dialog__form" novalidate>
+        <h2 class="dialog__title" id="project-dialog-title">Мы всегда рады начинать новые проекты. Напишите нам и мы свяжемся с вами в течение 1 часа</h2>
+        <div class="dialog__fields">
+          <label class="field"><span class="field__label">Имя</span><input name="name" autocomplete="name" required></label>
+          <label class="field"><span class="field__label">Телефон</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" required></label>
+          <div class="dialog__message-row">
+            <label class="field field--message"><span class="field__label">Кратко опишите, что вас интересует</span><textarea name="message" rows="1"></textarea></label>
+            <label class="file-field"><input name="attachment" type="file"><span>Прикрепите файл</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.5 12.5 5.7-5.7a3 3 0 0 1 4.2 4.2l-7.1 7.1a5 5 0 0 1-7.1-7.1l7.1-7.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></label>
+          </div>
+        </div>
+        <div class="dialog__actions">
+          <button class="dialog__submit" type="submit"><span>Заказать консультацию</span><svg viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></button>
+          <p class="dialog__legal">Заполнив форму, вы принимаете условия соглашения об использовании сайта, в том числе в части обработки и использования персональных данных</p>
+          <p class="dialog__status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div class="dialog-layer" id="newsletter-dialog" data-dialog="newsletter" hidden>
+    <button class="dialog-layer__backdrop" type="button" data-dialog-close aria-label="Закрыть форму"></button>
+    <section class="dialog dialog--newsletter" role="dialog" aria-modal="true" aria-labelledby="newsletter-dialog-title">
+      <button class="dialog__close" type="button" data-dialog-close aria-label="Закрыть">
+        <span></span><span></span>
+      </button>
+      <form class="dialog__form" novalidate>
+        <h2 class="dialog__title" id="newsletter-dialog-title">Свежая информация по архитектуре и дизайну. Еженедельно в вашем почтовом ящике.</h2>
+        <div class="dialog__fields">
+          <label class="field"><span class="field__label">Имя</span><input name="name" autocomplete="name" required></label>
+          <label class="field"><span class="field__label">E-mail</span><input name="email" type="email" autocomplete="email" inputmode="email" required></label>
+        </div>
+        <div class="dialog__actions">
+          <button class="dialog__submit" type="submit"><span>Подписаться на обновления</span><svg viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></button>
+          <p class="dialog__legal">Заполнив форму, вы принимаете условия соглашения об использовании сайта, в том числе в части обработки и использования персональных данных</p>
+          <p class="dialog__status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+  </div>
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>

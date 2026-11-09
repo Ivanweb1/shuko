@@ -1776,3 +1776,195 @@ ul { list-style: none; margin: 0; padding: 0; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+/* Попапы из состояний макета: проект и подписка */
+.people__all-text--mobile { display: none; }
+
+.dialog-open { overflow: hidden; }
+.dialog-layer[hidden] { display: none; }
+.dialog-layer {
+  position: fixed;
+  z-index: 80;
+  inset: 0;
+  display: grid;
+  place-items: start center;
+  overflow-y: auto;
+  padding: 114px 24px 48px;
+}
+.dialog-layer__backdrop {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  border: 0;
+  background: rgb(0 0 0 / 68%);
+  cursor: default;
+}
+.dialog {
+  position: relative;
+  width: min(920px, 100%);
+  min-height: 778px;
+  padding: 60px;
+  background: #fff;
+  color: #000;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+}
+.dialog-layer.is-open .dialog { opacity: 1; transform: translateY(0); }
+.dialog--newsletter { width: min(983px, 100%); min-height: 688px; }
+.dialog__close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.dialog__close span {
+  position: absolute;
+  top: 11px;
+  left: -4px;
+  width: 32px;
+  height: 1px;
+  background: currentColor;
+}
+.dialog__close span:first-child { transform: rotate(45deg); }
+.dialog__close span:last-child { transform: rotate(-45deg); }
+.dialog__form { display: flex; min-height: 658px; flex-direction: column; }
+.dialog--newsletter .dialog__form { min-height: 568px; }
+.dialog__title {
+  max-width: 863px;
+  margin: 0;
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 48px;
+  letter-spacing: .01em;
+}
+.dialog__fields { display: grid; gap: 56px; margin-top: 80px; }
+.field {
+  position: relative;
+  display: block;
+  min-width: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #000;
+}
+.field__label {
+  position: absolute;
+  left: 0;
+  bottom: 12px;
+  font-size: 20px;
+  line-height: 26px;
+  pointer-events: none;
+  transform-origin: left bottom;
+  transition: transform .2s var(--ease), opacity .2s var(--ease);
+}
+.field:focus-within .field__label,
+.field.has-value .field__label { transform: translateY(-25px) scale(.65); opacity: .55; }
+.field input,
+.field textarea {
+  display: block;
+  width: 100%;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 20px;
+  line-height: 26px;
+  resize: none;
+}
+.field input::placeholder,
+.field textarea::placeholder { color: transparent; }
+.field.is-invalid { border-color: #d83030; }
+.dialog__message-row { display: grid; grid-template-columns: minmax(0, 1fr) 259px; gap: 16px; }
+.file-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 74px;
+  margin-top: -36px;
+  padding: 0 24px;
+  background: #f4f4f5;
+  font-size: 20px;
+  line-height: 26px;
+  cursor: pointer;
+}
+.file-field input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.file-field svg { width: 24px; height: 24px; flex: none; }
+.file-field.has-file span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dialog__actions { margin-top: auto; }
+.dialog__submit {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  border: 0;
+  background: #000;
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.dialog__submit svg { width: 40px; height: 40px; transition: transform .25s var(--ease); }
+.dialog__submit:hover svg,
+.dialog__submit:focus-visible svg { transform: rotate(45deg); }
+.dialog__legal {
+  max-width: 748px;
+  margin: 16px 0 0;
+  font-size: 14px;
+  line-height: 18px;
+}
+.dialog__status { min-height: 18px; margin: 6px 0 0; font-size: 14px; line-height: 18px; }
+
+@media (max-width: 1199px) {
+  .dialog-layer { padding: 204px 20px 40px; }
+  .dialog { width: min(794px, 100%); min-height: 786px; padding: 40px; }
+  .dialog--newsletter { min-height: 696px; }
+  .dialog__form { min-height: 706px; }
+  .dialog--newsletter .dialog__form { min-height: 616px; }
+  .dialog__title { max-width: 650px; }
+}
+
+@media (max-width: 599px) {
+  .people__all-text--wide { display: none; }
+  .people__all-text--mobile { display: inline; }
+  .dialog-layer { align-items: center; padding: 12px; }
+  .dialog,
+  .dialog--newsletter {
+    width: 100%;
+    min-height: 0;
+    padding: 40px 20px;
+  }
+  .dialog--project { min-height: 692px; }
+  .dialog--newsletter { min-height: 606px; }
+  .dialog__close { top: 12px; right: 12px; }
+  .dialog__form,
+  .dialog--newsletter .dialog__form { min-height: 612px; }
+  .dialog--newsletter .dialog__form { min-height: 526px; }
+  .dialog__title {
+    padding-right: 12px;
+    font-size: 28px;
+    line-height: 28px;
+    letter-spacing: 0;
+  }
+  .dialog__fields { gap: 36px; margin-top: 40px; }
+  .dialog__message-row { grid-template-columns: 1fr; gap: 40px; }
+  .field { padding-bottom: 8px; }
+  .field__label,
+  .field input,
+  .field textarea { font-size: 16px; line-height: 22px; }
+  .field:focus-within .field__label,
+  .field.has-value .field__label { transform: translateY(-20px) scale(.7); }
+  .file-field { height: 64px; margin-top: 0; padding: 0 20px; font-size: 14px; line-height: 22px; text-transform: uppercase; }
+  .dialog__submit { height: 64px; padding: 0 12px 0 20px; font-size: 14px; line-height: 22px; }
+  .dialog__submit svg { width: 32px; height: 32px; }
+  .dialog__legal { margin-top: 16px; font-size: 12px; line-height: 18px; }
+}

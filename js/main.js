@@ -101,6 +101,131 @@
   });
 })();
 
+// Попапы из макета: обсуждение проекта и подписка на обновления.
+(function () {
+  var root = document.documentElement;
+  var layers = Array.prototype.slice.call(document.querySelectorAll('[data-dialog]'));
+  if (!layers.length) return;
+
+  var active = null;
+  var returnFocus = null;
+  var hideTimer = null;
+  var mobile = window.matchMedia('(max-width: 599px)');
+
+  function focusable(layer) {
+    return Array.prototype.slice.call(layer.querySelectorAll('button:not([disabled]), input:not([disabled]), textarea:not([disabled]), a[href]'))
+      .filter(function (el) { return el.offsetParent !== null; });
+  }
+
+  function open(name, trigger) {
+    var layer = document.querySelector('[data-dialog="' + name + '"]');
+    if (!layer) return;
+    clearTimeout(hideTimer);
+    if (active && active !== layer) close(false);
+    active = layer;
+    returnFocus = trigger || document.activeElement;
+    layer.hidden = false;
+    root.classList.add('dialog-open');
+    requestAnimationFrame(function () {
+      layer.classList.add('is-open');
+      var first = layer.querySelector('input, textarea, [data-dialog-close]');
+      if (first) first.focus({ preventScroll: true });
+    });
+  }
+
+  function close(restore) {
+    if (!active) return;
+    var layer = active;
+    active = null;
+    layer.classList.remove('is-open');
+    root.classList.remove('dialog-open');
+    hideTimer = setTimeout(function () { layer.hidden = true; }, 300);
+    if (restore !== false && returnFocus && typeof returnFocus.focus === 'function') {
+      returnFocus.focus({ preventScroll: true });
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('[data-dialog-open], [data-dialog-open-mobile]');
+    if (trigger) {
+      var name = trigger.getAttribute('data-dialog-open');
+      if (!name && mobile.matches) name = trigger.getAttribute('data-dialog-open-mobile');
+      if (name) {
+        e.preventDefault();
+        open(name, trigger);
+        return;
+      }
+    }
+    if (active && e.target.closest('[data-dialog-close]')) {
+      e.preventDefault();
+      close(true);
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!active) return;
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      close(true);
+      return;
+    }
+    if (e.key !== 'Tab') return;
+    var items = focusable(active);
+    if (!items.length) return;
+    var first = items[0];
+    var last = items[items.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+
+  layers.forEach(function (layer) {
+    var fields = Array.prototype.slice.call(layer.querySelectorAll('.field input, .field textarea'));
+    fields.forEach(function (control) {
+      function sync() {
+        control.closest('.field').classList.toggle('has-value', Boolean(control.value.trim()));
+        control.closest('.field').classList.remove('is-invalid');
+      }
+      control.addEventListener('input', sync);
+      sync();
+    });
+
+    var file = layer.querySelector('.file-field input');
+    if (file) {
+      file.addEventListener('change', function () {
+        var label = file.closest('.file-field');
+        var text = label.querySelector('span');
+        var selected = file.files && file.files[0];
+        label.classList.toggle('has-file', Boolean(selected));
+        text.textContent = selected ? selected.name : 'Прикрепите файл';
+      });
+    }
+
+    var form = layer.querySelector('form');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var invalid = null;
+      Array.prototype.slice.call(form.querySelectorAll('[required]')).forEach(function (control) {
+        var field = control.closest('.field');
+        var bad = !control.checkValidity();
+        if (field) field.classList.toggle('is-invalid', bad);
+        if (bad && !invalid) invalid = control;
+      });
+      var status = form.querySelector('.dialog__status');
+      if (invalid) {
+        status.textContent = 'Проверьте обязательные поля.';
+        invalid.focus();
+        return;
+      }
+      status.textContent = 'Форма заполнена. Отправка будет подключена при интеграции с 1С-Битрикс.';
+    });
+  });
+})();
+
 // Реализованные проекты: на десктопе наведение на строку меняет фото слева,
 // на планшете и мобильном первый тап раскрывает фото под строкой, второй ведёт по ссылке
 (function () {
