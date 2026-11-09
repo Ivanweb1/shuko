@@ -2028,31 +2028,22 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 
 /* ---------- Страница проекта: о проекте ---------- */
+/* В макете строки разделены линией 1px #ccc во всю ширину блока
+   (у скрытых «Rectangle 188» шириной 210 — visible: false) */
 .pabout { padding: 80px var(--gutter); }
 .pabout__row {
-  position: relative;
   display: grid;
   grid-template-columns: 1040px minmax(0, 1fr);
-  padding-top: 16px;
+  padding-top: 15px;
+  border-top: 1px solid var(--c-line);
 }
 .pabout__row + .pabout__row { margin-top: 40px; }
 .pabout__term {
-  position: relative;
   margin: 0;
   font-size: 20px;
   line-height: 28px;
   font-weight: 500;
   text-transform: uppercase;
-}
-/* Линия под термином шире текста и висит ниже строки — как в макете */
-.pabout__term::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 68px;
-  width: 210px;
-  height: 3px;
-  background: currentColor;
 }
 .pabout__text,
 .pabout__value {
@@ -2142,9 +2133,11 @@ ul { list-style: none; margin: 0; padding: 0; }
   display: flex;
   align-items: flex-start;
   height: 116px;
-  padding: 20px var(--gutter) 0;
+  padding: 19px var(--gutter) 0;
+  border-top: 1px solid var(--c-line);
   transition: background var(--ease);
 }
+.psystems__list li:last-child .psystem { border-bottom: 1px solid var(--c-line); }
 .psystem__name {
   flex: 0 0 618px;
   font-size: 20px;
@@ -2162,35 +2155,27 @@ ul { list-style: none; margin: 0; padding: 0; }
 .psystem:hover { background: #f4f4f5; }
 
 /* ---------- Страница проекта: контакты и форма ---------- */
-.pform { padding: 96px var(--gutter) 80px; }
+.pform { padding: 80px var(--gutter); }
 .pform__inner {
   display: grid;
   grid-template-columns: 880px minmax(0, 1fr);
   gap: 40px;
   align-items: start;
+  padding-top: 15px;
+  border-top: 1px solid var(--c-line);
 }
 .pform__contacts { margin: 0; }
 .pform__contacts > div {
-  position: relative;
   display: grid;
   grid-template-columns: 241px minmax(0, 260px);
   min-height: 117px;
   padding-top: 16px;
+  border-bottom: 1px solid var(--c-line);
 }
 .pform__contacts dt {
-  position: relative;
   font-size: 20px;
   line-height: 28px;
   text-transform: uppercase;
-}
-.pform__contacts dt::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 68px;
-  width: 210px;
-  height: 3px;
-  background: currentColor;
 }
 .pform__contacts dd { margin: 0; font-size: 14px; line-height: 18px; }
 
@@ -2214,7 +2199,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   gap: 36px;
   margin-top: 80px;
 }
-.pfield { display: block; border-bottom: 1px solid rgba(255, 255, 255, .4); }
+.pfield { display: block; border-bottom: 1px solid var(--c-line); }
 .pfield input,
 .pfield textarea {
   display: block;
@@ -2233,6 +2218,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .pfield textarea::placeholder { color: #fff; opacity: 1; }
 .pform__message { display: flex; align-items: flex-start; gap: 40px; }
 .pform__message .pfield { flex: 1 1 auto; }
+/* В макете у «Прикрепите файл» рамка со всех сторон */
 .pfile {
   position: relative;
   display: flex;
@@ -2243,7 +2229,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   width: 259px;
   height: 74px;
   padding: 0 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, .4);
+  border: 1px solid var(--c-line);
   font-size: 20px;
   line-height: 26px;
   cursor: pointer;
@@ -2280,8 +2266,6 @@ ul { list-style: none; margin: 0; padding: 0; }
   .pabout { padding: 40px var(--gutter); }
   .pabout__row { grid-template-columns: 397px minmax(0, 1fr); gap: 20px; }
   .pabout__row + .pabout__row { margin-top: 24px; }
-  /* На планшете строки идут плотнее: линия садится под термин, а не на следующий */
-  .pabout__term::after { top: 36px; }
   .pabout__text,
   .pabout__value { max-width: 397px; }
 
@@ -2294,7 +2278,8 @@ ul { list-style: none; margin: 0; padding: 0; }
   .psystems { padding: 40px 0 0; }
   .psystems__head { height: 128px; padding-top: 40px; }
   .psystems__title { font-size: 40px; line-height: 48px; }
-  .psystem { padding: 40px var(--gutter) 0; }
+  .psystems__list { margin-top: 0; }
+  .psystem { padding: 39px var(--gutter) 0; }
   .psystem__name { flex-basis: 200px; }
 
   .pform { padding: 40px var(--gutter); }
@@ -2307,8 +2292,6 @@ ul { list-style: none; margin: 0; padding: 0; }
 @media (max-width: 599px) {
   .pabout { padding: 40px var(--gutter); }
   .pabout__row { display: block; }
-  /* На мобильном линия уходит под значение */
-  .pabout__term::after { top: 68px; }
   .pabout__row + .pabout__row { margin-top: 40px; }
   .pabout__text,
   .pabout__value { margin-top: 12px; max-width: none; }
@@ -2326,17 +2309,16 @@ ul { list-style: none; margin: 0; padding: 0; }
   .psystems__head { height: 120px; }
   .psystems__title { font-size: 32px; line-height: 40px; }
   .psystems__count { font-size: 12px; line-height: 24px; }
-  .psystems__list { margin-top: 0; }
-  .psystem { height: 72px; padding: 12px var(--gutter) 0; }
+  .psystem { height: 72px; padding: 11px var(--gutter) 0; }
   .psystem__name { flex-basis: 125px; font-size: 14px; line-height: 22px; }
   .psystem__desc { font-size: 12px; line-height: 16px; }
   .psystem__arrow svg { width: 32px; height: 32px; }
 
   .pform { padding: 28px var(--gutter) 40px; }
+  .pform__inner { padding-top: 15px; }
   .pform__contacts > div { grid-template-columns: 125px minmax(0, 1fr); min-height: 0; padding-top: 16px; }
-  .pform__contacts > div + div { margin-top: 56px; }
+  .pform__contacts > div + div { margin-top: 16px; }
   .pform__contacts dt { font-size: 14px; line-height: 20px; }
-  .pform__contacts dt::after { top: 32px; width: 100%; }
   .pform__contacts dd { font-size: 14px; line-height: 20px; }
   .pform__card { margin-top: 28px; padding: 20px; }
   .pform__title { font-size: 20px; line-height: 28px; }
