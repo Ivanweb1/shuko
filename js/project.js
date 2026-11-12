@@ -107,3 +107,16 @@
     icon: L.icon({ iconUrl: 'assets/img/map/partner_icon-active.svg', iconSize: [40, 53], iconAnchor: [20, 46], className: 'partner-marker' })
   }).addTo(map);
 })();
+
+// Системы: «Смотреть все» раскрывает скрытые строки списка
+(function () {
+  document.querySelectorAll('[data-more]').forEach(function (btn) {
+    var list = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!list) return;
+    btn.addEventListener('click', function () {
+      list.querySelectorAll('[hidden]').forEach(function (item) { item.hidden = false; });
+      btn.setAttribute('aria-expanded', 'true');
+      btn.hidden = true;
+    });
+  });
+})();

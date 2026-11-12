@@ -3194,3 +3194,166 @@ ul { list-style: none; margin: 0; padding: 0; }
   .sdetail__list { margin-top: 20px; }
   .ssys__text { max-width: 342px; }
 }
+
+/* ---------- Системы: первый экран (как у «Мира Schüco») ---------- */
+.systems-hero__count { color: #979797; text-transform: uppercase; }
+
+/* ---------- Системы: «Окна Schüco» ---------- */
+/* Десктоп: одна строка — название | текст | список «Что можно реализовать» */
+.wintro {
+  display: grid;
+  grid-template-columns: 618px 342px minmax(0, 1fr) 434px;
+  margin: 80px var(--gutter);
+  padding-top: 15px;
+  border-top: 1px solid var(--c-line);
+}
+.wintro__main,
+.wintro__aside { display: contents; }
+.wintro__title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.wintro__text { font-size: 14px; line-height: 18px; color: rgba(0, 0, 0, .8); }
+.wintro__text p { margin: 0; }
+.wintro__text p + p { margin-top: 12px; }
+.wintro__num { display: none; }
+.wintro__body { grid-column: 4; }
+.wintro .ssys__text { max-width: none; }
+.ssys__item[hidden] { display: none; }
+
+.smore {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 0 0;
+  font-size: 14px;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, .4);
+  transition: color var(--ease);
+}
+.smore svg { opacity: .6; }
+.smore:hover { color: #000; }
+.smore[hidden] { display: none; }
+
+/* ---------- Системы: ключевые параметры ---------- */
+.sparams { padding: 80px 0; }
+.sparams__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 0 var(--gutter) 40px;
+}
+.sparams__title {
+  margin: 0;
+  font-size: 60px;
+  line-height: 75px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.sparams__text { max-width: 432px; margin: 0; font-size: 14px; line-height: 18px; }
+.sparams__table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.sparams__table th,
+.sparams__table td { padding: 0; text-align: left; vertical-align: top; font-weight: 500; }
+.sparams__table th:first-child { width: 1000px; padding-left: var(--gutter); }
+.sparams__table thead th {
+  padding-top: 15px;
+  padding-bottom: 10px;
+  border-top: 1px solid var(--c-line);
+  background: #f4f4f5;
+  font-size: 16px;
+  line-height: 22px;
+  text-transform: uppercase;
+}
+.sparams__table tbody tr { border-top: 1px solid var(--c-line); }
+.sparams__table tbody tr:last-child { border-bottom: 1px solid var(--c-line); }
+.sparams__table tbody th,
+.sparams__table tbody td { padding-top: 15px; padding-bottom: 40px; }
+.sparams__table tbody th { font-size: 16px; line-height: 22px; color: rgba(0, 0, 0, .8); }
+.sparams__table td { padding-right: var(--gutter); font-size: 14px; line-height: 20px; color: rgba(0, 0, 0, .8); }
+.sparams__table td p { max-width: 350px; margin: 0; }
+
+/* ---------- Системы: галерея, первое фото узкое ---------- */
+.pgallery--systems .pgallery__item--narrow { flex-basis: 470px; }
+
+/* ---------- Системы: строки систем с фото справа ---------- */
+.psystems--photo { padding-bottom: 120px; }
+.psystems--photo .psystems__count { color: rgba(0, 0, 0, .24); }
+.psystems--photo .psystems__list li:first-child .psystem { background: none; }
+.psystems--photo .psystems__list li:first-child .psystem:hover,
+.psystem--photo:hover { background: #f4f4f5; }
+.psystem--photo { height: auto; padding: 19px var(--gutter) 20px; }
+.psystem--photo .psystem__name,
+.psystem--photo .psystem__desc { margin-top: 20px; color: rgba(0, 0, 0, .8); }
+.psystem--photo .psystem__name { color: #000; }
+.psystem__media { flex: none; width: 434px; height: 229px; margin-left: auto; overflow: hidden; }
+.psystem__media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- Системы: планшет ---------- */
+@media (max-width: 1199px) {
+  .systems-hero__count { margin-top: 20px; }
+
+  .wintro { display: block; margin: 40px var(--gutter); padding: 0; border-top: 0; }
+  .wintro__main,
+  .wintro__aside {
+    display: grid;
+    padding-top: 15px;
+    border-top: 1px solid var(--c-line);
+  }
+  .wintro__main { grid-template-columns: 397px minmax(0, 1fr); }
+  .wintro__aside { grid-template-columns: 396px minmax(0, 1fr); margin-top: 24px; }
+  .wintro__num { display: block; font-size: 14px; line-height: 20px; }
+  .wintro__body { grid-column: auto; }
+
+  .sparams { padding: 40px 0; }
+  .sparams__head { padding-bottom: 40px; }
+  .sparams__title { font-size: 40px; line-height: 48px; }
+  .sparams__text { display: none; }
+  .sparams__table th:first-child { width: 416px; padding-left: 40px; }
+
+  .pgallery--systems .pgallery__item { flex-basis: 566px; height: 466px; }
+  .pgallery--systems .pgallery__item--narrow { flex-basis: 266px; }
+  .pgallery--systems .pgallery__item img { height: 436px; }
+  .pgallery--systems .pgallery__item figcaption { display: block; }
+
+  .psystems--photo { padding-bottom: 40px; }
+  .psystem--photo { padding: 19px var(--gutter) 20px; }
+  .psystem--photo .psystem__name { flex-basis: 200px; }
+  .psystem--photo .psystem__desc { max-width: 300px; }
+  .psystem__media { width: 240px; height: 127px; }
+}
+
+/* ---------- Системы: мобильный ---------- */
+@media (max-width: 599px) {
+  .systems-hero .world-hero__stats { font-size: 12px; line-height: 15px; }
+  .systems-hero .world-hero__head { padding-bottom: 0; }
+  .systems-hero .world-hero__label { max-width: 170px; }
+
+  .wintro__main { display: block; }
+  .wintro__text { margin-top: 12px; }
+  .wintro__aside { display: block; margin-top: 40px; padding: 0; border-top: 0; }
+  .wintro__num { display: none; }
+
+  .sparams__title { font-size: 32px; line-height: 40px; letter-spacing: 1px; }
+  .sparams__table th:first-child { width: 200px; padding-left: var(--gutter); }
+  .sparams__table thead th { font-size: 12px; line-height: 18px; }
+  .sparams__table tbody th,
+  .sparams__table tbody td { padding-bottom: 12px; }
+  .sparams__table tbody th { padding-right: 12px; font-size: 14px; line-height: 20px; }
+  .sparams__table td { font-size: 12px; line-height: 20px; }
+
+  .pgallery--systems .pgallery__item { flex-basis: 267px; height: auto; }
+  .pgallery--systems .pgallery__item--narrow { flex-basis: 125px; }
+  .pgallery--systems .pgallery__item img { height: 225px; }
+  .pgallery--systems .pgallery__item figcaption { margin-top: 8px; font-size: 12px; line-height: 17px; text-align: left; }
+
+  .psystem--photo { flex-wrap: wrap; height: auto; padding: 11px var(--gutter) 12px; }
+  .psystem--photo .psystem__name { flex: 0 0 100%; margin-top: 0; }
+  .psystem--photo .psystem__desc { max-width: none; margin-top: 8px; }
+  .psystem__media { width: 100%; height: auto; margin: 12px 0 0; aspect-ratio: 434 / 229; }
+}
