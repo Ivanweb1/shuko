@@ -120,3 +120,24 @@
     });
   });
 })();
+
+// Статья: «Поделиться» — системное меню, если есть, иначе ссылка копируется в буфер
+(function () {
+  document.querySelectorAll('[data-share]').forEach(function (btn) {
+    var label = btn.querySelector('.ashare__text');
+    var initial = label ? label.textContent : '';
+    btn.addEventListener('click', function () {
+      var data = { title: document.title, url: location.href };
+      if (navigator.share) {
+        navigator.share(data).catch(function () {});
+        return;
+      }
+      if (navigator.clipboard && label) {
+        navigator.clipboard.writeText(location.href).then(function () {
+          label.textContent = 'Ссылка скопирована';
+          setTimeout(function () { label.textContent = initial; }, 2000);
+        }).catch(function () {});
+      }
+    });
+  });
+})();
