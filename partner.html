@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>kestrel — партнёр Schüco</title>
+  <meta name="description" content="kestrel — партнёр Schüco: проекты, галерея объектов и контакты.">
+  <link rel="preload" href="assets/fonts/Stem_Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <a class="header__logo" href="/" aria-label="Schüco — на главную">
+      <img src="assets/img/logo.svg" alt="Schüco" width="138" height="50">
+    </a>
+    <!-- Появляется, когда при скролле страница уходит под шапку -->
+    <nav class="header__nav" aria-label="Разделы" aria-hidden="true">
+      <a href="#" tabindex="-1">Решения</a>
+      <a href="#" tabindex="-1">Люди</a>
+      <a href="#" tabindex="-1">Сообщество</a>
+    </nav>
+    <div class="header__actions">
+      <a class="header__login" href="#">Вход</a>
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="menu-overlay" hidden></div>
+
+  <div class="menu" id="menu" hidden>
+    <div class="menu__inner">
+      <ul class="menu__links">
+        <li><a href="#">О компании</a></li>
+        <li class="menu__compact-only"><a href="#">Партнёры</a></li>
+        <li><a href="#">Кейсы</a></li>
+        <li><a href="#">Блог</a></li>
+        <li class="menu__wide-only"><a href="#project-dialog" data-dialog-open="project">Обсудить проект</a></li>
+      </ul>
+
+      <address class="menu__contacts">
+        <a class="menu__phone" href="tel:+74959810219">+7 (495) 981-02-19</a>
+        <a class="menu__email" href="mailto:info@schucohome.ru">info@schucohome.ru</a>
+        <span class="menu__address">141400, г. Химки, ул. Ленинградская, 39, стр. 5, Химки Бизнес парк, 9 этаж</span>
+      </address>
+
+      <!-- Десктоп: четыре колонки разделов с подпунктами -->
+      <nav class="menu__sections" aria-label="Разделы">
+        <div class="menu-col">
+          <p class="menu-col__title">Решения</p>
+          <ul class="menu-col__list">
+            <li><a href="#">Панорамное остекление</a></li>
+            <li><a href="#">Больше естественного света</a></li>
+            <li><a href="#">Выход на террасу</a></li>
+            <li><a href="#">Остекление больших проёмов</a></li>
+            <li><a href="#">Безбарьерные решения</a></li>
+            <li><a href="#">Максимально тонкие рамы</a></li>
+            <li><a href="#">Угловое остекление</a></li>
+            <li><a href="#">Остекление бассейна и SPA</a></li>
+            <li><a href="#">Зимний сад</a></li>
+            <li><a href="#">Автоматизация конструкций</a></li>
+            <li><a href="#">Приватность и солнцезащита</a></li>
+            <li><a href="#">Безопасность</a></li>
+          </ul>
+        </div>
+        <div class="menu-col">
+          <p class="menu-col__title">Системы</p>
+          <ul class="menu-col__list">
+            <li><a href="#">Окна</a></li>
+            <li><a href="#">Раздвижные двери</a></li>
+            <li><a href="#">Витражи</a></li>
+            <li><a href="#">Двери</a></li>
+            <li><a href="#">Зимний сад</a></li>
+            <li><a href="#">Уютный дом</a></li>
+          </ul>
+        </div>
+        <div class="menu-col">
+          <p class="menu-col__title">Партнёры</p>
+          <ul class="menu-col__list">
+            <li><a href="#">Архитекторы</a></li>
+            <li><a href="#">Строители</a></li>
+            <li><a href="#">Производители</a></li>
+            <li><a href="#">Сервис-партнеры</a></li>
+            <li><a href="#">Контракторы</a></li>
+          </ul>
+        </div>
+        <div class="menu-col menu-col--right">
+          <p class="menu-col__title">Сообщество</p>
+          <ul class="menu-col__list">
+            <li><a href="#">Архмосква</a></li>
+            <li><a href="#">Schüco Home</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Планшет и мобильный: короткий список разделов и кнопка -->
+      <ul class="menu__short">
+        <li><a href="#">Решения</a></li>
+        <li><a href="#">Системы</a></li>
+        <li><a href="#">Сообщество</a></li>
+      </ul>
+
+      <a class="menu__cta" href="#project-dialog" data-dialog-open="project">
+        <span>Обсудить проект</span>
+        <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><path fill="currentColor" transform="matrix(.7071 .7071 -.7071 .7071 16 3.979)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+      </a>
+    </div>
+  </div>
+  <main>
+    <!-- Шаблон страницы партнёра: в макете партнёр-заглушка kestrel, тексты и цифры — из макета -->
+    <section class="world-hero partner-hero">
+      <div class="world-hero__head">
+        <h1 class="world-hero__title">kestrel</h1>
+        <p class="world-hero__date partner-hero__site">Сайт: <a href="https://kestrelinstruments.com" target="_blank" rel="noopener">kestrelinstruments.com</a></p>
+      </div>
+      <div class="world-hero__facts">
+        <p class="world-hero__label">О kestrel</p>
+        <ul class="world-hero__stats">
+          <li>7 лет опыта</li>
+          <li>15 проектов запущено</li>
+          <li class="partner-hero__tags"><span>#Промышленные здания</span><span>#Коммерческие объекты</span></li>
+        </ul>
+      </div>
+      <div class="world-hero__media">
+        <img src="assets/img/partner/hero.jpg" alt="Здание с панорамным остеклением" width="1280" height="849">
+      </div>
+    </section>
+
+    <section class="pintro pintro--text">
+      <div class="pintro__text">
+        <p>Интуиция к возможностям, готовность рисковать и практичный подход – все эти качества, как утверждалось, были присущи основателю Хайнцу Шюрманну. Вместе с пятью сотрудниками, включая его сводного брата Гюнтера Райнеке, он основал компанию Heinz Schürmann &amp; Co. в небольшом дворике в Порта-Вестфалике.</p>
+        <p>Ассортимент продукции на тот момент включал алюминиевые витрины, навесы и раздвижные решетки</p>
+      </div>
+    </section>
+
+    <!-- Проекты партнёра: блок «Реализованные проекты» с главной -->
+    <div class="pmap__head partner-projects__head">
+      <h2 class="pmap__title">kestrel&amp;Schüco</h2>
+      <p class="pmap__text">Посмотрите, как решение «Панорамное остекление» работает в реализованной архитектуре.</p>
+    </div>
+    <section class="projects projects--partner">
+      <!-- Десктоп: большое фото активного проекта -->
+      <div class="projects__visual" aria-hidden="true">
+        <div class="projects__slide is-active" data-img="1"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-1.jpg" alt=""><img class="pframe__photo" src="assets/img/projects/project-1.jpg" alt=""></div></div>
+        <div class="projects__slide" data-img="2"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-2.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-2.jpg" alt="" loading="lazy"></div></div>
+        <div class="projects__slide" data-img="3"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-3.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-3.jpg" alt="" loading="lazy"></div></div>
+        <div class="projects__slide" data-img="4"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-4.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-4.jpg" alt="" loading="lazy"></div></div>
+        <div class="projects__slide" data-img="5"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-5.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-5.jpg" alt="" loading="lazy"></div></div>
+      </div>
+
+      <div class="projects__side">
+        <div class="projects__head">
+          <span class="project__name">Реализованные проекты</span>
+          <span class="project__loc">Локация</span>
+          <span class="project__year">Год</span>
+        </div>
+        <!-- Строки после Villa Kymmendö — заглушки из макета -->
+        <ul class="projects__list">
+          <li class="project is-active" data-img="1">
+            <a class="project__row" href="#">
+              <span class="project__name">F+C House</span>
+              <span class="project__loc">Verona, Italy</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-1.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-1.jpg" alt="F+C House" loading="lazy"></div></div></div>
+          </li>
+          <li class="project" data-img="2">
+            <a class="project__row" href="#">
+              <span class="project__name">Pixel House</span>
+              <span class="project__loc">Минск, Беларусь</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-2.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-2.jpg" alt="Pixel House" loading="lazy"></div></div></div>
+          </li>
+          <li class="project" data-img="3">
+            <a class="project__row" href="#">
+              <span class="project__name">Casa Puntara</span>
+              <span class="project__loc">Ragusa, Italy</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-3.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-3.jpg" alt="Casa Puntara" loading="lazy"></div></div></div>
+          </li>
+          <li class="project" data-img="4">
+            <a class="project__row" href="#">
+              <span class="project__name">Pixel House</span>
+              <span class="project__loc">Pixel House</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-4.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-4.jpg" alt="Pixel House" loading="lazy"></div></div></div>
+          </li>
+          <li class="project" data-img="1">
+            <a class="project__row" href="#">
+              <span class="project__name">House of North Rhine-Westphalia</span>
+              <span class="project__loc">Germany</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-1.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-1.jpg" alt="House of North Rhine-Westphalia" loading="lazy"></div></div></div>
+          </li>
+          <li class="project" data-img="5">
+            <a class="project__row" href="project.html">
+              <span class="project__name">Villa Kymmendö</span>
+              <span class="project__loc">Smådalarö, Sweden</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-5.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-5.jpg" alt="Villa Kymmendö" loading="lazy"></div></div></div>
+          </li>
+          <li class="project" data-img="2">
+            <a class="project__row" href="#">
+              <span class="project__name">Pixel House</span>
+              <span class="project__loc">Минск, Беларусь</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-2.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-2.jpg" alt="Pixel House" loading="lazy"></div></div></div>
+          </li>
+          <li class="project" data-img="3">
+            <a class="project__row" href="#">
+              <span class="project__name">Pixel House</span>
+              <span class="project__loc">Минск, Беларусь</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-3.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-3.jpg" alt="Pixel House" loading="lazy"></div></div></div>
+          </li>
+          <li class="project" data-img="4">
+            <a class="project__row" href="#">
+              <span class="project__name">Pixel House</span>
+              <span class="project__loc">Минск, Беларусь</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-4.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-4.jpg" alt="Pixel House" loading="lazy"></div></div></div>
+          </li>
+          <li class="project" data-img="1">
+            <a class="project__row" href="#">
+              <span class="project__name">Pixel House</span>
+              <span class="project__loc">Минск, Беларусь</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-1.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-1.jpg" alt="Pixel House" loading="lazy"></div></div></div>
+          </li>
+          <li class="project" data-img="5">
+            <a class="project__row" href="#">
+              <span class="project__name">Pixel House</span>
+              <span class="project__loc">Минск, Беларусь</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-5.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-5.jpg" alt="Pixel House" loading="lazy"></div></div></div>
+          </li>
+          <li class="project" data-img="2">
+            <a class="project__row" href="#">
+              <span class="project__name">Pixel House</span>
+              <span class="project__loc">Минск, Беларусь</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-2.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-2.jpg" alt="Pixel House" loading="lazy"></div></div></div>
+          </li>
+          <li class="project" data-img="3">
+            <a class="project__row" href="#">
+              <span class="project__name">Pixel House</span>
+              <span class="project__loc">Минск, Беларусь</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-3.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-3.jpg" alt="Pixel House" loading="lazy"></div></div></div>
+          </li>
+          <li class="project" data-img="4">
+            <a class="project__row" href="#">
+              <span class="project__name">Pixel House</span>
+              <span class="project__loc">Минск, Беларусь</span>
+              <span class="project__year">2011</span>
+            </a>
+            <div class="project__media"><div class="project__media-in"><div class="pframe"><img class="pframe__bg" src="assets/img/projects/project-4.jpg" alt="" loading="lazy"><img class="pframe__photo" src="assets/img/projects/project-4.jpg" alt="Pixel House" loading="lazy"></div></div></div>
+          </li>
+        </ul>
+
+        <a class="projects__all" href="#">
+          <span class="projects__all-text">Смотреть все проекты</span>
+          <svg class="projects__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <section class="pgallery pgallery--captions">
+      <div class="pgallery__head">
+        <h2 class="pgallery__title">Галерея объектов</h2>
+      </div>
+
+      <ul class="pgallery__track" data-gallery-track>
+        <li class="pgallery__item"><figure><img src="assets/img/partner/gallery-1.jpg" alt="Дом с панорамным остеклением" width="1249" height="915" loading="lazy"><figcaption>Villa Kymmendö, Smådalarö, Sweden</figcaption></figure></li>
+        <li class="pgallery__item"><figure><img src="assets/img/partner/gallery-2.jpg" alt="Фасад с большими окнами" width="1249" height="915" loading="lazy"><figcaption>Villa Kymmendö, Smådalarö, Sweden</figcaption></figure></li>
+        <li class="pgallery__item"><figure><img src="assets/img/partner/gallery-3.jpg" alt="Интерьер с окнами от пола до потолка" width="1249" height="915" loading="lazy"><figcaption>Villa Kymmendö, Smådalarö, Sweden</figcaption></figure></li>
+        <li class="pgallery__item"><figure><img src="assets/img/partner/gallery-4.jpg" alt="Терраса и остекление" width="1249" height="915" loading="lazy"><figcaption>Villa Kymmendö, Smådalarö, Sweden</figcaption></figure></li>
+      </ul>
+
+      <div class="pgallery__controls">
+        <button class="pgallery__btn pgallery__btn--prev" type="button" aria-label="Предыдущие фотографии" data-gallery="prev">
+          <svg viewBox="0 0 40 40" width="26" height="26" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+        </button>
+        <span class="pgallery__count" data-gallery="count" aria-live="polite">1/2</span>
+        <button class="pgallery__btn" type="button" aria-label="Следующие фотографии" data-gallery="next">
+          <svg viewBox="0 0 40 40" width="26" height="26" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- Контакты партнёра и карта -->
+    <section class="pform pform--map">
+      <div class="pform__inner">
+        <dl class="pform__contacts pcontacts">
+          <div>
+            <dt>Телефон</dt>
+            <dd><a href="tel:+74959375237">+7 495 937 52-37</a><span class="pcontacts__person">Алексей Петров (руководитель)</span></dd>
+          </div>
+          <div>
+            <dt>Почта</dt>
+            <dd><a href="mailto:info@schucohome.ru">info@schucohome.ru</a></dd>
+          </div>
+          <div>
+            <dt>Сайт</dt>
+            <dd><a href="https://kestrelinstruments.com" target="_blank" rel="noopener">kestrelinstruments.com</a></dd>
+          </div>
+          <div>
+            <dt>Шоурум</dt>
+            <dd><span>141400, г. Химки, ул. Ленинградская, 39, стр. 5, Химки Бизнес парк, 9 этаж</span></dd>
+          </div>
+        </dl>
+        <!-- Координаты шоурума примерные; при переносе брать из карточки партнёра -->
+        <div class="pform__map"><div class="pmap__canvas" id="partner-map" data-lat="55.8869" data-lng="37.4329" aria-label="Шоурум на карте"></div></div>
+      </div>
+    </section>
+
+    <!-- Чёрная форма: на десктопе текст слева, поля справа -->
+    <section class="pform pform--wide">
+        <form class="pform__card" novalidate>
+          <h2 class="pform__title">Мы всегда рады начинать новые проекты. Напишите нам и мы свяжемся с вами в течении 1 часа</h2>
+
+          <div class="pform__fields">
+            <label class="pfield"><input name="name" type="text" placeholder="Имя" aria-label="Имя" autocomplete="name" required></label>
+            <label class="pfield"><input name="phone" type="tel" placeholder="Телефон" aria-label="Телефон" inputmode="tel" autocomplete="tel" required></label>
+            <div class="pform__message">
+              <label class="pfield pfield--message"><textarea name="message" rows="1" placeholder="Кратко опишите, что вас интересует" aria-label="Кратко опишите, что вас интересует"></textarea></label>
+              <label class="pfile">
+                <input name="attachment" type="file">
+                <span>Прикрепите файл</span>
+                <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="m8.5 12.5 5.7-5.7a3 3 0 0 1 4.2 4.2l-7.1 7.1a5 5 0 0 1-7.1-7.1l7.1-7.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </label>
+            </div>
+          </div>
+
+          <button class="pform__submit" type="submit">
+            <span>Заказать консультацию</span>
+            <svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+          </button>
+
+          <p class="pform__legal">Заполнив форму, вы принимаете условия соглашения об использовании сайта в том числе в части обработки и использования персональных данных</p>
+          <p class="pform__status" role="status" aria-live="polite"></p>
+        </form>
+    </section>
+
+  </main>
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__logo"><a href="/" aria-label="Schüco — на главную"><img src="assets/img/logo.svg" alt="Schüco" width="241" height="87"></a></div>
+      <nav class="footer__links" aria-label="Разделы сайта">
+        <ul>
+          <li><a href="#">О компании</a></li>
+          <li><a href="#">Партнёры</a></li>
+          <li><a href="#">Кейсы</a></li>
+          <li><a href="#">Блог</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Решения</a></li>
+          <li><a href="#">Системы</a></li>
+          <li><a href="#">Сообщество</a></li>
+        </ul>
+      </nav>
+      <address class="footer__contacts">
+        <a class="footer__phone" href="tel:+74959810219">+7 (495) 981-02-19</a>
+        <a class="footer__email" href="mailto:info@schucohome.ru">info@schucohome.ru</a>
+        <span class="footer__address">г. Химки, ул. Ленинградская, 39, стр. 5, Химки Бизнес парк, 9 этаж</span>
+      </address>
+      <div class="footer__btns">
+        <a class="fbtn" href="#project-dialog" data-dialog-open="project"><span>Обсудить проект</span><svg class="fbtn__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></a>
+        <a class="fbtn" href="#newsletter-dialog" data-dialog-open="newsletter"><span>Подписка на рассылку</span><svg class="fbtn__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></a>
+      </div>
+      <div class="footer__policies">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Политика использования файлов cookie</a>
+        <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap</a>
+      </div>
+      <p class="footer__copy">Schüco©2026. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <div class="dialog-layer" id="project-dialog" data-dialog="project" hidden>
+    <button class="dialog-layer__backdrop" type="button" data-dialog-close aria-label="Закрыть форму"></button>
+    <section class="dialog dialog--project" role="dialog" aria-modal="true" aria-labelledby="project-dialog-title">
+      <button class="dialog__close" type="button" data-dialog-close aria-label="Закрыть">
+        <span></span><span></span>
+      </button>
+      <form class="dialog__form" novalidate>
+        <h2 class="dialog__title" id="project-dialog-title">Мы всегда рады начинать новые проекты. Напишите нам и мы свяжемся с вами в течение 1 часа</h2>
+        <div class="dialog__fields">
+          <label class="field"><span class="field__label">Имя</span><input name="name" autocomplete="name" required></label>
+          <label class="field"><span class="field__label">Телефон</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" required></label>
+          <div class="dialog__message-row">
+            <label class="field field--message"><span class="field__label">Кратко опишите, что вас интересует</span><textarea name="message" rows="1"></textarea></label>
+            <label class="file-field"><input name="attachment" type="file"><span>Прикрепите файл</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.5 12.5 5.7-5.7a3 3 0 0 1 4.2 4.2l-7.1 7.1a5 5 0 0 1-7.1-7.1l7.1-7.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></label>
+          </div>
+        </div>
+        <div class="dialog__actions">
+          <button class="dialog__submit" type="submit"><span>Заказать консультацию</span><svg viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></button>
+          <p class="dialog__legal">Заполнив форму, вы принимаете условия соглашения об использовании сайта, в том числе в части обработки и использования персональных данных</p>
+          <p class="dialog__status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div class="dialog-layer" id="newsletter-dialog" data-dialog="newsletter" hidden>
+    <button class="dialog-layer__backdrop" type="button" data-dialog-close aria-label="Закрыть форму"></button>
+    <section class="dialog dialog--newsletter" role="dialog" aria-modal="true" aria-labelledby="newsletter-dialog-title">
+      <button class="dialog__close" type="button" data-dialog-close aria-label="Закрыть">
+        <span></span><span></span>
+      </button>
+      <form class="dialog__form" novalidate>
+        <h2 class="dialog__title" id="newsletter-dialog-title">Свежая информация по архитектуре и дизайну. Еженедельно в вашем почтовом ящике.</h2>
+        <div class="dialog__fields">
+          <label class="field"><span class="field__label">Имя</span><input name="name" autocomplete="name" required></label>
+          <label class="field"><span class="field__label">E-mail</span><input name="email" type="email" autocomplete="email" inputmode="email" required></label>
+        </div>
+        <div class="dialog__actions">
+          <button class="dialog__submit" type="submit"><span>Подписаться на обновления</span><svg viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></button>
+          <p class="dialog__legal">Заполнив форму, вы принимаете условия соглашения об использовании сайта, в том числе в части обработки и использования персональных данных</p>
+          <p class="dialog__status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/project.js"></script>
+</body>
+</html>

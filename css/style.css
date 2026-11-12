@@ -2838,3 +2838,91 @@ ul { list-style: none; margin: 0; padding: 0; }
   /* нижний отступ у обрезанного описания показал бы пятую строку */
   .pgrid .pcard__desc { -webkit-line-clamp: 4; padding-bottom: 0; }
 }
+
+/* ---------- О партнёре ---------- */
+/* Первый экран — как у «Мира Schüco» (world-hero), справа от названия сайт партнёра */
+.partner-hero__site { font-size: 14px; line-height: 18px; letter-spacing: 0; }
+.partner-hero__site a { transition: opacity var(--ease); }
+.partner-hero__site a:hover { opacity: .5; }
+.partner-hero__tags { display: flex; gap: 20px; color: #979797; }
+.partner-hero .world-hero__media { aspect-ratio: 1920 / 626; }
+
+/* Текст о партнёре — во второй колонке, левая в макете пустая */
+.pintro--text .pintro__text { grid-column: 2; }
+.pintro__text p { margin: 0; }
+.pintro__text p + p { margin-top: 12px; }
+
+.partner-projects__head { margin: 0 var(--gutter); }
+.projects--partner { padding-top: 0; }
+
+/* Галерея с подписями под фото */
+.pgallery--captions .pgallery__item { height: 730px; }
+.pgallery__item figure { height: 100%; margin: 0; }
+.pgallery--captions .pgallery__item img { height: 700px; }
+.pgallery__item figcaption {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+}
+
+/* Контакты партнёра: у телефона справа контактное лицо, справа от списка — карта */
+.pcontacts > div { grid-template-columns: 241px minmax(0, 1fr); min-height: 125px; }
+.pcontacts > div:last-child { border-bottom: 0; }
+.pcontacts dd { display: flex; align-items: flex-start; }
+.pcontacts dd > a:first-child { flex: 0 0 375px; }
+.pcontacts dd > :only-child { flex: 0 1 260px; }
+.pcontacts a { transition: opacity var(--ease); }
+.pcontacts a:hover { opacity: .5; }
+.pform--map .pform__inner { grid-template-columns: 880px minmax(0, 1fr); }
+.pform__map { position: relative; height: 730px; overflow: hidden; background: #e5e5e5; }
+
+/* Чёрная форма на всю ширину: заголовок слева, поля справа */
+@media (min-width: 1200px) {
+  .pform--wide .pform__card {
+    display: grid;
+    grid-template-columns: 499px 861px;
+    justify-content: space-between;
+    align-items: start;
+    column-gap: 40px;
+  }
+  .pform--wide .pform__title { grid-row: 1 / span 4; }
+  .pform--wide .pform__card > :not(.pform__title) { grid-column: 2; }
+  .pform--wide .pform__fields { margin-top: 0; }
+  .pform--wide .pform__submit { margin-top: 60px; }
+}
+
+@media (max-width: 1199px) {
+  .partner-hero__site { font-size: 16px; line-height: 22px; }
+  .partner-hero .world-hero__media { aspect-ratio: 834 / 272; }
+  .partner-projects__head { display: none; }
+  .pintro--text { margin-bottom: 0; }
+
+  .pgallery--captions .pgallery__item { height: 436px; }
+  .pgallery--captions .pgallery__item img { height: 100%; }
+  .pgallery__item figcaption { display: none; }
+
+  .pform--map .pform__inner { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .pcontacts > div { grid-template-columns: 200px minmax(0, 1fr); }
+  .pcontacts dd { justify-content: space-between; }
+  .pcontacts dd > a:first-child,
+  .pcontacts dd > :only-child { flex: 0 1 auto; }
+  .pcontacts__person { text-align: right; }
+  .pform__map { height: 330px; }
+}
+
+@media (max-width: 599px) {
+  .partner-hero__site { font-size: 14px; line-height: 20px; }
+  .partner-hero .world-hero__stats { font-size: 12px; line-height: 15px; }
+  .partner-hero__tags { flex-direction: column; align-items: flex-end; gap: 12px; }
+  .partner-hero .world-hero__media { aspect-ratio: 400 / 220; }
+
+  .pgallery--captions .pgallery__item { height: 225px; }
+
+  .pform--map { padding-top: 0; }
+  .pform--map .pform__inner { padding-top: 0; border-top: 0; }
+  .pcontacts > div { min-height: 0; }
+  .pcontacts dd { flex-direction: column; gap: 8px; }
+  .pcontacts__person { text-align: left; }
+  .pform__map { height: 181px; }
+}

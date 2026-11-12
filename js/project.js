@@ -3,7 +3,7 @@
 (function () {
   var root = document.documentElement;
   var header = document.querySelector('.header');
-  var hero = document.querySelector('.project-hero, .partners-hero');
+  var hero = document.querySelector('.project-hero, .partners-hero, .world-hero');
   if (!header || !hero || !document.querySelector('.header__nav')) return;
 
   function update() {
@@ -92,4 +92,18 @@
         : 'Заполните имя и телефон.';
     }
   });
+})();
+
+// Страница партнёра: карта с одной меткой (серая, как карта партнёров на главной)
+(function () {
+  var el = document.getElementById('partner-map');
+  if (!el || !window.L) return;
+  var point = [parseFloat(el.getAttribute('data-lat')), parseFloat(el.getAttribute('data-lng'))];
+  var map = L.map(el, { center: point, zoom: 14, scrollWheelZoom: false, zoomControl: false, attributionControl: false });
+  L.control.zoom({ position: 'bottomright' }).addTo(map);
+  // Подпись OpenStreetMap — в футере, как на главной
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(map);
+  L.marker(point, {
+    icon: L.icon({ iconUrl: 'assets/img/map/partner_icon-active.svg', iconSize: [40, 53], iconAnchor: [20, 46], className: 'partner-marker' })
+  }).addTo(map);
 })();
