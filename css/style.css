@@ -95,6 +95,8 @@ ul { list-style: none; margin: 0; padding: 0; }
 :root { --header-h: 114px; }
 
 .header { position: sticky; top: 0; z-index: 30; }
+/* Якоря на главной (#projects, #people) не прячутся под закреплённой шапкой */
+section[id] { scroll-margin-top: var(--header-h); }
 
 /* Пункты разделов в закреплённой шапке: по центру, шаг 80px */
 .header__nav {
