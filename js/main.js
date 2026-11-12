@@ -471,3 +471,26 @@
     }
   });
 })();
+
+// Плашка cookie: выбор хранится в localStorage, без него плашка показывается на каждой странице
+(function () {
+  var banner = document.querySelector('[data-cookie]');
+  if (!banner) return;
+  var KEY = 'shuko-cookie-choice';
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) { /* хранилище недоступно */ }
+  if (saved) return;
+
+  banner.hidden = false;
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { banner.classList.add('is-visible'); });
+  });
+
+  banner.addEventListener('click', function (e) {
+    var btn = e.target.closest('[data-cookie-choice]');
+    if (!btn) return;
+    try { localStorage.setItem(KEY, btn.getAttribute('data-cookie-choice')); } catch (err) { /* без сохранения */ }
+    banner.classList.remove('is-visible');
+    setTimeout(function () { banner.hidden = true; }, 300);
+  });
+})();

@@ -3614,3 +3614,148 @@ section[id] { scroll-margin-top: var(--header-h); }
   .aphoto--pair { flex-direction: column; gap: 20px; }
   .aphoto__item figcaption { margin-top: 12px; }
 }
+
+/* ---------- Окно входа «Войдите в систему» ---------- */
+/* По центру экрана, светлое затемнение; белая часть с формой и чёрная — «Нет аккаунта?» */
+.dialog-layer--center { place-items: center; padding: 24px; }
+.dialog-layer--center .dialog-layer__backdrop { background: rgb(0 0 0 / 40%); }
+.dialog--login { width: min(920px, 100%); min-height: 0; padding: 0; }
+.dialog--login .dialog__form { min-height: 0; padding: 60px 60px 40px; }
+.dialog--login .dialog__title { text-transform: uppercase; letter-spacing: 0; }
+.dialog--login .dialog__fields { margin-top: 80px; }
+.dialog--login .field { border-bottom-color: rgba(0, 0, 0, .28); }
+.dialog--login .field__label { color: rgba(0, 0, 0, .4); }
+.dialog--login .field.is-invalid { border-color: #d83030; }
+.dialog--login .dialog__actions { margin-top: 80px; }
+.dialog--login .dialog__submit:hover svg,
+.dialog--login .dialog__submit:focus-visible svg { transform: translateX(4px); }
+.dialog--login .dialog__legal { margin-top: 20px; color: rgba(0, 0, 0, .4); }
+.dialog--login .dialog__legal a { color: rgba(0, 0, 0, .6); text-decoration: underline; text-underline-offset: 2px; }
+.dialog--login .dialog__legal a:hover { color: #000; }
+.dialog--login .dialog__status:empty { display: none; }
+
+.dialog__signup {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 39px 40px 40px;
+  background: #000;
+  color: #fff;
+}
+.dialog__signup { position: relative; }
+.dialog__signup::before {
+  content: "";
+  position: absolute;
+  top: 39px;
+  right: 40px;
+  left: 40px;
+  border-top: 1px solid rgba(204, 204, 204, .28);
+}
+.dialog__signup-title {
+  margin: 17px 0 0;
+  font-size: 20px;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+.dialog__signup-btn {
+  display: flex;
+  flex: 0 0 557px;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  margin-top: 17px;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, .12);
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+  transition: background var(--ease);
+}
+.dialog__signup-btn svg { flex: none; transition: transform .25s var(--ease); }
+.dialog__signup-btn:hover { background: rgba(255, 255, 255, .2); }
+.dialog__signup-btn:hover svg { transform: translateX(4px); }
+
+@media (max-width: 1199px) {
+  .dialog-layer--center { padding: 20px; }
+  .dialog--login { width: min(794px, 100%); min-height: 0; padding: 0; }
+  .dialog--login .dialog__form { min-height: 0; padding: 40px 40px 40px; }
+  .dialog__signup-btn { flex-basis: 431px; }
+}
+
+@media (max-width: 599px) {
+  .dialog-layer--center { padding: 12px; }
+  .dialog--login { width: 100%; min-height: 0; padding: 0; }
+  .dialog--login .dialog__form { min-height: 0; padding: 40px 20px 36px; }
+  .dialog--login .dialog__title { font-size: 20px; line-height: 28px; }
+  .dialog--login .dialog__fields { gap: 42px; margin-top: 40px; }
+  .dialog--login .field__label,
+  .dialog--login .field input { font-size: 14px; line-height: 22px; }
+  .dialog--login .dialog__actions { margin-top: 40px; }
+  .dialog--login .dialog__submit svg { width: 32px; height: 32px; }
+
+  .dialog__signup { display: block; padding: 19px 20px 16px; }
+  .dialog__signup::before { top: 19px; right: 20px; left: 20px; }
+  .dialog__signup-title { margin-top: 18px; }
+  .dialog__signup-btn { height: 72px; margin-top: 23px; padding: 0 20px; font-size: 14px; line-height: 22px; }
+  .dialog__signup-btn svg { width: 32px; height: 32px; }
+}
+
+/* ---------- Плашка cookie (своя, в стиле чёрных блоков сайта) ---------- */
+.cookie {
+  position: fixed;
+  z-index: 1000;
+  right: var(--gutter);
+  bottom: 24px;
+  left: var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1840px;
+  margin: 0 auto;
+  padding: 24px 24px 24px 40px;
+  background: #000;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--ease), transform var(--ease);
+}
+.cookie[hidden] { display: none; }
+.cookie.is-visible { opacity: 1; transform: translateY(0); }
+.cookie__text {
+  max-width: 760px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(255, 255, 255, .6);
+}
+.cookie__text a { color: #fff; text-decoration: underline; text-underline-offset: 2px; transition: opacity var(--ease); }
+.cookie__text a:hover { opacity: .6; }
+.cookie__btns { display: flex; flex: none; gap: 12px; }
+.cookie__btn {
+  height: 56px;
+  padding: 0 32px;
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  font-size: 14px;
+  line-height: 18px;
+  text-transform: uppercase;
+  transition: background var(--ease);
+}
+.cookie__btn:hover { background: rgba(255, 255, 255, .24); }
+.cookie__btn--light { min-width: 200px; background: #fff; color: #000; }
+.cookie__btn--light:hover { background: #e5e5e5; }
+
+@media (max-width: 1199px) {
+  .cookie { bottom: 20px; flex-direction: column; align-items: stretch; gap: 24px; padding: 24px; }
+  .cookie__text { max-width: none; }
+  .cookie__btns > * { flex: 1 1 0; }
+}
+
+@media (max-width: 599px) {
+  .cookie { bottom: 12px; gap: 20px; padding: 20px; }
+  .cookie__text { font-size: 12px; line-height: 17px; }
+  .cookie__btns { flex-direction: column; gap: 8px; }
+  .cookie__btn { height: 48px; padding: 0 20px; }
+}

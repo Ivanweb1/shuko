@@ -22,7 +22,7 @@
       <a href="#">Сообщество</a>
     </nav>
     <div class="header__actions">
-      <a class="header__login" href="#">Вход</a>
+      <a class="header__login" href="#login-dialog" data-dialog-open="login">Вход</a>
       <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu">
         <span></span><span></span>
       </button>
@@ -331,6 +331,41 @@
     </section>
   </div>
 
+
+  <!-- Вход: окно «Войдите в систему» (макет «Регистрация» 1920 / 834 / 400) -->
+  <div class="dialog-layer dialog-layer--center" id="login-dialog" data-dialog="login" hidden>
+    <button class="dialog-layer__backdrop" type="button" data-dialog-close aria-label="Закрыть окно входа"></button>
+    <section class="dialog dialog--login" role="dialog" aria-modal="true" aria-labelledby="login-dialog-title">
+      <button class="dialog__close" type="button" data-dialog-close aria-label="Закрыть">
+        <span></span><span></span>
+      </button>
+      <form class="dialog__form" novalidate>
+        <h2 class="dialog__title" id="login-dialog-title">Войдите в систему</h2>
+        <div class="dialog__fields">
+          <label class="field"><span class="field__label">ФИО*</span><input name="name" autocomplete="name" required></label>
+          <label class="field"><span class="field__label">Телефон*</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" required></label>
+        </div>
+        <div class="dialog__actions">
+          <button class="dialog__submit" type="submit"><span>Войти</span><svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><path d="M6 20h27M23.5 10.5 33 20l-9.5 9.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <p class="dialog__legal">Заполнив форму, вы принимаете <a href="#">условия соглашения об использовании сайта</a> в том числе в части <a href="#">обработки и использования персональных данных</a></p>
+          <p class="dialog__status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+      <div class="dialog__signup">
+        <p class="dialog__signup-title">Нет аккаунта?</p>
+        <a class="dialog__signup-btn" href="#"><span>Зарегистрироваться</span><svg viewBox="0 0 40 40" width="40" height="40" aria-hidden="true"><path d="M6 20h27M23.5 10.5 33 20l-9.5 9.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Плашка cookie: показывается, пока посетитель не сделал выбор -->
+  <section class="cookie" data-cookie aria-label="Использование файлов cookie" hidden>
+    <p class="cookie__text">Мы используем файлы cookie, чтобы сайт работал корректно и становился удобнее. Подробнее — в <a href="#">политике использования файлов cookie</a>.</p>
+    <div class="cookie__btns">
+      <button class="cookie__btn cookie__btn--light" type="button" data-cookie-choice="all">Принять</button>
+      <button class="cookie__btn" type="button" data-cookie-choice="necessary">Только необходимые</button>
+    </div>
+  </section>
 
   <script src="js/main.js"></script>
   <script src="js/project.js"></script>
