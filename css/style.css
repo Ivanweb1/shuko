@@ -2869,7 +2869,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   margin-top: 12px;
   font-size: 14px;
   line-height: 18px;
-  text-align: center;
+  text-align: left;
 }
 
 /* Контакты партнёра: у телефона справа контактное лицо, справа от списка — карта */
@@ -3350,7 +3350,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   .pgallery--systems .pgallery__item { flex-basis: 267px; height: auto; }
   .pgallery--systems .pgallery__item--narrow { flex-basis: 125px; }
   .pgallery--systems .pgallery__item img { height: 225px; }
-  .pgallery--systems .pgallery__item figcaption { margin-top: 8px; font-size: 12px; line-height: 17px; text-align: left; }
+  .pgallery--systems .pgallery__item figcaption { margin-top: 8px; font-size: 12px; line-height: 17px; }
 
   .psystem--photo { flex-wrap: wrap; height: auto; padding: 11px var(--gutter) 12px; }
   .psystem--photo .psystem__name { flex: 0 0 100%; margin-top: 0; }
