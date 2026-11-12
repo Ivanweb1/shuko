@@ -3636,7 +3636,7 @@ section[id] { scroll-margin-top: var(--header-h); }
 
 .dialog__signup {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 24px;
   padding: 39px 40px 40px;
