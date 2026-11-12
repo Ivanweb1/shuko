@@ -3081,3 +3081,110 @@ ul { list-style: none; margin: 0; padding: 0; }
   .scta__btn { height: 64px; padding: 0 12px 0 20px; font-size: 14px; line-height: 22px; }
   .scta__arrow { width: 32px; height: 32px; }
 }
+
+/* ---------- Решение: вводный текст ---------- */
+.pintro--solution { grid-template-columns: 618px minmax(0, 1fr); }
+.pintro--solution .pintro__text { max-width: 342px; }
+
+/* ---------- Решение: подробности (конструкции, на что обратить внимание, системы) ---------- */
+/* На десктопе обе части лежат в одной строке «01»: номер | списки | … | системы */
+.sdetail {
+  display: grid;
+  grid-template-columns: 618px 342px minmax(0, 1fr) 434px;
+  margin: 0 var(--gutter);
+  padding: 40px 0 80px;
+  border-top: 1px solid var(--c-line);
+}
+.sdetail__part { display: contents; }
+.sdetail__num {
+  margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+  text-transform: uppercase;
+}
+.sdetail__part--systems .sdetail__num { display: none; }
+.sdetail__part--systems .sdetail__body { grid-column: 4; }
+.sdetail__groups { display: flex; flex-direction: column; gap: 60px; }
+.sdetail__label {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--c-line);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, .4);
+}
+.sdetail__list {
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(0, 0, 0, .8);
+}
+
+.ssys { margin: 0; padding: 0; list-style: none; }
+.ssys__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--c-line);
+  font-size: 14px;
+  line-height: 18px;
+}
+.ssys__item::after {
+  content: "";
+  flex: none;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #000;
+}
+.ssys__text { max-width: 342px; }
+.ssys__name { margin: 0; color: rgba(0, 0, 0, .8); }
+.ssys__desc { margin: 8px 0 0; color: rgba(0, 0, 0, .4); }
+
+/* Заголовок «Проекты» над блоком с главной */
+.solution-projects__head { margin: 80px var(--gutter) 0; }
+
+/* ---------- Решение: планшет ---------- */
+@media (max-width: 1199px) {
+  .pintro--solution { grid-template-columns: 397px minmax(0, 1fr); margin: 40px var(--gutter) 0; }
+  .pintro--solution .pintro__text { max-width: 397px; }
+
+  .sdetail { display: block; padding: 0 0 40px; border-top: 0; }
+  .sdetail__part {
+    display: grid;
+    grid-template-columns: 396px minmax(0, 1fr);
+    margin-top: 24px;
+    padding-top: 15px;
+    border-top: 1px solid var(--c-line);
+  }
+  .sdetail__num { font-size: 14px; line-height: 20px; }
+  .sdetail__part--systems .sdetail__num { display: block; }
+  .sdetail__part--systems .sdetail__body { grid-column: auto; }
+  .sdetail__groups { gap: 40px; }
+  .sdetail__label-num { display: none; }
+  .ssys__text { max-width: none; }
+
+  .solution-projects__head { display: none; }
+}
+
+/* ---------- Решение: мобильный ---------- */
+@media (max-width: 599px) {
+  .pintro--solution { margin: 40px var(--gutter); }
+  .pintro--solution .pintro__text { max-width: none; color: rgba(0, 0, 0, .8); }
+
+  .sdetail { display: flex; flex-direction: column; gap: 40px; }
+  .sdetail__part { display: block; margin: 0; padding: 0; border-top: 0; }
+  .sdetail__num,
+  .sdetail__part--systems .sdetail__num { display: none; }
+  .sdetail__list { margin-top: 20px; }
+  .ssys__text { max-width: 342px; }
+}
