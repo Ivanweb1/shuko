@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Мир Schüco — история компании</title>
+  <meta name="description" content="Schüco с 1951 года: системные решения для окон, дверей и фасадов, подход компании, история и карта партнёров.">
+  <link rel="preload" href="assets/fonts/Stem_Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header">
+    <a class="header__logo" href="/" aria-label="Schüco — на главную">
+      <img src="assets/img/logo.svg" alt="Schüco" width="138" height="50">
+    </a>
+    <!-- Появляется, когда при скролле страница уходит под шапку -->
+    <nav class="header__nav" aria-label="Разделы" aria-hidden="true">
+      <a href="#" tabindex="-1">Решения</a>
+      <a href="#" tabindex="-1">Люди</a>
+      <a href="#" tabindex="-1">Сообщество</a>
+    </nav>
+    <div class="header__actions">
+      <a class="header__login" href="#">Вход</a>
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="menu-overlay" hidden></div>
+
+  <div class="menu" id="menu" hidden>
+    <div class="menu__inner">
+      <ul class="menu__links">
+        <li><a href="#">О компании</a></li>
+        <li class="menu__compact-only"><a href="#">Партнёры</a></li>
+        <li><a href="#">Кейсы</a></li>
+        <li><a href="#">Блог</a></li>
+        <li class="menu__wide-only"><a href="#project-dialog" data-dialog-open="project">Обсудить проект</a></li>
+      </ul>
+
+      <address class="menu__contacts">
+        <a class="menu__phone" href="tel:+74959810219">+7 (495) 981-02-19</a>
+        <a class="menu__email" href="mailto:info@schucohome.ru">info@schucohome.ru</a>
+        <span class="menu__address">141400, г. Химки, ул. Ленинградская, 39, стр. 5, Химки Бизнес парк, 9 этаж</span>
+      </address>
+
+      <!-- Десктоп: четыре колонки разделов с подпунктами -->
+      <nav class="menu__sections" aria-label="Разделы">
+        <div class="menu-col">
+          <p class="menu-col__title">Решения</p>
+          <ul class="menu-col__list">
+            <li><a href="#">Панорамное остекление</a></li>
+            <li><a href="#">Больше естественного света</a></li>
+            <li><a href="#">Выход на террасу</a></li>
+            <li><a href="#">Остекление больших проёмов</a></li>
+            <li><a href="#">Безбарьерные решения</a></li>
+            <li><a href="#">Максимально тонкие рамы</a></li>
+            <li><a href="#">Угловое остекление</a></li>
+            <li><a href="#">Остекление бассейна и SPA</a></li>
+            <li><a href="#">Зимний сад</a></li>
+            <li><a href="#">Автоматизация конструкций</a></li>
+            <li><a href="#">Приватность и солнцезащита</a></li>
+            <li><a href="#">Безопасность</a></li>
+          </ul>
+        </div>
+        <div class="menu-col">
+          <p class="menu-col__title">Системы</p>
+          <ul class="menu-col__list">
+            <li><a href="#">Окна</a></li>
+            <li><a href="#">Раздвижные двери</a></li>
+            <li><a href="#">Витражи</a></li>
+            <li><a href="#">Двери</a></li>
+            <li><a href="#">Зимний сад</a></li>
+            <li><a href="#">Уютный дом</a></li>
+          </ul>
+        </div>
+        <div class="menu-col">
+          <p class="menu-col__title">Партнёры</p>
+          <ul class="menu-col__list">
+            <li><a href="#">Архитекторы</a></li>
+            <li><a href="#">Строители</a></li>
+            <li><a href="#">Производители</a></li>
+            <li><a href="#">Сервис-партнеры</a></li>
+            <li><a href="#">Контракторы</a></li>
+          </ul>
+        </div>
+        <div class="menu-col menu-col--right">
+          <p class="menu-col__title">Сообщество</p>
+          <ul class="menu-col__list">
+            <li><a href="#">Архмосква</a></li>
+            <li><a href="#">Schüco Home</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Планшет и мобильный: короткий список разделов и кнопка -->
+      <ul class="menu__short">
+        <li><a href="#">Решения</a></li>
+        <li><a href="#">Системы</a></li>
+        <li><a href="#">Сообщество</a></li>
+      </ul>
+
+      <a class="menu__cta" href="#project-dialog" data-dialog-open="project">
+        <span>Обсудить проект</span>
+        <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true"><path fill="currentColor" transform="matrix(.7071 .7071 -.7071 .7071 16 3.979)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+      </a>
+    </div>
+  </div>
+  <main>
+    <!-- Первый экран: заголовок и дата, цифры о компании, фото на всю ширину -->
+    <section class="world-hero">
+      <div class="world-hero__head">
+        <h1 class="world-hero__title">История компании</h1>
+        <p class="world-hero__date">18 января 2026 года:<br>75-летие компании Schüco</p>
+      </div>
+      <div class="world-hero__facts">
+        <p class="world-hero__label">О Schüco</p>
+        <ul class="world-hero__stats">
+          <li>1951 — год основания</li>
+          <li>6 750+ сотрудников</li>
+          <li>90+ стран присутствия</li>
+        </ul>
+      </div>
+      <div class="world-hero__media">
+        <img src="assets/img/world/hero.jpg" alt="Дом с деревянной облицовкой и панорамным остеклением среди сосен" width="1280" height="853">
+      </div>
+    </section>
+
+    <!-- «О компании» и «Подход»: раскрываются по плюсу, в макете оба открыты -->
+    <section class="wacc">
+      <div class="wacc__item is-open">
+        <h2 class="wacc__head">
+          <button class="wacc__toggle" type="button" aria-expanded="true" aria-controls="wacc-about">
+            <span class="wacc__title">О компании</span>
+            <span class="wacc__icon" aria-hidden="true"></span>
+          </button>
+        </h2>
+        <div class="wacc__panel" id="wacc-about">
+          <div class="wacc__inner">
+            <div class="wacc__body">
+              <p class="wacc__num">01</p>
+              <div class="wacc__texts">
+                <div class="wacc__block">
+                  <h3 class="wacc__label"><span>Что мы делаем</span><span class="wacc__num-m">01</span></h3>
+                  <p>Schüco — международная компания, которая разрабатывает и производит системные решения для окон, дверей и фасадов.</p>
+                  <p>Мы работаем с алюминием, сталью и ПВХ и создаём решения для жилых и коммерческих зданий — от отдельных элементов до комплексных систем ограждающих конструкций.</p>
+                  <p>Потребности клиента — главный ориентир Schüco на всех этапах проекта: от первой идеи и проектирования до производства, монтажа и последующего обслуживания.</p>
+                </div>
+              </div>
+              <div class="wacc__list">
+                <h3 class="wacc__label">Решения</h3>
+                <ul>
+                  <li>Оконные системы</li>
+                  <li>Дверные системы</li>
+                  <li>Фасадные системы</li>
+                  <li>Раздвижные системы</li>
+                  <li>Системы вентиляции</li>
+                  <li>Автоматизация и интеллектуальные решения</li>
+                  <li>Солнцезащитные системы</li>
+                  <li>Системы безопасности</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wacc__item is-open">
+        <h2 class="wacc__head">
+          <button class="wacc__toggle" type="button" aria-expanded="true" aria-controls="wacc-approach">
+            <span class="wacc__title">Подход</span>
+            <span class="wacc__icon" aria-hidden="true"></span>
+          </button>
+        </h2>
+        <div class="wacc__panel" id="wacc-approach">
+          <div class="wacc__inner">
+            <div class="wacc__body">
+              <p class="wacc__num">02</p>
+              <div class="wacc__texts">
+                <div class="wacc__block">
+                  <h3 class="wacc__label"><span>Технологии</span><span class="wacc__num-m">02</span></h3>
+                  <p>Разрабатываем и тестируем решения для всего ограждающего контура здания, учитывая требования к комфорту, безопасности, энергоэффективности и дизайну.</p>
+                </div>
+                <div class="wacc__block">
+                  <h3 class="wacc__label">Устойчивое развитие</h3>
+                  <p>Schüco стремится быть пионером в области целостного устойчивого развития и с помощью своих продуктов и услуг способствовать климатической нейтральности и развитию экономики замкнутого цикла в строительстве.</p>
+                </div>
+              </div>
+              <div class="wacc__list wacc__list--plain">
+                <ul>
+                  <li>Комфорт - решения, которые делают пространство удобнее для жизни и работы.</li>
+                  <li>Безопасность - технологии защиты и надёжные конструкции</li>
+                  <li>Энергоэффективность - теплоизоляция, вентиляция и решения для снижения энергопотребления.</li>
+                  <li>Дизайн - большие форматы, тонкие профили и свобода архитектурных решений</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Две карточки-ссылки; при наведении фото размывается, как в кадре «При наведении» -->
+    <section class="wcards">
+      <a class="wcard" href="#">
+        <span class="wcard__media"><img src="assets/img/world/testing.jpg" alt="" width="632" height="356" loading="lazy"></span>
+        <span class="wcard__foot">
+          <span class="wcard__text">Сеть испытательных полигонов</span>
+          <svg class="wcard__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+        </span>
+      </a>
+      <a class="wcard" href="#">
+        <span class="wcard__media"><img src="assets/img/world/esg-board.jpg" alt="" width="1872" height="936" loading="lazy"></span>
+        <span class="wcard__foot">
+          <span class="wcard__text">Совет директоров Schüco по вопросам ESG – члены и обязанности</span>
+          <svg class="wcard__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+        </span>
+      </a>
+    </section>
+
+    <!-- Наша история: фото слева, события справа; раскрыто первое.
+         Текст в макете есть только у 1951 года, у остальных событий — название и год. -->
+    <section class="whist">
+      <div class="pmap__head">
+        <h2 class="pmap__title">Наша история</h2>
+        <p class="pmap__text">С 1951 года Schüco разрабатывает простые системные решения, которые предлагают дополнительную ценность и представляют качество, инновации и устойчивое развитие.</p>
+      </div>
+      <div class="whist__body">
+        <div class="whist__photo hphoto">
+          <img class="hphoto__bg" src="assets/img/world/history-1951.jpg" alt="" width="580" height="865" loading="lazy">
+          <img class="hphoto__img" src="assets/img/world/history-1951.jpg" alt="Основатель компании Хайнц Шюрманн" width="580" height="865" loading="lazy">
+        </div>
+        <div class="whist__side">
+          <div class="whist__thead"><span>Событие</span><span>Год</span></div>
+          <ol class="whist__list">
+            <li class="hevent is-open">
+              <div class="hevent__row">
+                <span class="hevent__name">Рождение Schüco</span>
+                <span class="hevent__year">1951</span>
+              </div>
+              <div class="hevent__text">
+                <p>Интуиция к возможностям, готовность рисковать и практичный подход – все эти качества, как утверждалось, были присущи основателю Хайнцу Шюрманну. Вместе с пятью сотрудниками, включая его сводного брата Гюнтера Райнеке, он основал компанию Heinz Schürmann &amp; Co. в небольшом дворике в Порта-Вестфалике. Ассортимент продукции на тот момент включал алюминиевые витрины, навесы и раздвижные решетки.</p>
+                <p>В 1954 году девиз Шюрмана «Я могу и я сделаю» нашел отражение в развитии небольшой компании по металлообработке. Вскоре после основания компания начала расширяться, завоевывая новые рынки и постоянно развиваясь. В Мюнхене открылся новый филиал, ставший штаб-квартирой для южногерманского региона. Переехав в Билефельд, где до сих пор находится штаб-квартира компании, Schüco обрела новый дом.</p>
+              </div>
+              <div class="hevent__photo hphoto">
+                <img class="hphoto__bg" src="assets/img/world/history-1951.jpg" alt="" width="580" height="865" loading="lazy">
+                <img class="hphoto__img" src="assets/img/world/history-1951.jpg" alt="" width="580" height="865" loading="lazy">
+              </div>
+            </li>
+            <li class="hevent"><div class="hevent__row"><span class="hevent__name">Системный подход</span><span class="hevent__year">1970</span></div></li>
+            <li class="hevent"><div class="hevent__row"><span class="hevent__name">Расширение</span><span class="hevent__year">1980</span></div></li>
+            <li class="hevent"><div class="hevent__row"><span class="hevent__name">Россия</span><span class="hevent__year">1997</span></div></li>
+            <li class="hevent"><div class="hevent__row"><span class="hevent__name">Глобализация</span><span class="hevent__year">2000</span></div></li>
+            <li class="hevent"><div class="hevent__row"><span class="hevent__name">Сегодня</span><span class="hevent__year">2026</span></div></li>
+          </ol>
+          <button class="people__all whist__all" type="button">
+            <span class="people__all-text">Смотреть все</span>
+            <svg class="people__all-arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="pmap pmap--flip">
+      <div class="pmap__head">
+        <h2 class="pmap__title">Карта партнёров</h2>
+        <p class="pmap__text">С 1951 года Schüco разрабатывает простые системные решения, которые предлагают дополнительную ценность и представляют качество, инновации и устойчивое развитие.</p>
+      </div>
+      <div class="pmap__body">
+        <!-- Живая карта (Leaflet + OpenStreetMap), метки и список — партнёры со старого сайта -->
+        <div class="pmap__map"><div class="pmap__canvas" id="partners-map" aria-label="Карта партнёров"></div></div>
+        <div class="pmap__side">
+          <div class="pmap__thead">
+            <span>Партнёр</span>
+            <span class="pmap__th-about">О партнёре</span>
+            <span class="pmap__th-contacts">Контакты</span>
+          </div>
+          <!-- Список строится из assets/data/partners.json (выгрузка /include/contacts.php старого сайта) -->
+          <ul class="pmap__list" data-src="assets/data/partners.json"></ul>
+          <a class="people__all pmap__all" href="#">
+            <span class="people__all-text">Смотреть всех партнёров</span>
+            <svg class="people__all-arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__logo"><a href="/" aria-label="Schüco — на главную"><img src="assets/img/logo.svg" alt="Schüco" width="241" height="87"></a></div>
+      <nav class="footer__links" aria-label="Разделы сайта">
+        <ul>
+          <li><a href="#">О компании</a></li>
+          <li><a href="#">Партнёры</a></li>
+          <li><a href="#">Кейсы</a></li>
+          <li><a href="#">Блог</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Решения</a></li>
+          <li><a href="#">Системы</a></li>
+          <li><a href="#">Сообщество</a></li>
+        </ul>
+      </nav>
+      <address class="footer__contacts">
+        <a class="footer__phone" href="tel:+74959810219">+7 (495) 981-02-19</a>
+        <a class="footer__email" href="mailto:info@schucohome.ru">info@schucohome.ru</a>
+        <span class="footer__address">г. Химки, ул. Ленинградская, 39, стр. 5, Химки Бизнес парк, 9 этаж</span>
+      </address>
+      <div class="footer__btns">
+        <a class="fbtn" href="#project-dialog" data-dialog-open="project"><span>Обсудить проект</span><svg class="fbtn__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></a>
+        <a class="fbtn" href="#newsletter-dialog" data-dialog-open="newsletter"><span>Подписка на рассылку</span><svg class="fbtn__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></a>
+      </div>
+      <div class="footer__policies">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Политика использования файлов cookie</a>
+      </div>
+      <p class="footer__copy">Schüco©2026. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <div class="dialog-layer" id="project-dialog" data-dialog="project" hidden>
+    <button class="dialog-layer__backdrop" type="button" data-dialog-close aria-label="Закрыть форму"></button>
+    <section class="dialog dialog--project" role="dialog" aria-modal="true" aria-labelledby="project-dialog-title">
+      <button class="dialog__close" type="button" data-dialog-close aria-label="Закрыть">
+        <span></span><span></span>
+      </button>
+      <form class="dialog__form" novalidate>
+        <h2 class="dialog__title" id="project-dialog-title">Мы всегда рады начинать новые проекты. Напишите нам и мы свяжемся с вами в течение 1 часа</h2>
+        <div class="dialog__fields">
+          <label class="field"><span class="field__label">Имя</span><input name="name" autocomplete="name" required></label>
+          <label class="field"><span class="field__label">Телефон</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" required></label>
+          <div class="dialog__message-row">
+            <label class="field field--message"><span class="field__label">Кратко опишите, что вас интересует</span><textarea name="message" rows="1"></textarea></label>
+            <label class="file-field"><input name="attachment" type="file"><span>Прикрепите файл</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8.5 12.5 5.7-5.7a3 3 0 0 1 4.2 4.2l-7.1 7.1a5 5 0 0 1-7.1-7.1l7.1-7.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></label>
+          </div>
+        </div>
+        <div class="dialog__actions">
+          <button class="dialog__submit" type="submit"><span>Заказать консультацию</span><svg viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></button>
+          <p class="dialog__legal">Заполнив форму, вы принимаете условия соглашения об использовании сайта, в том числе в части обработки и использования персональных данных</p>
+          <p class="dialog__status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <div class="dialog-layer" id="newsletter-dialog" data-dialog="newsletter" hidden>
+    <button class="dialog-layer__backdrop" type="button" data-dialog-close aria-label="Закрыть форму"></button>
+    <section class="dialog dialog--newsletter" role="dialog" aria-modal="true" aria-labelledby="newsletter-dialog-title">
+      <button class="dialog__close" type="button" data-dialog-close aria-label="Закрыть">
+        <span></span><span></span>
+      </button>
+      <form class="dialog__form" novalidate>
+        <h2 class="dialog__title" id="newsletter-dialog-title">Свежая информация по архитектуре и дизайну. Еженедельно в вашем почтовом ящике.</h2>
+        <div class="dialog__fields">
+          <label class="field"><span class="field__label">Имя</span><input name="name" autocomplete="name" required></label>
+          <label class="field"><span class="field__label">E-mail</span><input name="email" type="email" autocomplete="email" inputmode="email" required></label>
+        </div>
+        <div class="dialog__actions">
+          <button class="dialog__submit" type="submit"><span>Подписаться на обновления</span><svg viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg></button>
+          <p class="dialog__legal">Заполнив форму, вы принимаете условия соглашения об использовании сайта, в том числе в части обработки и использования персональных данных</p>
+          <p class="dialog__status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </section>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/world.js"></script>
+</body>
+</html>
