@@ -3,7 +3,7 @@
 (function () {
   var root = document.documentElement;
   var header = document.querySelector('.header');
-  var hero = document.querySelector('.project-hero');
+  var hero = document.querySelector('.project-hero, .partners-hero');
   if (!header || !hero || !document.querySelector('.header__nav')) return;
 
   function update() {

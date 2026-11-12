@@ -2717,3 +2717,124 @@ ul { list-style: none; margin: 0; padding: 0; }
   .hevent__photo { aspect-ratio: 376 / 429; }
   .hevent__photo .hphoto__img { width: 237px; height: 286px; }
 }
+
+/* ---------- Партнёры: первый экран ---------- */
+/* Кадры макета: 1920 (фото 1920×730), 834 (834×272), 400 (400×220) */
+.partners-hero__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 40px var(--gutter) 120px;
+}
+.partners-hero__title {
+  max-width: 1224px;
+  margin: 0;
+  font-size: 60px;
+  line-height: 68px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.partners-hero__count {
+  flex: none;
+  margin: 0;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+}
+.partners-hero__media { aspect-ratio: 1920 / 730; overflow: hidden; }
+.partners-hero__media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- Партнёры: «Экосистема Schüco» ---------- */
+.pintro {
+  display: grid;
+  grid-template-columns: 920px minmax(0, 1fr);
+  margin: 80px var(--gutter);
+  padding-top: 15px;
+  border-top: 1px solid var(--c-line);
+}
+.pintro__title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.pintro__text {
+  max-width: 486px;
+  margin: 0;
+  font-size: 14px;
+  line-height: 18px;
+  color: rgba(0, 0, 0, .8);
+}
+
+/* ---------- Партнёры: сетка карточек ---------- */
+/* Карточки из «Наших людей» главной, соседние рамки сливаются в одну линию */
+.pgrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0 var(--gutter);
+}
+.pgrid li { margin: 0 -1px -1px 0; }
+.pgrid li:hover { position: relative; z-index: 1; }
+.pgrid .pcard { width: auto; height: 387px; }
+.pgrid .pcard__desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ---------- Партнёры: планшет ---------- */
+@media (max-width: 1199px) {
+  .partners-hero__head { display: block; padding: 40px var(--gutter) 80px; }
+  .partners-hero__count { margin-top: 20px; text-transform: none; }
+  .partners-hero__media { aspect-ratio: 834 / 272; }
+
+  .pintro { grid-template-columns: 397px minmax(0, 1fr); margin: 40px var(--gutter); }
+
+  .people--grid { padding-top: 0; }
+  .people--grid .people__heading {
+    display: block;
+    margin: 0 var(--gutter);
+    padding: 40px 0;
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .people--grid .people__title { display: none; }
+  .people--grid .people__bar { margin-bottom: 40px; }
+  .people--grid .people__tab:first-child { padding-left: 12px; }
+
+  .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pgrid .pcard { height: 306px; }
+  .pgrid .pcard__desc { max-width: none; }
+  /* В макетах планшета и мобильного 8 карточек */
+  .pgrid li:nth-child(n+9) { display: none; }
+}
+
+/* ---------- Партнёры: мобильный ---------- */
+@media (max-width: 599px) {
+  .partners-hero__head { padding: 40px var(--gutter) 80px; }
+  .partners-hero__title { font-size: 40px; line-height: 44px; }
+  .partners-hero__count { font-size: 14px; line-height: 20px; }
+  .partners-hero__media { aspect-ratio: 400 / 220; }
+
+  .pintro { display: block; }
+  .pintro__text { max-width: none; margin-top: 12px; color: rgba(0, 0, 0, .7); }
+
+  .people--grid .people__heading {
+    margin: 0 var(--gutter) 20px;
+    padding: 0;
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: 1px;
+  }
+  .people--grid .people__tab:first-child { padding-left: 0; }
+
+  .pgrid .pcard { height: 148px; }
+  /* нижний отступ у обрезанного описания показал бы пятую строку */
+  .pgrid .pcard__desc { -webkit-line-clamp: 4; padding-bottom: 0; }
+}
