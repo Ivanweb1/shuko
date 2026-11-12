@@ -11,15 +11,15 @@
 </head>
 <body>
 
-  <header class="header">
+  <header class="header header--inner">
     <a class="header__logo" href="/" aria-label="Schüco — на главную">
       <img src="assets/img/logo.svg" alt="Schüco" width="138" height="50">
     </a>
-    <!-- Появляется, когда при скролле страница уходит под шапку -->
-    <nav class="header__nav" aria-label="Разделы" aria-hidden="true">
-      <a href="#" tabindex="-1">Решения</a>
-      <a href="#" tabindex="-1">Люди</a>
-      <a href="#" tabindex="-1">Сообщество</a>
+    <!-- Внутренние страницы: на десктопе видны сразу, на планшете появляются после первого экрана -->
+    <nav class="header__nav" aria-label="Разделы">
+      <a href="#">Решения</a>
+      <a href="#">Люди</a>
+      <a href="#">Сообщество</a>
     </nav>
     <div class="header__actions">
       <a class="header__login" href="#">Вход</a>

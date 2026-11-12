@@ -120,6 +120,12 @@ ul { list-style: none; margin: 0; padding: 0; }
 
 .menu-open .header__nav { visibility: hidden; }
 
+/* Внутренние страницы: на десктопе пункты разделов в шапке видны сразу */
+@media (min-width: 1200px) {
+  .header--inner .header__nav { pointer-events: auto; }
+  .header--inner .header__nav a { opacity: 1; }
+}
+
 /* Пока меню открыто, шапка закреплена сверху, страница под ней не прокручивается */
 .menu-open { overflow: hidden; }
 .menu-open body { padding-top: var(--header-h); }
