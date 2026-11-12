@@ -2926,3 +2926,158 @@ ul { list-style: none; margin: 0; padding: 0; }
   .pcontacts__person { text-align: left; }
   .pform__map { height: 181px; }
 }
+
+/* ---------- Решения: первый экран (как у «Мира Schüco») ---------- */
+.solutions-hero__lead { max-width: 434px; letter-spacing: 0; }
+.solutions-hero__stats { letter-spacing: .4px; }
+.solutions-hero .world-hero__media { aspect-ratio: 1920 / 730; }
+
+/* ---------- Решения: 12 сценариев ---------- */
+.scenarios { padding: 120px 0; }
+.scenarios__head {
+  display: grid;
+  grid-template-columns: 1406px minmax(0, 1fr);
+  align-items: start;
+  margin: 0 var(--gutter) 40px;
+  padding-bottom: 16px;
+}
+.scenarios__title {
+  margin: 0;
+  font-size: 60px;
+  line-height: 68px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.scenarios__text { max-width: 369px; margin: 0; font-size: 16px; line-height: 22px; }
+
+/* Карточки 461×379, соседние рамки сливаются в одну линию */
+.scenarios__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 0 var(--gutter);
+}
+.scenarios__grid li { margin: 0 -1px -1px 0; }
+.scard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid var(--c-line);
+  background: #fff;
+  transition: background-color var(--ease);
+}
+.scard__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  min-height: 76px;
+  padding: 23px 23px 23px 23px;
+  border-bottom: 1px solid var(--c-line);
+  transition: background-color var(--ease), color var(--ease);
+}
+.scard__title { font-size: 20px; line-height: 28px; text-transform: uppercase; }
+.scard__num { flex: none; padding-top: 5px; font-size: 14px; line-height: 18px; opacity: .8; }
+.scard__desc {
+  min-height: 48px;
+  margin-top: 24px;
+  padding: 0 24px;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, .4);
+}
+.scard__media { display: block; margin-top: auto; padding: 20px 20px 20px; }
+.scard__media img { display: block; width: 100%; height: auto; aspect-ratio: 421 / 191; object-fit: cover; }
+@media (hover: hover) {
+  .scard:hover { background: #f4f4f5; }
+  .scard:hover .scard__head { background: #000; color: #fff; }
+}
+
+/* ---------- Решения: чёрный блок с двумя кнопками ---------- */
+.scta { padding: 80px var(--gutter); }
+.scta__box { padding: 60px 53px; color: #fff; background: #000; }
+.scta__title {
+  max-width: 861px;
+  margin: 0;
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.scta__text { max-width: 612px; margin: 12px 0 0; font-size: 16px; line-height: 24px; color: rgba(255, 255, 255, .4); }
+.scta__btns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 40px; }
+.scta__btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  height: 80px;
+  padding: 0 24px;
+  background: rgba(255, 255, 255, .08);
+  font-size: 16px;
+  line-height: 24px;
+  text-transform: uppercase;
+  transition: background-color var(--ease);
+}
+.scta__btn:hover { background: rgba(255, 255, 255, .16); }
+.scta__btn--light { background: #fff; color: #000; }
+.scta__btn--light:hover { background: #e5e5e5; }
+.scta__arrow { flex: none; width: 40px; height: 40px; transition: transform var(--ease); }
+.scta__btn:hover .scta__arrow { transform: rotate(45deg); }
+
+@media (max-width: 1199px) {
+  .solutions-hero__lead { max-width: 419px; }
+  .solutions-hero .world-hero__media { aspect-ratio: 834 / 272; }
+
+  .scenarios { padding: 40px 0; }
+  .scenarios__head { display: block; margin-bottom: 40px; padding: 0; }
+  .scenarios__title { max-width: 440px; font-size: 40px; line-height: 48px; }
+  .scenarios__text { margin-top: 20px; max-width: 434px; }
+
+  .scenarios__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .scard__head { min-height: 104px; }
+  .scard__media img { aspect-ratio: 357 / 191; }
+
+  .scta { padding: 40px var(--gutter); }
+  .scta__box { position: relative; margin-top: 16px; padding: 40px; }
+  .scta__box::before {
+    content: "";
+    position: absolute;
+    top: -16px;
+    left: 0;
+    right: 0;
+    border-top: 1px solid var(--c-line);
+  }
+  .scta__title { max-width: 652px; }
+  .scta__text { max-width: 372px; }
+  .scta__btns { grid-template-columns: minmax(0, 1fr); margin-top: 80px; }
+}
+
+@media (max-width: 599px) {
+  .solutions-hero .world-hero__stats { font-size: 12px; line-height: 15px; }
+  .solutions-hero .world-hero__label { max-width: 170px; }
+  .solutions-hero .world-hero__media { aspect-ratio: 400 / 220; }
+
+  .scenarios__title { font-size: 32px; line-height: 40px; letter-spacing: 1px; }
+  .scenarios__text { color: rgba(0, 0, 0, .8); }
+
+  .scenarios__grid { grid-template-columns: minmax(0, 1fr); padding: 0; }
+  .scenarios__grid li { margin: 0 0 -1px; }
+  .scard { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 19px 12px 20px; border-left: 0; border-right: 0; }
+  .scard__head { min-height: 0; padding: 0; border: 0; }
+  .scard__num { padding-top: 0; font-size: 12px; line-height: 16px; }
+  .scard__desc { order: 3; min-height: 0; margin: 0; padding: 0; font-size: 12px; line-height: 16px; color: rgba(0, 0, 0, .32); }
+  .scard__media { padding: 0; }
+  .scard__media img { aspect-ratio: 376 / 198; }
+  @media (hover: hover) {
+    .scard:hover .scard__head { background: none; color: inherit; }
+  }
+
+  .scta { padding: 12px var(--gutter); }
+  .scta__box { padding: 40px 20px; }
+  .scta__title { font-size: 20px; line-height: 28px; }
+  .scta__text { font-size: 14px; line-height: 22px; }
+  .scta__btns { margin-top: 40px; }
+  .scta__btn { height: 64px; padding: 0 12px 0 20px; font-size: 14px; line-height: 22px; }
+  .scta__arrow { width: 32px; height: 32px; }
+}
