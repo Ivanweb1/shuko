@@ -1180,7 +1180,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 .pmap__all { display: none; }
 
 /* ---------- Шоурум (только мобильный) ---------- */
-.showroom { display: none; }
+/* Шоурум и форма заявки на главной есть только в мобильном макете */
+.pform--home { display: none; }
 
 /* ---------- Футер ---------- */
 .footer { padding: 40px var(--gutter); }
@@ -1610,7 +1611,26 @@ section[id] { scroll-margin-top: var(--header-h); }
   }
   .sol__desc { max-width: 251px; }
 
+  /* У последнего решения снизу 40px до блока проектов */
+  .solutions__list > li:last-child .sol { padding-bottom: 40px; }
+
   .projects__list { margin-bottom: 24px; }
+  /* «Смотреть все проекты»: подпись видна сразу, стрелка справа, как у «Смотреть всех партнёров» */
+  .projects__all {
+    justify-content: space-between;
+    height: 64px;
+    padding: 16px 12px 16px 20px;
+    background: #f4f4f5;
+    font-size: 14px;
+    line-height: 22px;
+  }
+  .projects__all-text { opacity: 1; }
+  .projects__arrow {
+    position: static;
+    width: 32px;
+    height: 32px;
+    transform: none;
+  }
   .projects__head {
     font-size: 12px;
     line-height: 17px;
@@ -1697,11 +1717,12 @@ section[id] { scroll-margin-top: var(--header-h); }
     font-size: 14px;
     line-height: 22px;
   }
+  /* В мобильном кадре стрелка смотрит вверх-вправо (ArrowUpRight) */
   .people__all-arrow {
     position: static;
     width: 32px;
     height: 32px;
-    transform: rotate(45deg);
+    transform: none;
   }
 
   /* Журнал: заголовок и стрелка в одну строку, ниже текст и фото */
@@ -1730,20 +1751,10 @@ section[id] { scroll-margin-top: var(--header-h); }
   .partner__contacts { margin-top: 12px; }
   /* В мобильном макете 4 партнёра, остальные — по кнопке «Смотреть всех» */
   .partner:nth-child(n+5) { display: none; }
+  /* В мобильном кадре описание закрытого партнёра — до четырёх строк */
+  .partner:not(.is-open) .partner__desc { -webkit-line-clamp: 4; }
 
-  .showroom { display: block; padding: 40px var(--gutter) 0; }
-  .showroom__list { margin: 0; }
-  .showroom__list div {
-    display: grid;
-    grid-template-columns: 101px 1fr;
-    gap: 24px;
-    padding: 12px 0 20px;
-    border-top: 1px solid var(--c-line);
-    font-size: 14px;
-    line-height: 20px;
-  }
-  .showroom__list dt { text-transform: uppercase; }
-  .showroom__list dd { margin: 0; }
+  .pform--home { display: block; }
 
   /* Футер мобильного: всё в одну колонку, логотип справа */
   .footer__grid {
@@ -1782,7 +1793,6 @@ section[id] { scroll-margin-top: var(--header-h); }
 }
 
 /* Попапы из состояний макета: проект и подписка */
-.people__all-text--mobile { display: none; }
 
 .dialog-open { overflow: hidden; }
 .dialog-layer[hidden] { display: none; }
@@ -1845,6 +1855,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   font-weight: 500;
   line-height: 48px;
   letter-spacing: .01em;
+  text-transform: uppercase; /* во всех кадрах попапов заголовок прописными */
 }
 .dialog__fields { display: grid; gap: 56px; margin-top: 80px; }
 .field {
@@ -1938,8 +1949,6 @@ section[id] { scroll-margin-top: var(--header-h); }
 }
 
 @media (max-width: 599px) {
-  .people__all-text--wide { display: none; }
-  .people__all-text--mobile { display: inline; }
   .dialog-layer { align-items: center; padding: 12px; }
   .dialog,
   .dialog--newsletter {
@@ -1948,29 +1957,36 @@ section[id] { scroll-margin-top: var(--header-h); }
     padding: 40px 20px;
   }
   .dialog--project { min-height: 692px; }
-  .dialog--newsletter { min-height: 606px; }
+  /* Кадры «Popap form» 400: окно заявки 376×692, окно подписки 376×514 */
+  .dialog--newsletter { min-height: 514px; }
   .dialog__close { top: 12px; right: 12px; }
   .dialog__form,
   .dialog--newsletter .dialog__form { min-height: 612px; }
-  .dialog--newsletter .dialog__form { min-height: 526px; }
+  .dialog--newsletter .dialog__form { min-height: 434px; }
   .dialog__title {
-    padding-right: 12px;
-    font-size: 28px;
+    padding-right: 0;
+    font-size: 20px;
     line-height: 28px;
     letter-spacing: 0;
   }
-  .dialog__fields { gap: 36px; margin-top: 40px; }
+  .dialog__fields { gap: 40px; margin-top: 40px; }
   .dialog__message-row { grid-template-columns: 1fr; gap: 40px; }
-  .field { padding-bottom: 8px; }
+  /* Поле в кадре 34px: строка 22 + 11 + линия */
+  .field { padding-bottom: 11px; }
+  .field__label { bottom: 11px; }
   .field__label,
   .field input,
-  .field textarea { font-size: 16px; line-height: 22px; }
+  .field textarea { font-size: 14px; line-height: 22px; }
+  .field input,
+  .field textarea { height: 22px; }
   .field:focus-within .field__label,
   .field.has-value .field__label { transform: translateY(-20px) scale(.7); }
-  .file-field { height: 64px; margin-top: 0; padding: 0 20px; font-size: 14px; line-height: 22px; text-transform: uppercase; }
+  .file-field { height: 64px; margin-top: 0; padding: 0 20px; font-size: 14px; line-height: 22px; }
   .dialog__submit { height: 64px; padding: 0 12px 0 20px; font-size: 14px; line-height: 22px; }
   .dialog__submit svg { width: 32px; height: 32px; }
   .dialog__legal { margin-top: 16px; font-size: 12px; line-height: 18px; }
+  /* Пустая строка статуса не занимает места: кнопка и подпись стоят как в кадре */
+  .dialog__status:empty { display: none; }
 }
 
 /* ---------- Страница проекта: первый экран ---------- */
@@ -2314,7 +2330,9 @@ section[id] { scroll-margin-top: var(--header-h); }
   }
   .pgallery__count { margin: 0 auto; }
 
-  .psystems__head { height: 120px; }
+  .psystems__head { height: 120px; padding-top: 0; }
+  /* В мобильном кадре все строки белые, подсветка только по нажатию */
+  .psystems__list li:first-child .psystem { background: none; }
   .psystems__title { font-size: 32px; line-height: 40px; }
   .psystems__count { font-size: 12px; line-height: 24px; }
   .psystem { height: 72px; padding: 11px var(--gutter) 0; }
@@ -2322,20 +2340,21 @@ section[id] { scroll-margin-top: var(--header-h); }
   .psystem__desc { font-size: 12px; line-height: 16px; }
   .psystem__arrow svg { width: 32px; height: 32px; }
 
-  .pform { padding: 28px var(--gutter) 40px; }
-  .pform__inner { padding-top: 15px; }
-  .pform__contacts > div { grid-template-columns: 125px minmax(0, 1fr); min-height: 0; padding-top: 16px; }
-  .pform__contacts > div + div { margin-top: 16px; }
+  .pform { padding: 40px var(--gutter) 12px; }
+  .pform__inner { padding-top: 0; }
+  .pform__contacts > div { grid-template-columns: 125px minmax(0, 1fr); min-height: 0; padding: 12px 0 20px; }
   .pform__contacts dt { font-size: 14px; line-height: 20px; }
   .pform__contacts dd { font-size: 14px; line-height: 20px; }
-  .pform__card { margin-top: 28px; padding: 20px; }
+  .pform__card { margin-top: 12px; padding: 40px 20px; }
   .pform__title { font-size: 20px; line-height: 28px; }
   .pform__fields { gap: 40px; margin-top: 40px; }
   .pfield input,
   .pfield textarea { font-size: 14px; line-height: 22px; height: 34px; }
   .pform__message { display: block; }
-  .pfile { width: 100%; height: 48px; margin-top: 40px; padding: 0; font-size: 14px; line-height: 22px; }
-  .pform__submit { height: 56px; margin-top: 40px; padding: 0 16px; font-size: 14px; line-height: 22px; }
+  .pfile { width: 100%; height: 64px; margin-top: 40px; padding: 0 20px; font-size: 14px; line-height: 22px; }
+  /* В мобильном кадре кнопка белая с чёрным текстом */
+  .pform__submit { height: 64px; margin-top: 40px; padding: 0 12px 0 24px; font-size: 14px; line-height: 22px; color: #000; background: #fff; }
+  .pform__submit:hover { background: #f4f4f5; }
   .pform__submit svg { width: 32px; height: 32px; }
   .pform__legal { font-size: 12px; line-height: 18px; }
 }
@@ -2706,9 +2725,13 @@ section[id] { scroll-margin-top: var(--header-h); }
   .wacc__icon::before,
   .wacc__icon::after { width: 20px; margin-left: -10px; }
   .wacc__body { display: block; margin: 0; padding-top: 40px; border-top: 0; }
+  /* После раскрытого раздела — 40px до следующего заголовка, как в кадре */
+  .wacc__item.is-open + .wacc__item { margin-top: 40px; }
   .wacc__num { display: none; }
   .wacc__num-m { display: inline; }
-  .wacc__list li { padding-right: 24px; }
+  /* В кадре текст строки идёт почти до точки справа (ширина 372 из 376) */
+  .wacc__list li,
+  .wacc__list--plain li { padding-right: 4px; }
 
   .wcards { grid-template-columns: minmax(0, 1fr); gap: 24px; padding: 40px var(--gutter); }
   .wcard__media { aspect-ratio: 376 / 243; }
@@ -2722,6 +2745,8 @@ section[id] { scroll-margin-top: var(--header-h); }
   .hevent__row { grid-template-columns: 125px minmax(0, 1fr); }
   .hevent.is-open .hevent__name { font-size: 14px; line-height: 20px; }
   .hevent__text { margin-left: 125px; }
+  /* Абзацы в кадре разделены пустой строкой */
+  .hevent__text p + p { margin-top: 20px; }
   .hevent__photo { aspect-ratio: 376 / 429; }
   .hevent__photo .hphoto__img { width: 237px; height: 286px; }
 }
@@ -2833,6 +2858,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   .pintro { display: block; }
   .pintro__text { max-width: none; margin-top: 12px; color: rgba(0, 0, 0, .7); }
 
+  .people--grid { padding-top: 40px; }
   .people--grid .people__heading {
     margin: 0 var(--gutter) 20px;
     padding: 0;
@@ -2857,6 +2883,7 @@ section[id] { scroll-margin-top: var(--header-h); }
 
 /* Текст о партнёре — во второй колонке, левая в макете пустая */
 .pintro--text .pintro__text { grid-column: 2; }
+.pintro__logo { display: block; width: 160px; height: auto; }
 .pintro__text p { margin: 0; }
 .pintro__text p + p { margin-top: 12px; }
 
@@ -2905,6 +2932,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   .partner-hero .world-hero__media { aspect-ratio: 834 / 272; }
   .partner-projects__head { display: none; }
   .pintro--text { margin-bottom: 0; }
+  .pintro__logo { width: 124px; }
 
   .pgallery--captions .pgallery__item { height: 436px; }
   .pgallery--captions .pgallery__item img { height: 100%; }
@@ -2927,9 +2955,17 @@ section[id] { scroll-margin-top: var(--header-h); }
 
   .pgallery--captions .pgallery__item { height: 225px; }
 
+  .pintro--text { margin-bottom: 40px; }
+  /* В кадре «О партнёре» заголовок галереи в две строки (ширина 259) */
+  .pgallery--partner .pgallery__title { max-width: 259px; }
+  .pintro--text .pintro__text { margin-top: 16px; }
+  .projects--partner { padding-top: 40px; }
+
   .pform--map { padding-top: 0; }
   .pform--map .pform__inner { padding-top: 0; border-top: 0; }
-  .pcontacts > div { min-height: 0; }
+  /* Как в кадре: подписи — колонка 125px, значения с 137px */
+  .pcontacts > div { grid-template-columns: 125px minmax(0, 1fr); min-height: 0; }
+  .pcontacts > div:last-child { padding-bottom: 0; }
   .pcontacts dd { flex-direction: column; gap: 8px; }
   .pcontacts__person { text-align: left; }
   .pform__map { height: 181px; }
@@ -3073,6 +3109,8 @@ section[id] { scroll-margin-top: var(--header-h); }
   .scenarios__grid li { margin: 0 0 -1px; }
   .scard { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 19px 12px 20px; border-left: 0; border-right: 0; }
   .scard__head { min-height: 0; padding: 0; border: 0; }
+  /* Переносы как в кадре: «Угловое остекление» в одну строку, «Безбарьерные решения» и длиннее — в две */
+  .scard__title { max-width: 250px; }
   .scard__num { padding-top: 0; font-size: 12px; line-height: 16px; }
   .scard__desc { order: 3; min-height: 0; margin: 0; padding: 0; font-size: 12px; line-height: 16px; color: rgba(0, 0, 0, .32); }
   .scard__media { padding: 0; }
@@ -3478,7 +3516,8 @@ section[id] { scroll-margin-top: var(--header-h); }
   .acard__media { aspect-ratio: 376 / 241; }
   .bpager { gap: 32px; }
   .bpager__list { gap: 28px; }
-  .pform--newsletter { padding-bottom: 12px; }
+  /* В кадре от предыдущего блока до чёрной формы 28px: 16 сверху + 12 у карточки */
+  .pform--newsletter { padding-top: 16px; padding-bottom: 12px; }
 }
 
 /* ---------- Статья: первый экран ---------- */
