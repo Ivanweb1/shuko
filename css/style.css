@@ -1741,7 +1741,8 @@ section[id] { scroll-margin-top: var(--header-h); }
   .pmap__head { gap: 12px; padding-bottom: 40px; }
   .pmap__title { font-size: 32px; line-height: 40px; letter-spacing: 1px; }
   .pmap__text { max-width: none; font-size: 14px; line-height: 20px; }
-  .pmap__body { --pc1: 1fr; --pc2: 251px; }
+  /* На узких телефонах (320–375) колонка описания ужимается, а не вылезает за экран */
+  .pmap__body { --pc1: minmax(110px, 1fr); --pc2: minmax(0, 251px); }
   .pmap__thead { font-size: 12px; line-height: 17px; }
   .pmap__list { gap: 20px; }
   .partner.is-open { padding: 8px 0 0 8px; }
@@ -2058,7 +2059,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 .pabout { padding: 80px var(--gutter); }
 .pabout__row {
   display: grid;
-  grid-template-columns: 1040px minmax(0, 1fr);
+  /* На 1920 — 1040 и остаток, на ноутбуках в той же пропорции */
+  grid-template-columns: minmax(0, 1040fr) minmax(0, 785fr);
   padding-top: 15px;
   border-top: 1px solid var(--c-line);
 }
@@ -2164,7 +2166,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 }
 .psystems__list li:last-child .psystem { border-bottom: 1px solid var(--c-line); }
 .psystem__name {
-  flex: 0 0 618px;
+  flex: 0 1 618px;
+  min-width: 0;
   font-size: 20px;
   line-height: 28px;
   text-transform: uppercase;
@@ -2183,7 +2186,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 .pform { padding: 80px var(--gutter); }
 .pform__inner {
   display: grid;
-  grid-template-columns: 880px minmax(0, 1fr);
+  /* На 1920 — 880 и 905, на ноутбуках колонки сжимаются в той же пропорции */
+  grid-template-columns: minmax(0, 880fr) minmax(0, 905fr);
   gap: 40px;
   align-items: start;
   padding-top: 15px;
@@ -2241,8 +2245,9 @@ section[id] { scroll-margin-top: var(--header-h); }
 }
 .pfield input::placeholder,
 .pfield textarea::placeholder { color: #fff; opacity: 1; }
-.pform__message { display: flex; align-items: flex-start; gap: 40px; }
-.pform__message .pfield { flex: 1 1 auto; }
+/* Если поле и «Прикрепите файл» не помещаются в строку, файл уходит под поле */
+.pform__message { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 40px; }
+.pform__message .pfield { flex: 1 1 340px; min-width: 0; }
 /* В макете у «Прикрепите файл» рамка со всех сторон */
 .pfile {
   position: relative;
@@ -2558,7 +2563,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 .whist { padding: 80px var(--gutter); }
 .whist__body {
   display: grid;
-  grid-template-columns: 920fr 879fr;
+  /* Пропорция, в которой колонки стояли на 1920 (фото 898, события 887) */
+  grid-template-columns: minmax(0, 898fr) minmax(0, 887fr);
   gap: 40px;
   height: 882px;
 }
@@ -2595,7 +2601,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 .whist__side { display: flex; flex-direction: column; min-height: 0; }
 .whist__thead {
   display: grid;
-  grid-template-columns: 478px 350px;
+  /* На 1920 колонки 478 и 350; на ноутбуках — в той же пропорции (478 / 828 = 57.73%) */
+  grid-template-columns: 57.73% minmax(0, 1fr);
   margin: 0 43px 80px 0;
   padding: 15px 8px 0;
   border-top: 1px solid var(--c-line);
@@ -2624,11 +2631,14 @@ section[id] { scroll-margin-top: var(--header-h); }
 .hevent { flex: none; }
 .hevent__row {
   display: grid;
-  grid-template-columns: 478px 350px;
+  grid-template-columns: 57.73% minmax(0, 1fr);
   align-items: baseline;
 }
-.hevent__name { font-size: 16px; line-height: 22px; color: rgba(0, 0, 0, .19); }
-.hevent__year { font-size: 14px; line-height: 20px; color: rgba(0, 0, 0, .19); }
+.hevent__row { width: 100%; text-align: left; }
+.hevent__name { font-size: 16px; line-height: 22px; color: rgba(0, 0, 0, .19); transition: color .1s linear; }
+.hevent__year { font-size: 14px; line-height: 20px; color: rgba(0, 0, 0, .19); transition: color .1s linear; }
+.hevent__row:hover .hevent__name,
+.hevent__row:hover .hevent__year { color: rgba(0, 0, 0, .8); }
 .hevent.is-open {
   padding: 15px 0 39px;
   border-top: 1px solid var(--c-line);
@@ -2638,8 +2648,7 @@ section[id] { scroll-margin-top: var(--header-h); }
 .hevent.is-open .hevent__year { color: rgba(0, 0, 0, .8); }
 .hevent__text {
   display: none;
-  width: 350px;
-  margin: 20px 0 0 478px;
+  margin: 20px 0 0 57.73%;
   font-size: 14px;
   line-height: 20px;
   color: rgba(0, 0, 0, .8);
@@ -2906,18 +2915,19 @@ section[id] { scroll-margin-top: var(--header-h); }
 .pcontacts > div { grid-template-columns: 241px minmax(0, 1fr); min-height: 125px; }
 .pcontacts > div:last-child { border-bottom: 0; }
 .pcontacts dd { display: flex; align-items: flex-start; }
-.pcontacts dd > a:first-child { flex: 0 0 375px; }
+.pcontacts dd > a:first-child { flex: 0 1 375px; }
 .pcontacts dd > :only-child { flex: 0 1 260px; }
 .pcontacts a { transition: opacity var(--ease); }
 .pcontacts a:hover { opacity: .5; }
-.pform--map .pform__inner { grid-template-columns: 880px minmax(0, 1fr); }
+.pform--map .pform__inner { grid-template-columns: minmax(0, 880fr) minmax(0, 905fr); }
 .pform__map { position: relative; height: 730px; overflow: hidden; background: #e5e5e5; }
 
 /* Чёрная форма на всю ширину: заголовок слева, поля справа */
 @media (min-width: 1200px) {
   .pform--wide .pform__card {
     display: grid;
-    grid-template-columns: 499px 861px;
+    /* На 1920 — 499 и 861, на ноутбуках колонки сжимаются, а не вылезают из чёрного блока */
+    grid-template-columns: minmax(0, 499px) minmax(0, 861px);
     justify-content: space-between;
     align-items: start;
     column-gap: 40px;
@@ -2981,7 +2991,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 .scenarios { padding: 120px 0; }
 .scenarios__head {
   display: grid;
-  grid-template-columns: 1406px minmax(0, 1fr);
+  /* На 1920 заголовок 1406px, текст справа; на ноутбуках сжимается заголовок, а не текст */
+  grid-template-columns: minmax(0, 1406px) minmax(369px, 1fr);
   align-items: start;
   margin: 0 var(--gutter) 40px;
   padding-bottom: 16px;
@@ -2994,6 +3005,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+@media (min-width: 1200px) { .scenarios__title { padding-right: 40px; } }
 .scenarios__text { max-width: 369px; margin: 0; font-size: 16px; line-height: 22px; }
 
 /* Карточки 461×379, соседние рамки сливаются в одну линию */
@@ -3003,6 +3015,20 @@ section[id] { scroll-margin-top: var(--header-h); }
   padding: 0 var(--gutter);
 }
 .scenarios__grid li { margin: 0 -1px -1px 0; }
+/* Шапки карточек одной высоты: под два ряда заголовка, а в ряду — по самой высокой шапке,
+   чтобы описания и фото стояли на одной линии */
+@media (min-width: 600px) {
+  .scenarios__grid li,
+  .scenarios__grid .scard {
+    display: grid;
+    grid-row: span 3;
+    grid-template-rows: subgrid;
+    row-gap: 0;
+  }
+}
+@media (min-width: 600px) and (max-width: 1919px) {
+  .scard__head { min-height: 104px; }
+}
 .scard {
   display: flex;
   flex-direction: column;
@@ -3130,14 +3156,15 @@ section[id] { scroll-margin-top: var(--header-h); }
 }
 
 /* ---------- Решение: вводный текст ---------- */
-.pintro--solution { grid-template-columns: 618px minmax(0, 1fr); }
+.pintro--solution { grid-template-columns: minmax(0, 618fr) minmax(0, 1207fr); }
 .pintro--solution .pintro__text { max-width: 342px; }
 
 /* ---------- Решение: подробности (конструкции, на что обратить внимание, системы) ---------- */
 /* На десктопе обе части лежат в одной строке «01»: номер | списки | … | системы */
 .sdetail {
   display: grid;
-  grid-template-columns: 618px 342px minmax(0, 1fr) 434px;
+  /* На 1920 — 618 / 342 / 431 / 434, на ноутбуках колонки сжимаются в той же пропорции */
+  grid-template-columns: minmax(0, 618fr) minmax(0, 342fr) minmax(0, 431fr) minmax(0, 434fr);
   margin: 0 var(--gutter);
   padding: 40px 0 80px;
   border-top: 1px solid var(--c-line);
@@ -3243,7 +3270,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 /* Десктоп: одна строка — название | текст | список «Что можно реализовать» */
 .wintro {
   display: grid;
-  grid-template-columns: 618px 342px minmax(0, 1fr) 434px;
+  /* На 1920 — 618 / 342 / 431 / 434, на ноутбуках колонки сжимаются в той же пропорции */
+  grid-template-columns: minmax(0, 618fr) minmax(0, 342fr) minmax(0, 431fr) minmax(0, 434fr);
   margin: 80px var(--gutter);
   padding-top: 15px;
   border-top: 1px solid var(--c-line);
@@ -3496,7 +3524,7 @@ section[id] { scroll-margin-top: var(--header-h); }
 .pform--newsletter { margin-top: 120px; }
 @media (min-width: 1200px) {
   .pform--newsletter { margin-bottom: 120px; }
-  .pform--newsletter .pform__card { grid-template-columns: 558px 861px; }
+  .pform--newsletter .pform__card { grid-template-columns: minmax(0, 558px) minmax(0, 861px); }
   .pform--newsletter .pform__fields { gap: 56px; }
 }
 
@@ -3798,4 +3826,15 @@ section[id] { scroll-margin-top: var(--header-h); }
   .cookie__text { font-size: 12px; line-height: 17px; }
   .cookie__btns { flex-direction: column; gap: 8px; }
   .cookie__btn { height: 48px; padding: 0 20px; }
+}
+
+/* ---------- Узкие телефоны (320–399) ---------- */
+/* Кадры макета — 400; на более узких экранах заголовки первого экрана уменьшаются,
+   чтобы длинные слова не вылезали за край */
+@media (max-width: 399px) {
+  .hero__title,
+  .project-hero__title,
+  .world-hero__title,
+  .partners-hero__title { font-size: 10vw; line-height: 1.1; }
+  .project__name { overflow-wrap: anywhere; }
 }

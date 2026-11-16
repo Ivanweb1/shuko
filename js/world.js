@@ -28,6 +28,21 @@
 (function () {
   var section = document.querySelector('.whist');
   if (!section) return;
+  // Клик по событию раскрывает его и сворачивает остальные; одно событие всегда раскрыто
+  var events = section.querySelectorAll('.hevent');
+  events.forEach(function (item) {
+    var btn = item.querySelector('.hevent__row');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      events.forEach(function (other) {
+        var open = other === item;
+        other.classList.toggle('is-open', open);
+        var b = other.querySelector('.hevent__row');
+        if (b) b.setAttribute('aria-expanded', String(open));
+      });
+    });
+  });
+
   var all = section.querySelector('.whist__all');
   if (all) {
     all.addEventListener('click', function () { section.classList.add('is-all'); });
