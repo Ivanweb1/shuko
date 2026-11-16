@@ -1187,7 +1187,8 @@ section[id] { scroll-margin-top: var(--header-h); }
 .footer { padding: 40px var(--gutter); }
 .footer__grid {
   display: grid;
-  grid-template-columns: 618px 342px 1fr;
+  /* Пропорции макета 1920 (618 / 342 / остаток), но резиновые — на ноутбуках ничего не уезжает */
+  grid-template-columns: minmax(0, 618fr) minmax(0, 342fr) minmax(0, 880fr);
   grid-template-areas:
     "logo links contacts"
     "btns btns btns"
@@ -1207,7 +1208,7 @@ section[id] { scroll-margin-top: var(--header-h); }
 .footer__links {
   grid-area: links;
   display: flex;
-  gap: 168px;
+  gap: clamp(48px, 8.75vw, 168px); /* 168 на 1920 */
   white-space: nowrap;
 }
 .footer__links ul { display: flex; flex-direction: column; gap: 12px; }
@@ -1232,8 +1233,8 @@ section[id] { scroll-margin-top: var(--header-h); }
   text-align: right;
 }
 .footer__phone {
-  font-size: 60px;
-  line-height: 68px;
+  font-size: clamp(36px, 3.125vw, 60px); /* 60 на 1920 */
+  line-height: 1.134;
   white-space: nowrap;
 }
 .footer__email,
