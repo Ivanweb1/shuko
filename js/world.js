@@ -28,8 +28,19 @@
 (function () {
   var section = document.querySelector('.whist');
   if (!section) return;
-  // Клик по событию раскрывает его и сворачивает остальные; одно событие всегда раскрыто
+  // Клик по событию раскрывает его и сворачивает остальные; одно событие всегда раскрыто.
+  // На десктопе большое фото слева меняется на фото раскрытого события.
   var events = section.querySelectorAll('.hevent');
+  var bigBg = section.querySelector('.whist__photo .hphoto__bg');
+  var bigImg = section.querySelector('.whist__photo .hphoto__img');
+  function showPhoto(item) {
+    var img = item.querySelector('.hevent__photo .hphoto__img');
+    if (!img || !bigImg || !bigBg) return;
+    var src = img.getAttribute('src');
+    bigBg.src = src;
+    bigImg.src = src;
+    bigImg.alt = img.alt;
+  }
   events.forEach(function (item) {
     var btn = item.querySelector('.hevent__row');
     if (!btn) return;
@@ -40,6 +51,7 @@
         var b = other.querySelector('.hevent__row');
         if (b) b.setAttribute('aria-expanded', String(open));
       });
+      showPhoto(item);
     });
   });
 
