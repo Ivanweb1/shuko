@@ -74,7 +74,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   gap: 16px;
 }
 .lk-logo {
-  font-size: 22px;
+  font-size: 24px;
   line-height: 28px;
   font-weight: 500;
   letter-spacing: -.01em;
@@ -154,6 +154,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   font-size: 14px;
   line-height: 20px;
   font-weight: 500;
+  text-transform: uppercase;
   white-space: nowrap;
   transition: background-color var(--lk-ease), color var(--lk-ease), border-color var(--lk-ease);
 }
@@ -421,29 +422,34 @@ ul { list-style: none; margin: 0; padding: 0; }
   padding: 32px 32px 64px;
 }
 
-/* Role chooser landing */
+/* Role chooser landing (Figma: Регистрация 1440x920) */
 .reg-landing {
   max-width: 1344px;
-  margin: 32px auto 0;
+  margin: 62px auto 0;
   display: flex;
   flex-direction: column;
-  gap: 56px;
+  gap: 80px;
 }
 .reg-landing__head {
-  max-width: 640px;
+  max-width: 628px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
 }
 .reg-landing__mark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
-  border: 1px solid var(--lk-line);
-  font-size: 18px;
-  letter-spacing: .06em;
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(180deg, #000 0%, #555 100%);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: .04em;
 }
 .reg-landing__title {
   margin: 0;
@@ -456,11 +462,11 @@ ul { list-style: none; margin: 0; padding: 0; }
   margin: 0;
   font-size: 14px;
   line-height: 20px;
-  color: var(--lk-text-60);
+  color: var(--lk-text);
 }
 .reg-roles {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 .reg-role {
   position: relative;
@@ -470,40 +476,65 @@ ul { list-style: none; margin: 0; padding: 0; }
   border: 1px solid var(--lk-line);
   margin-left: -1px;
   background: #fff;
+  color: #000;
   text-align: left;
-  transition: background-color var(--lk-ease);
+  transition: background-color var(--lk-ease), color var(--lk-ease), border-color var(--lk-ease);
 }
 .reg-role:first-child { margin-left: 0; }
-.reg-role:hover { background: var(--lk-bg); }
+.reg-role:hover {
+  z-index: 1;
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
 .reg-role__head {
   padding: 24px;
   border-bottom: 1px solid var(--lk-line);
-  font-size: 36px;
-  line-height: 42px;
+  font-size: 60px;
+  line-height: 64px;
   font-weight: 500;
+  text-transform: uppercase;
+  transition: border-color var(--lk-ease);
 }
+.reg-role:hover .reg-role__head { border-bottom-color: rgba(255, 255, 255, .24); }
 .reg-role__desc {
   margin: 24px 24px 0;
-  font-size: 15px;
-  line-height: 22px;
-  font-weight: 400;
-  color: var(--lk-text-60);
+  max-width: 493px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #000;
+  transition: color var(--lk-ease);
 }
+.reg-role:hover .reg-role__desc { color: #fff; }
 .reg-role__foot {
   margin-top: auto;
+  height: 96px;
   padding: 24px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  font-size: 15px;
-  text-transform: uppercase;
+  gap: 12px;
+  font-size: 16px;
+  line-height: 24px;
+}
+.reg-role__cta {
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: opacity var(--lk-ease), max-width var(--lk-ease);
+}
+.reg-role:hover .reg-role__cta {
+  opacity: 1;
+  max-width: 160px;
 }
 .reg-role__arrow {
-  width: 36px;
-  height: 36px;
+  width: 48px;
+  height: 48px;
+  flex: none;
   transition: transform var(--lk-ease);
 }
-.reg-role:hover .reg-role__arrow { transform: rotate(45deg); }
+.reg-role:hover .reg-role__arrow { transform: translate(2px, -2px); }
 
 /* Split registration shell (left 313px gray info + right white form) */
 .reg-shell {
@@ -783,17 +814,25 @@ ul { list-style: none; margin: 0; padding: 0; }
 .lk-nav__item {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   height: 60px;
   padding: 0 20px;
+  border-radius: 14px;
   font-size: 14px;
   line-height: 20px;
-  color: var(--lk-text-40);
+  color: #000;
   transition: background-color var(--lk-ease), color var(--lk-ease);
 }
-.lk-nav__item:hover { color: #000; background: rgba(244, 244, 245, .6); }
+.lk-nav__item:hover { background: rgba(244, 244, 245, .6); }
 .lk-nav__item.is-active {
   background: var(--lk-bg);
+  border-radius: 0;
+  color: #000;
+}
+.lk-nav__icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
   color: #000;
 }
 .lk-nav__badge {
@@ -813,7 +852,8 @@ ul { list-style: none; margin: 0; padding: 0; }
   align-items: center;
   gap: 12px;
   padding: 12px;
-  background: var(--lk-bg);
+  border-radius: 12px;
+  background: transparent;
 }
 .lk-user__ava {
   width: 40px;
@@ -853,7 +893,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .lk-profile-banner {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 24px;
   flex-wrap: wrap;
@@ -908,9 +948,9 @@ ul { list-style: none; margin: 0; padding: 0; }
 /* Section header */
 .lk-sec-head {
   display: flex;
-  align-items: baseline;
-  gap: 12px;
-  padding: 0 4px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
   margin-bottom: 12px;
 }
 .lk-sec-head__title {
@@ -920,18 +960,30 @@ ul { list-style: none; margin: 0; padding: 0; }
   font-weight: 500;
   text-transform: uppercase;
 }
+.lk-sec-head__sep {
+  width: 1px;
+  height: 14px;
+  background: var(--lk-line);
+  border-radius: 2px;
+  flex: none;
+}
 .lk-sec-head__meta {
   font-size: 16px;
   line-height: 22px;
-  color: var(--lk-text-40);
+  text-transform: uppercase;
+  color: #000;
 }
 .lk-sec-head__toggle {
-  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
   line-height: 22px;
-  color: var(--lk-text-40);
-  transition: color var(--lk-ease);
+  text-transform: uppercase;
+  color: #000;
+  transition: opacity var(--lk-ease);
 }
-.lk-sec-head__toggle:hover { color: #000; }
+.lk-sec-head__toggle:hover { opacity: .65; }
 
 /* Profile details 2-column grid */
 .lk-details-grid {
@@ -1149,15 +1201,35 @@ ul { list-style: none; margin: 0; padding: 0; }
   color: var(--lk-text-40);
 }
 
-/* Subscribe widget */
+/* Subscribe widget (Figma: centered, soft radial glows, 40x40 black SVG icons) */
 .lk-subscribe {
-  background: #fff;
+  background:
+    radial-gradient(45% 90% at 15% 20%, rgba(235, 228, 255, .65), transparent 70%),
+    radial-gradient(40% 80% at 85% 25%, rgba(220, 240, 255, .65), transparent 70%),
+    radial-gradient(45% 85% at 50% 95%, rgba(255, 236, 224, .55), transparent 70%),
+    #fff;
   padding: 24px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+  gap: 20px;
+}
+.lk-subscribe__head {
+  max-width: 432px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.lk-subscribe__desc {
+  margin: 0;
+  max-width: 340px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: #000;
 }
 .lk-socials {
   display: flex;
@@ -1170,7 +1242,6 @@ ul { list-style: none; margin: 0; padding: 0; }
   color: #fff;
   display: grid;
   place-items: center;
-  font-size: 13px;
   transition: opacity var(--lk-ease);
 }
 .lk-social:hover { opacity: .75; }
@@ -1543,7 +1614,8 @@ ul { list-style: none; margin: 0; padding: 0; }
   .lk-port-grid,
   .lk-news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .reg-roles { grid-template-columns: 1fr; }
-  .reg-role { margin-left: 0; margin-top: -1px; min-height: 240px; }
+  .reg-role { margin-left: 0; margin-top: -1px; min-height: 260px; }
+  .reg-role__head { font-size: 40px; line-height: 46px; }
   .reg-shell { grid-template-columns: 1fr; }
   .lk-chat { grid-template-columns: 280px minmax(0, 1fr); }
 }
@@ -1589,8 +1661,10 @@ ul { list-style: none; margin: 0; padding: 0; }
   .reg-wrap { padding: 16px 12px 40px; }
   .reg-main { padding: 20px 16px; }
   .reg-aside { padding: 20px 16px; gap: 24px; }
+  .reg-landing { margin-top: 24px; gap: 40px; }
   .reg-landing__title { font-size: 28px; line-height: 34px; }
-  .reg-role__head { font-size: 24px; line-height: 30px; }
+  .reg-role__head { font-size: 30px; line-height: 36px; }
+  .reg-role__cta { opacity: 1; max-width: 160px; }
   .reg-actions { flex-direction: column-reverse; align-items: stretch; }
   .reg-actions__right { flex-direction: column; align-items: stretch; }
   .lk-editor { padding: 20px 16px; }

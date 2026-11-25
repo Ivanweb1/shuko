@@ -354,12 +354,15 @@
 
     // Expand / collapse «Управление профилем»
     var detailsToggle = lkApp.querySelector('[data-toggle-details]');
+    var detailsLabel = detailsToggle && detailsToggle.querySelector('[data-toggle-label]');
     var detailsBody = lkApp.querySelector('[data-profile-details]');
     if (detailsToggle && detailsBody) {
       detailsToggle.addEventListener('click', function () {
         var open = detailsBody.hidden;
         detailsBody.hidden = !open;
-        detailsToggle.textContent = open ? 'Скрыть' : 'Подробнее';
+        detailsToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        if (detailsLabel) detailsLabel.textContent = open ? 'Скрыть' : 'Подробнее';
+        else detailsToggle.textContent = open ? 'Скрыть' : 'Подробнее';
       });
     }
 

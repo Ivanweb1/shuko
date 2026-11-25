@@ -46,12 +46,23 @@
   <div class="lk-shell">
     <aside class="lk-sidebar" data-lk-sidebar>
       <nav class="lk-nav" aria-label="Разделы кабинета">
-        <a class="lk-nav__item is-active" href="lk.html">Профиль компании</a>
-        <a class="lk-nav__item" href="lk-portfolio.html">Портфолио</a>
-        <a class="lk-nav__item" href="lk-projects.html">Проекты</a>
-        <a class="lk-nav__item" href="systems.html">База знаний</a>
-        <a class="lk-nav__item" href="lk-chat.html">Консультации <span class="lk-nav__badge">2</span></a>
-        <a class="lk-nav__item" href="lk-notifications.html">Уведомления</a>
+        <a class="lk-nav__item is-active" href="lk.html">
+          <svg class="lk-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M7 20c1.2-2.6 3.1-4 5-4s3.8 1.4 5 4"/></svg>
+          <span>Профиль компании</span>
+        </a>
+        <a class="lk-nav__item" href="lk-projects.html">
+          <svg class="lk-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 4h16v12H4z"/><path d="M4 12h5l2 2h2l2-2h5"/><path d="M4 16v4h16v-4"/></svg>
+          <span>Проекты</span>
+        </a>
+        <a class="lk-nav__item" href="systems.html">
+          <svg class="lk-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 5h8a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H2V5Z"/><path d="M22 5h-8a3 3 0 0 0-3 3v11a2 2 0 0 1 2-2h9V5Z"/></svg>
+          <span>База знаний</span>
+        </a>
+        <a class="lk-nav__item" href="lk-chat.html">
+          <svg class="lk-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.7-.3-3.9-.9L3 21l1.9-5.1A8.5 8.5 0 1 1 21 11.5Z"/></svg>
+          <span>Консультации</span>
+          <span class="lk-nav__badge">2</span>
+        </a>
       </nav>
 
       <div class="lk-user">
@@ -83,14 +94,18 @@
         </div>
       </section>
 
-      <!-- Управление профилем (раскрывается/сворачивается как в макете) -->
+      <!-- Управление профилем (свёрнуто по умолчанию как в макете 4002:11104) -->
       <section>
         <div class="lk-sec-head">
           <h2 class="lk-sec-head__title">Управление профилем</h2>
-          <button class="lk-sec-head__toggle" type="button" data-toggle-details>Скрыть</button>
+          <span class="lk-sec-head__sep" aria-hidden="true"></span>
+          <button class="lk-sec-head__toggle" type="button" data-toggle-details aria-expanded="false">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.08a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.08a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>
+            <span data-toggle-label>Подробнее</span>
+          </button>
         </div>
 
-        <div data-profile-details>
+        <div data-profile-details hidden style="margin-bottom:12px;">
           <div class="lk-details-grid">
             <div class="lk-details-card">
               <h3 class="lk-details-card__title">Юридические данные</h3>
@@ -138,6 +153,7 @@
             <div>
               <div class="lk-sec-head" style="padding:0;margin-bottom:8px;">
                 <h2 class="lk-sec-head__title">Проекты</h2>
+                <span class="lk-sec-head__sep" aria-hidden="true"></span>
                 <span class="lk-sec-head__meta">23 проекта</span>
               </div>
               <p class="lk-profile-banner__desc" style="margin:0;">Это задачи, которые сейчас находятся в обсуждении или в работе с компанией.</p>
@@ -158,6 +174,7 @@
       <section data-role-portfolio>
         <div class="lk-sec-head">
           <h2 class="lk-sec-head__title">Портфолио</h2>
+          <span class="lk-sec-head__sep" aria-hidden="true"></span>
           <span class="lk-sec-head__meta">23 проекта</span>
         </div>
 
@@ -239,6 +256,7 @@
       <section>
         <div class="lk-sec-head">
           <h2 class="lk-sec-head__title">Новости</h2>
+          <span class="lk-sec-head__sep" aria-hidden="true"></span>
           <span class="lk-sec-head__meta">23 новости</span>
         </div>
 
@@ -276,14 +294,20 @@
 
       <!-- Подпишись -->
       <section class="lk-subscribe">
-        <div>
-          <h2 class="lk-sec-head__title" style="margin-bottom:8px;">Подпишись, чтобы не пропустить обновления</h2>
-          <p class="lk-profile-banner__desc" style="margin:0;">Новые материалы базы знаний, события и обновления систем Schüco.</p>
+        <div class="lk-subscribe__head">
+          <h2 class="lk-sec-head__title">Подпишись, чтобы не пропустить обновления</h2>
+          <p class="lk-subscribe__desc">Новые материалы базы знаний, события и обновления систем Schüco.</p>
         </div>
         <div class="lk-socials">
-          <a class="lk-social" href="#" aria-label="Telegram">TG</a>
-          <a class="lk-social" href="#" aria-label="VK">VK</a>
-          <a class="lk-social" href="#" aria-label="YouTube">YT</a>
+          <a class="lk-social" href="#" aria-label="VK">
+            <svg width="21" height="13" viewBox="0 0 21 13" fill="currentColor" aria-hidden="true"><path d="M11.4 13C4.3 13 .3 8.1.1 0h3.6c.1 5.9 2.7 8.4 4.8 9V0h3.4v5.1c2-.2 4.2-2.5 4.9-5.1h3.4c-.6 3.2-3 5.5-4.7 6.5 1.7.8 4.4 2.8 5.4 6.5h-3.7c-.8-2.5-2.8-4.4-5.4-4.7V13h-.4Z"/></svg>
+          </a>
+          <a class="lk-social" href="#" aria-label="Telegram">
+            <svg width="18" height="15" viewBox="0 0 18 15" fill="currentColor" aria-hidden="true"><path d="M17.5.6 14.8 14c-.2.9-.7 1.1-1.5.7l-4.1-3-2 1.9c-.2.2-.4.4-.8.4l.3-4.2L14.3 3c.3-.3-.1-.5-.5-.2L4.4 8.7.3 7.4C-.6 7.1-.6 6.5.5 6L16.3.1c.7-.3 1.4.2 1.2.5Z"/></svg>
+          </a>
+          <a class="lk-social" href="#" aria-label="YouTube">
+            <svg width="22" height="16" viewBox="0 0 22 16" fill="currentColor" aria-hidden="true"><path d="M21.5 2.5A2.8 2.8 0 0 0 19.6.5C17.9 0 11 0 11 0S4.1 0 2.4.5A2.8 2.8 0 0 0 .5 2.5C0 4.2 0 8 0 8s0 3.8.5 5.5a2.8 2.8 0 0 0 1.9 2C4.1 16 11 16 11 16s6.9 0 8.6-.5a2.8 2.8 0 0 0 1.9-2C22 11.8 22 8 22 8s0-3.8-.5-5.5ZM8.8 11.4V4.6L14.6 8l-5.8 3.4Z"/></svg>
+          </a>
         </div>
       </section>
 

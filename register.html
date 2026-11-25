@@ -16,14 +16,20 @@
         <a class="lk-logo" href="index.html">SchücoHome</a>
       </div>
       <div class="lk-header__right">
-        <a class="lk-btn lk-btn--outline" href="lk.html" style="height:36px;padding:0 16px;">Войти в ЛК</a>
+        <span class="lk-header__sep"></span>
+        <a class="lk-icon-btn" href="lk-notifications.html" title="Уведомления" aria-label="Уведомления">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </a>
+        <a class="lk-icon-btn" href="lk.html" title="Войти в ЛК" aria-label="Войти в личный кабинет">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        </a>
       </div>
     </div>
   </header>
 
   <main class="reg-wrap" data-reg-app>
 
-    <!-- Выбор роли (экран «Регистрация» 1440 / 400) -->
+    <!-- Выбор роли (экран «Регистрация» 1440×920 / 400×835) -->
     <section class="reg-landing" data-reg-landing>
       <div class="reg-landing__head">
         <span class="reg-landing__mark">SH</span>
@@ -36,26 +42,17 @@
           <div class="reg-role__head">Вы архитектор</div>
           <p class="reg-role__desc">Самостоятельная подача заявки. После проверки администратор активирует кабинет с доступом к BIM-библиотеке Schüco.</p>
           <div class="reg-role__foot">
-            <span>Вам сюда</span>
-            <svg class="reg-role__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+            <span class="reg-role__cta">Вам сюда</span>
+            <svg class="reg-role__arrow" viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="M15.4 34L14 32.6L30.6 16H16V14H34V32H32V17.4L15.4 34Z"/></svg>
           </div>
         </button>
 
         <button class="reg-role" type="button" data-pick-flow="builder">
-          <div class="reg-role__head">Строительная компания</div>
-          <p class="reg-role__desc">Самостоятельная подача заявки. После модерации — доступ к личному кабинету, BIM-библиотеке, техдокументации и консультациям.</p>
+          <div class="reg-role__head">Вы строитель</div>
+          <p class="reg-role__desc">Самостоятельная подача заявки. После модерации — доступ к BIM-библиотеке и списку производителей Schüco в экосистеме.</p>
           <div class="reg-role__foot">
-            <span>Вам сюда</span>
-            <svg class="reg-role__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
-          </div>
-        </button>
-
-        <button class="reg-role" type="button" data-pick-flow="invite">
-          <div class="reg-role__head">По приглашению</div>
-          <p class="reg-role__desc">Для производителей, сервис-партнёров и контракторов. Регистрация по уникальной ссылке-приглашению от менеджера Schüco.</p>
-          <div class="reg-role__foot">
-            <span>Вам сюда</span>
-            <svg class="reg-role__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+            <span class="reg-role__cta">Вам сюда</span>
+            <svg class="reg-role__arrow" viewBox="0 0 48 48" aria-hidden="true"><path fill="currentColor" d="M15.4 34L14 32.6L30.6 16H16V14H34V32H32V17.4L15.4 34Z"/></svg>
           </div>
         </button>
       </div>
