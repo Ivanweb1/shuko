@@ -43,6 +43,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 body.is-reg { background: var(--lk-surface); }
+body.is-reg .lk-header { border-bottom: 0; }
+body.is-reg .lk-icon-btn { color: var(--lk-text-40); }
+body.is-reg .lk-icon-btn:hover { color: #000; opacity: 1; }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 button, input, textarea, select { font: inherit; color: inherit; }
@@ -502,8 +505,8 @@ ul { list-style: none; margin: 0; padding: 0; }
   max-width: 493px;
   font-size: 16px;
   line-height: 24px;
-  font-weight: 500;
-  color: #000;
+  font-weight: 400;
+  color: rgba(0, 0, 0, .5);
   transition: color var(--lk-ease);
 }
 .reg-role:hover .reg-role__desc { color: #fff; }
