@@ -1216,7 +1216,8 @@ ul { list-style: none; margin: 0; padding: 0; }
   height: 36px;
   display: grid;
   place-items: center;
-  color: var(--lk-text-60);
+  color: var(--lk-text-40);
+  transition: color var(--lk-ease);
 }
 .lk-pcard__menu-btn:hover { color: #000; }
 .lk-pcard__img {
@@ -1250,15 +1251,25 @@ ul { list-style: none; margin: 0; padding: 0; }
   gap: 4px;
 }
 .lk-pcard__tag {
-  padding: 8px 14px;
-  border: 1px solid var(--lk-line);
-  font-size: 13px;
-  line-height: 18px;
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--lk-line-light);
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--lk-text-40);
 }
 .lk-pcard__foot {
   margin-top: auto;
   display: flex;
   gap: 8px;
+}
+.lk-pcard__foot .lk-btn--outline {
+  color: var(--lk-text-60);
+}
+.lk-pcard__foot .lk-btn--outline:hover {
+  color: #000;
 }
 .lk-port-actions {
   display: grid;
