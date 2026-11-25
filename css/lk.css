@@ -162,6 +162,13 @@ ul { list-style: none; margin: 0; padding: 0; }
   transition: background-color var(--lk-ease), color var(--lk-ease), border-color var(--lk-ease);
 }
 .lk-btn--lg { height: 52px; }
+.lk-btn--xl { height: 56px; }
+.lk-btn--white-flat {
+  background: #fff;
+  color: #000;
+  border: 0;
+}
+.lk-btn--white-flat:hover { background: #ececee; }
 .lk-btn--primary {
   background: var(--lk-accent);
   color: #fff;
@@ -1345,7 +1352,18 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .lk-table th {
   font-weight: 500;
+  color: #000;
+}
+.lk-th-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.lk-th-sort svg {
+  width: 14px;
+  height: 14px;
   color: var(--lk-text-40);
+  flex: none;
 }
 .lk-table__thumb {
   width: 113px;
@@ -1423,8 +1441,8 @@ ul { list-style: none; margin: 0; padding: 0; }
 .lk-chat {
   background: #fff;
   display: grid;
-  grid-template-columns: 360px minmax(0, 1fr);
-  min-height: 680px;
+  grid-template-columns: 382px minmax(0, 1fr);
+  min-height: 760px;
 }
 .lk-chat__list {
   border-right: 1px solid var(--lk-line);
