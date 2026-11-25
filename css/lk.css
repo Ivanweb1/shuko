@@ -1275,7 +1275,15 @@ ul { list-style: none; margin: 0; padding: 0; }
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
-  margin-top: 12px;
+  margin-top: 20px;
+}
+.lk-port-actions .lk-btn--outline {
+  background: transparent;
+  color: var(--lk-text-60);
+}
+.lk-port-actions .lk-btn--outline:hover {
+  background: #fff;
+  color: #000;
 }
 
 /* ---------- News Grid ---------- */
