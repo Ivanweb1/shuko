@@ -1186,11 +1186,18 @@ ul { list-style: none; margin: 0; padding: 0; }
   justify-content: space-between;
   gap: 12px;
 }
+.lk-pcard__top > div:first-child {
+  min-width: 0;
+  flex: 1;
+}
 .lk-pcard__name {
   font-size: 14px;
   line-height: 20px;
   text-transform: uppercase;
   color: var(--lk-accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .lk-pcard__date {
   margin-top: 4px;
