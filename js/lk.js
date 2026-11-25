@@ -194,17 +194,17 @@
         showPortfolio: true,
         showSystems: true,
         legal: [
-          ['Юридическое лицо', 'ООО «АлюмПроГрупп»'],
-          ['ИНН / КПП', '7701234567 / 770101001'],
-          ['Договор Schüco', '№ SH-2024-0184 (прямой)'],
-          ['Регион', 'Москва и Московская область']
+          ['Юр. лицо', 'ООО «АлюмПро Групп»'],
+          ['ИНН', '7714800000'],
+          ['Торговая марка', 'AlumPro'],
+          ['Клиентский номер Schuco', 'SCH-RU-2024-00147']
         ],
         contacts: [
-          ['Руководитель', 'Иванов Алексей Петрович'],
-          ['Телефон', '+7 (495) 000-00-00'],
-          ['E-mail', 'info@alumprogroup.ru'],
-          ['Сайт', 'alumprogroup.ru'],
-          ['Ответственный ИЖС', 'Смирнов Дмитрий']
+          ['Руководитель', 'Алексей Петров'],
+          ['Телефон', '+ 7 (495) 000-00-00'],
+          ['E-mail', 'petrov@alumpro.ru'],
+          ['Сайт', 'alumpro.ru'],
+          ['Ответственный ИЖС', 'Сергей Иванов']
         ]
       },
       service: {
@@ -311,7 +311,8 @@
       }
     };
 
-    var editIcon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4 12.5-12.5Z"/></svg>';
+    var editIcon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25ZM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83Z"/></svg>';
+    var lockIcon = '<svg class="lk-kv__lock" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18 8h-1V6a5 5 0 0 0-10 0v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2Zm-6 9a2 2 0 1 1 0-4 2 2 0 0 1 0 4Zm3.1-9H8.9V6a3.1 3.1 0 0 1 6.2 0v2Z"/></svg>';
 
     function renderRole(key) {
       var r = ROLES[key] || ROLES.manufacturer;
@@ -335,7 +336,7 @@
       var legalEl = lkApp.querySelector('[data-legal-rows]');
       if (legalEl) {
         legalEl.innerHTML = r.legal.map(function (pair) {
-          return '<div class="lk-kv__row"><span class="lk-kv__key">' + pair[0] + '</span><span class="lk-kv__val">' + pair[1] + '</span></div>';
+          return '<div class="lk-kv__row"><span class="lk-kv__key">' + lockIcon + '<span>' + pair[0] + '</span></span><span class="lk-kv__val">' + pair[1] + '</span></div>';
         }).join('');
       }
       var contEl = lkApp.querySelector('[data-contact-rows]');
@@ -361,8 +362,10 @@
     var detailsLabel = detailsToggle && detailsToggle.querySelector('[data-toggle-label]');
     var detailsBody = lkApp.querySelector('[data-profile-details]');
     if (detailsToggle && detailsBody) {
+      var detailsHead = detailsToggle.closest('.lk-sec-head');
       function setDetailsOpen(open) {
         detailsBody.hidden = !open;
+        if (detailsHead) detailsHead.classList.toggle('is-expanded', open);
         detailsToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
         if (detailsLabel) detailsLabel.textContent = open ? 'Скрыть' : 'Подробнее';
         else detailsToggle.textContent = open ? 'Скрыть' : 'Подробнее';
@@ -567,17 +570,23 @@
     };
     var currentKey = 'support';
 
+    var verifiedSvg = '<span class="lk-verified" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 8.5 6.5 12 13 4.5"/></svg></span>';
+    var checksSvg = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M1.5 8.5 4.5 11.5 10.5 4.5M5.5 11.5 11.5 4.5"/></svg>';
+    var backBtn = chatApp.querySelector('[data-chat-back]');
+
     function renderChat(key) {
       currentKey = key;
       var d = DATA[key];
       if (!d) return;
-      headName.textContent = d.name;
+      headName.innerHTML = d.name + ' ' + verifiedSvg;
       headSub.textContent = d.sub;
       msgBox.innerHTML = '<div class="lk-chat__date">20 января</div>' + d.msgs.map(function (m) {
-        return '<div class="lk-msg' + (m.me ? ' lk-msg--me' : '') + '">' +
+        var timeHtml = '<span class="lk-msg__time">' + m.time + (m.me ? checksSvg : '') + '</span>';
+        return '<div class="lk-msg-row' + (m.me ? ' lk-msg-row--me' : '') + '">' +
+          '<div class="lk-msg' + (m.me ? ' lk-msg--me' : '') + '">' +
           (m.author ? '<span class="lk-msg__author">' + m.author + '</span>' : '') +
-          '<span class="lk-msg__text">' + m.text + '</span>' +
-          '<span class="lk-msg__time">' + m.time + '</span></div>';
+          '<span class="lk-msg__text">' + m.text + '</span></div>' +
+          timeHtml + '</div>';
       }).join('');
       msgBox.scrollTop = msgBox.scrollHeight;
     }
@@ -589,8 +598,15 @@
         var badge = btn.querySelector('.lk-thread__unread');
         if (badge) badge.remove();
         renderChat(btn.getAttribute('data-thread'));
+        chatApp.classList.add('is-chat-open');
       });
     });
+
+    if (backBtn) {
+      backBtn.addEventListener('click', function () {
+        chatApp.classList.remove('is-chat-open');
+      });
+    }
 
     if (form && input) {
       form.addEventListener('submit', function (e) {
