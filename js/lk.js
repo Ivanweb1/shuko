@@ -575,7 +575,7 @@
     if (addForm) {
       addForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        window.location.href = 'lk-projects.html';
+        window.location.href = addProjApp.getAttribute('data-redirect') || 'lk-projects.html';
       });
     }
   }
