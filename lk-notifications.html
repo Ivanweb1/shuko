@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Уведомления — Личный кабинет Schüco Home</title>
+  <link rel="preload" href="assets/fonts/Stem_Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/lk.css">
+</head>
+<body>
+
+  <header class="lk-header">
+    <div class="lk-header__in">
+      <div class="lk-header__left">
+        <button class="lk-burger" type="button" data-lk-burger aria-label="Меню кабинета" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a class="lk-logo" href="index.html">SchücoHome</a>
+      </div>
+      <div class="lk-header__right">
+        <a class="lk-icon-btn" href="register.html" title="Регистрация / Выход" aria-label="Регистрация">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="lk-shell">
+    <aside class="lk-sidebar" data-lk-sidebar>
+      <nav class="lk-nav" aria-label="Разделы кабинета">
+        <a class="lk-nav__item" href="lk.html">Профиль компании</a>
+        <a class="lk-nav__item" href="lk-portfolio.html">Портфолио</a>
+        <a class="lk-nav__item" href="lk-projects.html">Проекты</a>
+        <a class="lk-nav__item" href="systems.html">База знаний</a>
+        <a class="lk-nav__item" href="lk-chat.html">Консультации <span class="lk-nav__badge">2</span></a>
+        <a class="lk-nav__item is-active" href="lk-notifications.html">Уведомления</a>
+      </nav>
+      <div class="lk-user">
+        <img class="lk-user__ava" src="assets/img/lk/ee1a910a001b.png" alt="">
+        <div>
+          <div class="lk-user__name">АлюмПроГрупп</div>
+          <div class="lk-user__role">Производитель</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="lk-content">
+      <section class="lk-notif-panel lk-notif-panel--page" data-notif-scope>
+        <div class="lk-modal__head">
+          <h1 class="lk-modal__title">Уведомления</h1>
+        </div>
+
+        <div class="lk-tabs" style="padding:0;">
+          <button class="lk-tab is-active" type="button" data-notif-tab="all">Все</button>
+          <button class="lk-tab" type="button" data-notif-tab="projects">Проекты</button>
+          <button class="lk-tab" type="button" data-notif-tab="chat">Консультации</button>
+          <button class="lk-tab" type="button" data-notif-tab="docs">База знаний</button>
+        </div>
+
+        <div class="lk-notif-list">
+          <article class="lk-notif" data-notif-item data-cat="projects">
+            <div class="lk-notif__top">
+              <span class="lk-notif__title">Проект одобрен администратором</span>
+              <span class="lk-notif__meta">Сегодня, 12:00 <button class="lk-notif__del" type="button" data-notif-del aria-label="Удалить">×</button></span>
+            </div>
+            <div class="lk-notif__text">«Клубный дом, Рублёвка» прошёл модерацию и теперь виден на вашей публичной странице.</div>
+          </article>
+
+          <article class="lk-notif" data-notif-item data-cat="chat">
+            <div class="lk-notif__top">
+              <span class="lk-notif__title">Ответ на консультацию</span>
+              <span class="lk-notif__meta">Сегодня, 12:00 <button class="lk-notif__del" type="button" data-notif-del aria-label="Удалить">×</button></span>
+            </div>
+            <div class="lk-notif__text">Специалист Schüco ответил на ваш вопрос по монтажу AWS 75 и приложил документацию.</div>
+          </article>
+
+          <article class="lk-notif" data-notif-item data-cat="docs">
+            <div class="lk-notif__top">
+              <span class="lk-notif__title">Обновление базы знаний</span>
+              <span class="lk-notif__meta">Сегодня, 12:00 <button class="lk-notif__del" type="button" data-notif-del aria-label="Удалить">×</button></span>
+            </div>
+            <div class="lk-notif__text">Добавлена новая документация: ADS 65 HD — Инструкция по монтажу v2.1.</div>
+          </article>
+
+          <article class="lk-notif" data-notif-item data-cat="docs">
+            <div class="lk-notif__top">
+              <span class="lk-notif__title">Обновление BIM-библиотеки</span>
+              <span class="lk-notif__meta">Вчера, 16:40 <button class="lk-notif__del" type="button" data-notif-del aria-label="Удалить">×</button></span>
+            </div>
+            <div class="lk-notif__text">Загружены новые семейства Revit и ArchiCAD для систем AWS 75.SI+ и ASE 67 PD.</div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/lk.js"></script>
+</body>
+</html>

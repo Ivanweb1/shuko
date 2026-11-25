@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Регистрация — Schüco Home</title>
+  <link rel="preload" href="assets/fonts/Stem_Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/lk.css">
+</head>
+<body class="is-reg">
+
+  <header class="lk-header">
+    <div class="lk-header__in">
+      <div class="lk-header__left">
+        <a class="lk-logo" href="index.html">SchücoHome</a>
+      </div>
+      <div class="lk-header__right">
+        <a class="lk-btn lk-btn--outline" href="lk.html" style="height:36px;padding:0 16px;">Войти в ЛК</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="reg-wrap" data-reg-app>
+
+    <!-- Выбор роли (экран «Регистрация» 1440 / 400) -->
+    <section class="reg-landing" data-reg-landing>
+      <div class="reg-landing__head">
+        <span class="reg-landing__mark">SH</span>
+        <h1 class="reg-landing__title">Давайте знакомиться</h1>
+        <p class="reg-landing__sub">Порядок регистрации зависит от вашей роли в экосистеме Schüco Home</p>
+      </div>
+
+      <div class="reg-roles">
+        <button class="reg-role" type="button" data-pick-flow="architect">
+          <div class="reg-role__head">Вы архитектор</div>
+          <p class="reg-role__desc">Самостоятельная подача заявки. После проверки администратор активирует кабинет с доступом к BIM-библиотеке Schüco.</p>
+          <div class="reg-role__foot">
+            <span>Вам сюда</span>
+            <svg class="reg-role__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+          </div>
+        </button>
+
+        <button class="reg-role" type="button" data-pick-flow="builder">
+          <div class="reg-role__head">Строительная компания</div>
+          <p class="reg-role__desc">Самостоятельная подача заявки. После модерации — доступ к личному кабинету, BIM-библиотеке, техдокументации и консультациям.</p>
+          <div class="reg-role__foot">
+            <span>Вам сюда</span>
+            <svg class="reg-role__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+          </div>
+        </button>
+
+        <button class="reg-role" type="button" data-pick-flow="invite">
+          <div class="reg-role__head">По приглашению</div>
+          <p class="reg-role__desc">Для производителей, сервис-партнёров и контракторов. Регистрация по уникальной ссылке-приглашению от менеджера Schüco.</p>
+          <div class="reg-role__foot">
+            <span>Вам сюда</span>
+            <svg class="reg-role__arrow" viewBox="0 0 40 40" aria-hidden="true"><path fill="currentColor" transform="translate(9.375 9.375) scale(1.25)" d="M17 .5v13a.5.5 0 0 1-1 0V1.708L.854 16.854a.5.5 0 0 1-.708-.708L15.293 1H3.5a.5.5 0 0 1 0-1h13a.5.5 0 0 1 .5.5Z"/></svg>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         СЦЕНАРИЙ 1: РЕГИСТРАЦИЯ ПО ПРИГЛАШЕНИЮ (4 шага + финал)
+         ============================================================ -->
+    <section class="reg-shell" data-reg-flow="invite" hidden>
+      <aside class="reg-aside">
+        <div>
+          <h2 class="reg-aside__title">Давайте знакомиться</h2>
+          <p class="reg-aside__lead">Вы получили ссылку от менеджера Schüco. Заполните форму — после проверки ваш кабинет будет активирован.</p>
+        </div>
+        <ul class="reg-perks">
+          <li><span class="reg-perks__dot">✓</span><span>Данные частично предзаполнены из приглашения</span></li>
+          <li><span class="reg-perks__dot">✓</span><span>Доступ к проектной документации и базе знаний</span></li>
+          <li><span class="reg-perks__dot">✓</span><span>Прямые консультации со специалистами Schüco</span></li>
+          <li><span class="reg-perks__dot">✓</span><span>Публичная страница компании на Schüco Home</span></li>
+        </ul>
+      </aside>
+
+      <div class="reg-main">
+        <div class="reg-stepper" data-stepper>
+          <div class="reg-step is-active"><span class="reg-step__num">1</span><span class="reg-step__label">Данные</span></div>
+          <span class="reg-step-line"></span>
+          <div class="reg-step"><span class="reg-step__num">2</span><span class="reg-step__label">Контакты</span></div>
+          <span class="reg-step-line"></span>
+          <div class="reg-step"><span class="reg-step__num">3</span><span class="reg-step__label">Документы</span></div>
+          <span class="reg-step-line"></span>
+          <div class="reg-step"><span class="reg-step__num">4</span><span class="reg-step__label">О компании</span></div>
+        </div>
+
+        <!-- Шаг 1: Данные из приглашения -->
+        <div class="reg-form" data-step="1">
+          <div>
+            <h2 class="reg-form__title">Данные из приглашения</h2>
+            <p class="reg-form__sub">Менеджер Schüco внёс эти данные заранее — проверьте корректность</p>
+          </div>
+
+          <div class="lk-kv">
+            <div class="lk-kv__row"><span class="lk-kv__key">Роль</span><span class="lk-kv__val">Производитель (переработчик)</span></div>
+            <div class="lk-kv__row"><span class="lk-kv__key">Название компании</span><span class="lk-kv__val">АлюмПроГрупп</span></div>
+            <div class="lk-kv__row"><span class="lk-kv__key">Юридическое лицо</span><span class="lk-kv__val">ООО «АлюмПроГрупп»</span></div>
+            <div class="lk-kv__row"><span class="lk-kv__key">ИНН</span><span class="lk-kv__val">7701234567</span></div>
+            <div class="lk-kv__row"><span class="lk-kv__key">Регион</span><span class="lk-kv__val">Москва и Московская область</span></div>
+          </div>
+
+          <div class="lk-callout" data-wrong-msg hidden>
+            Запрос на корректировку предзаполненных данных отправлен менеджеру Schüco. Вы можете продолжить заполнение остальных шагов.
+          </div>
+
+          <div class="reg-actions">
+            <button class="lk-btn lk-btn--outline" type="button" data-step-prev>← Назад</button>
+            <div class="reg-actions__right">
+              <button class="lk-btn lk-btn--muted" type="button" data-wrong-data>Данные некорректны</button>
+              <button class="lk-btn lk-btn--primary" type="button" data-step-next>Далее</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Шаг 2: Контакты -->
+        <div class="reg-form" data-step="2" hidden>
+          <div>
+            <h2 class="reg-form__title">Контактные данные</h2>
+            <p class="reg-form__sub">Укажите руководителя и ответственного специалиста по направлению ИЖС</p>
+          </div>
+
+          <div class="reg-group">
+            <h3 class="reg-section-title">Руководитель компании</h3>
+            <div class="lk-field-row">
+              <input class="lk-input" type="text" placeholder="ФИО руководителя *">
+              <input class="lk-input" type="tel" placeholder="Телефон руководителя *">
+            </div>
+            <input class="lk-input" type="email" placeholder="E-mail руководителя *">
+          </div>
+
+          <div class="reg-group">
+            <h3 class="reg-section-title">Ответственный специалист направления ИЖС</h3>
+            <div class="lk-field-row">
+              <input class="lk-input" type="text" placeholder="ФИО специалиста *">
+              <input class="lk-input" type="tel" placeholder="Телефон специалиста *">
+            </div>
+            <input class="lk-input" type="email" placeholder="E-mail специалиста *">
+            <input class="lk-input" type="url" placeholder="Сайт компании">
+          </div>
+
+          <p class="reg-legal">Заполнив форму, вы принимаете условия соглашения об использовании сайта, в том числе в части обработки и использования персональных данных.</p>
+
+          <div class="reg-actions">
+            <button class="lk-btn lk-btn--outline" type="button" data-step-prev>← Назад</button>
+            <button class="lk-btn lk-btn--primary" type="button" data-step-next>Далее</button>
+          </div>
+        </div>
+
+        <!-- Шаг 3: Документы и портфолио -->
+        <div class="reg-form" data-step="3" hidden>
+          <div>
+            <h2 class="reg-form__title">Документы и портфолио</h2>
+            <p class="reg-form__sub">Все файлы: JPG, PNG, PDF, ZIP. Объём определяется подрядчиком.</p>
+          </div>
+
+          <div class="reg-group">
+            <h3 class="reg-section-title">Юридические документы</h3>
+            <div class="lk-field">
+              <span>Карточка юридического лица *</span>
+              <label class="lk-upload">
+                <input type="file" accept=".pdf,.jpg,.jpeg,.png">
+                <span class="lk-upload__text">Перетащите файл или нажмите для выбора (PDF, JPG, PNG. До 10 МБ)</span>
+                <span class="lk-upload__file" hidden></span>
+              </label>
+              <div class="lk-callout">ЮЛ должно совпадать с указанным в прямом договоре с Schüco. Для контрактора — договор с переработчиком, имеющим договор с Schüco.</div>
+            </div>
+
+            <div class="lk-field">
+              <span>Свидетельство о регистрации торговой марки</span>
+              <label class="lk-upload">
+                <input type="file" accept=".pdf">
+                <span class="lk-upload__text">Перетащите файл или нажмите для выбора (PDF. До 5 МБ)</span>
+                <span class="lk-upload__file" hidden></span>
+              </label>
+              <div class="lk-callout">ТМ должна быть зарегистрирована на это же ЮЛ. Если торговой марки нет — пропустите поле.</div>
+            </div>
+          </div>
+
+          <div class="reg-group">
+            <h3 class="reg-section-title">Портфолио — минимум 3 реализованных проекта</h3>
+            <div class="lk-field">
+              <span>Профессиональные фото проектов *</span>
+              <label class="lk-upload">
+                <input type="file" multiple accept=".pdf,.zip,.jpg,.jpeg,.png">
+                <span class="lk-upload__text">Перетащите файл или нажмите для выбора (PDF, ZIP, JPG. До 50 МБ)</span>
+                <span class="lk-upload__file" hidden></span>
+              </label>
+              <div class="lk-callout">Требование: не менее 3 проектов с объёмом остекления от 50 кв.м. за последние 12 месяцев. Профессиональные фото обязательны.</div>
+            </div>
+            <input class="lk-input" type="url" placeholder="Или ссылка на архив / облако">
+          </div>
+
+          <div class="reg-group">
+            <h3 class="reg-section-title">Логотип компании</h3>
+            <div class="lk-field">
+              <span>Архив логотипов *</span>
+              <label class="lk-upload">
+                <input type="file" accept=".pdf,.ai,.svg,.png,.zip">
+                <span class="lk-upload__text">Загрузите архив с логотипами (PDF, AI, SVG, PNG. ZIP-архив)</span>
+                <span class="lk-upload__file" hidden></span>
+              </label>
+            </div>
+            <input class="lk-input" type="url" placeholder="Или ссылка на логотипы">
+          </div>
+
+          <div class="reg-actions">
+            <button class="lk-btn lk-btn--outline" type="button" data-step-prev>← Назад</button>
+            <button class="lk-btn lk-btn--primary" type="button" data-step-next>Далее</button>
+          </div>
+        </div>
+
+        <!-- Шаг 4: О компании -->
+        <div class="reg-form" data-step="4" hidden>
+          <div>
+            <h2 class="reg-form__title">О компании и системы Schüco</h2>
+            <p class="reg-form__sub">Последний шаг — расскажите о деятельности и выберите системы</p>
+          </div>
+
+          <textarea class="lk-textarea" placeholder="Описание компании (расскажите о вашей компании) *"></textarea>
+
+          <div class="reg-group">
+            <h3 class="reg-section-title">Виды оказываемых услуг</h3>
+            <div class="lk-chips">
+              <button class="lk-chip is-active" type="button" data-chip-toggle>Производство</button>
+              <button class="lk-chip" type="button" data-chip-toggle>Сервис обслуживания</button>
+              <button class="lk-chip is-active" type="button" data-chip-toggle>Ремонт</button>
+              <button class="lk-chip" type="button" data-chip-toggle>Монтаж</button>
+              <button class="lk-chip" type="button" data-chip-toggle>Выездной замер</button>
+            </div>
+            <div class="lk-callout">Выберите из списка. Эти данные отображаются на вашей публичной странице. Изменение — только через Администратора по запросу.</div>
+          </div>
+
+          <div class="reg-group">
+            <h3 class="reg-section-title">Шоурум</h3>
+            <div class="lk-radio-grid">
+              <label class="lk-radio-card is-checked">
+                <input type="radio" name="inv-showroom" checked>
+                <span><span class="lk-radio-card__title">Есть шоурум</span></span>
+              </label>
+              <label class="lk-radio-card">
+                <input type="radio" name="inv-showroom">
+                <span><span class="lk-radio-card__title">Нет шоурума</span></span>
+              </label>
+            </div>
+            <div class="lk-field">
+              <span>Добавьте фото шоурума</span>
+              <label class="lk-upload">
+                <input type="file" multiple accept=".pdf,.jpg,.jpeg,.png">
+                <span class="lk-upload__text">Перетащите файл или нажмите для выбора (PDF, JPG, PNG. До 10 МБ)</span>
+                <span class="lk-upload__file" hidden></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="reg-group">
+            <h3 class="reg-section-title">Публикация страницы компании на Schüco Home</h3>
+            <div class="lk-radio-grid">
+              <label class="lk-radio-card is-checked">
+                <input type="radio" name="inv-pub" checked>
+                <span>
+                  <span class="lk-radio-card__title">Опубликовать страницу</span>
+                  <span class="lk-radio-card__desc">Данные доступны всем пользователям платформы</span>
+                </span>
+              </label>
+              <label class="lk-radio-card">
+                <input type="radio" name="inv-pub">
+                <span>
+                  <span class="lk-radio-card__title">Не публиковать страницу</span>
+                  <span class="lk-radio-card__desc">Данные доступны только внутри системы</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="reg-actions">
+            <button class="lk-btn lk-btn--outline" type="button" data-step-prev>← Назад</button>
+            <button class="lk-btn lk-btn--primary" type="button" data-step-next>Отправить заявку</button>
+          </div>
+        </div>
+
+        <!-- Шаг 5: Заявка отправлена -->
+        <div class="reg-form" data-step="5" hidden>
+          <span class="reg-done-icon">✓</span>
+          <div>
+            <h2 class="reg-form__title">Заявка отправлена!</h2>
+            <p class="reg-form__sub">Ваша заявка получила статус «Новая». Менеджер Schüco рассмотрит её в течение 2–3 рабочих дней. Уведомление придёт на указанный e-mail.</p>
+          </div>
+
+          <div class="reg-status-box">
+            <h3 class="reg-section-title">Возможные статусы заявки</h3>
+            <div class="reg-status-list">
+              <div class="reg-status-item"><span class="lk-badge lk-badge--new">Новая</span><span class="reg-status-item__text">Заявка принята, ожидает рассмотрения</span></div>
+              <div class="reg-status-item"><span class="lk-badge lk-badge--review">На проверке</span><span class="reg-status-item__text">Администратор изучает документы</span></div>
+              <div class="reg-status-item"><span class="lk-badge lk-badge--clarify">Требуются уточнения</span><span class="reg-status-item__text">Администратор отметил поля — вы получите письмо</span></div>
+              <div class="reg-status-item"><span class="lk-badge lk-badge--done">Завершена</span><span class="reg-status-item__text">Заявка одобрена — кабинет активирован</span></div>
+              <div class="reg-status-item"><span class="lk-badge lk-badge--rejected">Отклонена</span><span class="reg-status-item__text">Причина в письме + возможность повторной подачи</span></div>
+            </div>
+          </div>
+
+          <div class="reg-actions">
+            <button class="lk-btn lk-btn--outline" type="button" data-reg-reset>← К выбору роли</button>
+            <a class="lk-btn lk-btn--primary" href="lk.html">Перейти в личный кабинет</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         СЦЕНАРИЙ 2: АРХИТЕКТУРНОЕ БЮРО / АРХИТЕКТОР (2 шага + финал)
+         ============================================================ -->
+    <section class="reg-shell" data-reg-flow="architect" hidden>
+      <aside class="reg-aside">
+        <div>
+          <h2 class="reg-aside__title">Давайте знакомиться</h2>
+          <p class="reg-aside__lead">Заполните форму — после проверки вы получите доступ к BIM-библиотеке Schüco и личному кабинету.</p>
+        </div>
+        <ul class="reg-perks">
+          <li><span class="reg-perks__dot">✓</span><span>BIM-библиотека Schüco (Revit, ArchiCAD, IFC)</span></li>
+          <li><span class="reg-perks__dot">✓</span><span>Доступ к проектной документации и базе знаний</span></li>
+          <li><span class="reg-perks__dot">✓</span><span>Прямые консультации со специалистами Schüco</span></li>
+          <li><span class="reg-perks__dot">✓</span><span>Публичная страница на Schüco Home</span></li>
+        </ul>
+      </aside>
+
+      <div class="reg-main">
+        <div class="reg-stepper" data-stepper>
+          <div class="reg-step is-active"><span class="reg-step__num">1</span><span class="reg-step__label">Контакты</span></div>
+          <span class="reg-step-line"></span>
+          <div class="reg-step"><span class="reg-step__num">2</span><span class="reg-step__label">Публикация</span></div>
+        </div>
+
+        <!-- Шаг 1: Контакты -->
+        <div class="reg-form" data-step="1">
+          <div class="reg-group">
+            <h2 class="reg-form__title">Ваши данные</h2>
+            <input class="lk-input" type="text" placeholder="ФИО *">
+            <div class="lk-radio-grid">
+              <label class="lk-radio-card is-checked">
+                <input type="radio" name="arch-type" checked>
+                <span>
+                  <span class="lk-radio-card__title">Работаю в бюро</span>
+                  <span class="lk-radio-card__desc">Юридическое лицо, несколько сотрудников</span>
+                </span>
+              </label>
+              <label class="lk-radio-card">
+                <input type="radio" name="arch-type">
+                <span>
+                  <span class="lk-radio-card__title">Работаю индивидуально</span>
+                  <span class="lk-radio-card__desc">ИП или физ. лицо</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="reg-group">
+            <input class="lk-input" type="email" placeholder="E-mail *">
+            <input class="lk-input" type="tel" placeholder="Номер телефона *">
+            <div class="lk-field">
+              <span>Загрузить портфолио</span>
+              <label class="lk-upload">
+                <input type="file" accept=".pdf,.zip">
+                <span class="lk-upload__text">PDF-портфолио или ZIP-архив с проектами (PDF, ZIP. До 50 МБ)</span>
+                <span class="lk-upload__file" hidden></span>
+              </label>
+            </div>
+            <input class="lk-input" type="url" placeholder="Или ссылка на портфолио / сайт">
+            <p class="reg-legal">Заполнив форму, вы принимаете условия соглашения об использовании сайта, в том числе в части обработки и использования персональных данных.</p>
+          </div>
+
+          <div class="reg-actions">
+            <button class="lk-btn lk-btn--outline" type="button" data-step-prev>← Назад</button>
+            <button class="lk-btn lk-btn--primary" type="button" data-step-next>Далее</button>
+          </div>
+        </div>
+
+        <!-- Шаг 2: Публикация -->
+        <div class="reg-form" data-step="2" hidden>
+          <div>
+            <h2 class="reg-form__title">Публичная страница на сайте Schüco Home</h2>
+            <p class="reg-form__sub">Выберите режим присутствия на платформе Schüco Home</p>
+          </div>
+
+          <div class="lk-radio-grid">
+            <label class="lk-radio-card is-checked">
+              <input type="radio" name="arch-pub" checked>
+              <span>
+                <span class="lk-radio-card__title">Опубликовать страницу</span>
+                <span class="lk-radio-card__desc">Данные доступны всем пользователям платформы</span>
+              </span>
+            </label>
+            <label class="lk-radio-card">
+              <input type="radio" name="arch-pub">
+              <span>
+                <span class="lk-radio-card__title">Не публиковать страницу</span>
+                <span class="lk-radio-card__desc">Данные доступны только внутри системы</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="reg-benefits">
+            <h3 class="reg-section-title">После одобрения вы получите:</h3>
+            <ul>
+              <li><span>✓</span><span>Доступ к личному кабинету</span></li>
+              <li><span>✓</span><span>BIM-библиотека Schüco (Revit, ArchiCAD, IFC)</span></li>
+              <li><span>✓</span><span>Загрузка проектной документации</span></li>
+              <li><span>✓</span><span>База знаний: техдокументация, узлы, инструкции</span></li>
+              <li><span>✓</span><span>Запросы на консультации специалистов</span></li>
+            </ul>
+          </div>
+
+          <div class="reg-actions">
+            <button class="lk-btn lk-btn--outline" type="button" data-step-prev>← Назад</button>
+            <button class="lk-btn lk-btn--primary" type="button" data-step-next>Отправить заявку</button>
+          </div>
+        </div>
+
+        <!-- Шаг 3: Заявка отправлена -->
+        <div class="reg-form" data-step="3" hidden>
+          <span class="reg-done-icon">✓</span>
+          <div>
+            <h2 class="reg-form__title">Заявка отправлена!</h2>
+            <p class="reg-form__sub">Заявка получила статус «Новая». Администратор проверит данные и уведомит вас по e-mail.</p>
+          </div>
+
+          <div class="reg-status-box">
+            <h3 class="reg-section-title">Возможные статусы заявки</h3>
+            <div class="reg-status-list">
+              <div class="reg-status-item"><span class="lk-badge lk-badge--new">Новая</span><span class="reg-status-item__text">Заявка принята, ожидает рассмотрения</span></div>
+              <div class="reg-status-item"><span class="lk-badge lk-badge--review">На проверке</span><span class="reg-status-item__text">Администратор изучает документы</span></div>
+              <div class="reg-status-item"><span class="lk-badge lk-badge--clarify">Требуются уточнения</span><span class="reg-status-item__text">Администратор отметил поля — вы получите письмо</span></div>
+              <div class="reg-status-item"><span class="lk-badge lk-badge--done">Завершена</span><span class="reg-status-item__text">Заявка одобрена — кабинет активирован</span></div>
+              <div class="reg-status-item"><span class="lk-badge lk-badge--rejected">Отклонена</span><span class="reg-status-item__text">Причина в письме + возможность повторной подачи</span></div>
+            </div>
+          </div>
+
+          <div class="reg-actions">
+            <button class="lk-btn lk-btn--outline" type="button" data-reg-reset>← К выбору роли</button>
+            <a class="lk-btn lk-btn--primary" href="lk.html">Перейти в личный кабинет</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         СЦЕНАРИЙ 3: СТРОИТЕЛЬНАЯ КОМПАНИЯ (3 шага + финал)
+         ============================================================ -->
+    <section class="reg-shell" data-reg-flow="builder" hidden>
+      <aside class="reg-aside">
+        <div>
+          <h2 class="reg-aside__title">Давайте знакомиться</h2>
+          <p class="reg-aside__lead">Заполните форму — после проверки получите доступ к BIM-библиотеке Schüco и личному кабинету.</p>
+        </div>
+        <ul class="reg-perks">
+          <li><span class="reg-perks__dot">✓</span><span>Доступ к проектной документации и базе знаний</span></li>
+          <li><span class="reg-perks__dot">✓</span><span>Прямые консультации со специалистами Schüco</span></li>
+          <li><span class="reg-perks__dot">✓</span><span>Публичная страница компании на Schüco Home</span></li>
+          <li><span class="reg-perks__dot">✓</span><span>Подбор проверенных переработчиков Schüco</span></li>
+        </ul>
+      </aside>
+
+      <div class="reg-main">
+        <div class="reg-stepper" data-stepper>
+          <div class="reg-step is-active"><span class="reg-step__num">1</span><span class="reg-step__label">Компания</span></div>
+          <span class="reg-step-line"></span>
+          <div class="reg-step"><span class="reg-step__num">2</span><span class="reg-step__label">Контакты</span></div>
+          <span class="reg-step-line"></span>
+          <div class="reg-step"><span class="reg-step__num">3</span><span class="reg-step__label">Публикация</span></div>
+        </div>
+
+        <!-- Шаг 1: Компания -->
+        <div class="reg-form" data-step="1">
+          <div>
+            <h2 class="reg-form__title">Данные компании</h2>
+            <p class="reg-form__sub">Основная информация о строительной компании</p>
+          </div>
+
+          <div class="reg-group">
+            <div class="lk-field-row">
+              <input class="lk-input" type="text" placeholder="Название компании / торговая марка *">
+              <input class="lk-input" type="text" placeholder="ИНН (если есть)">
+            </div>
+            <div class="lk-field">
+              <input class="lk-input" type="text" placeholder="Юридическое лицо *">
+              <div class="lk-callout">ЮЛ желательно, но допускаются ИП и самозанятые согласно политике Schüco.</div>
+            </div>
+            <div class="lk-field">
+              <span>Ваш аватар</span>
+              <label class="lk-upload">
+                <input type="file" accept=".jpg,.jpeg,.png,.pdf,.zip">
+                <span class="lk-upload__text">JPG, PNG, PDF, ZIP. До 50 МБ</span>
+                <span class="lk-upload__file" hidden></span>
+              </label>
+            </div>
+            <div class="lk-field">
+              <span>Документы ЮЛ / ИП (при наличии)</span>
+              <label class="lk-upload">
+                <input type="file" accept=".pdf,.jpg,.jpeg,.png">
+                <span class="lk-upload__text">Выписка из ЕГРЮЛ / ЕГРИП (PDF, JPG, PNG)</span>
+                <span class="lk-upload__file" hidden></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="reg-group">
+            <h3 class="reg-section-title">Профиль работы компании (опционально)</h3>
+            <div class="lk-field">
+              <span>Тип объектов</span>
+              <div class="lk-chips">
+                <button class="lk-chip is-active" type="button" data-chip-toggle>ИЖС</button>
+                <button class="lk-chip" type="button" data-chip-toggle>Многоквартирные дома</button>
+                <button class="lk-chip" type="button" data-chip-toggle>Коммерческие объекты</button>
+                <button class="lk-chip" type="button" data-chip-toggle>Промышленные здания</button>
+              </div>
+            </div>
+            <input class="lk-input" type="text" placeholder="Регионы присутствия">
+          </div>
+
+          <p class="reg-legal">Заполнив форму, вы принимаете условия соглашения об использовании сайта, в том числе в части обработки и использования персональных данных.</p>
+
+          <div class="reg-actions">
+            <button class="lk-btn lk-btn--outline" type="button" data-step-prev>← Назад</button>
+            <button class="lk-btn lk-btn--primary" type="button" data-step-next>Далее</button>
+          </div>
+        </div>
+
+        <!-- Шаг 2: Контакты -->
+        <div class="reg-form" data-step="2" hidden>
+          <div>
+            <h2 class="reg-form__title">Контактные данные</h2>
+            <p class="reg-form__sub">Укажите руководителя и ответственного специалиста</p>
+          </div>
+
+          <div class="reg-group">
+            <h3 class="reg-section-title">Руководитель компании</h3>
+            <div class="lk-field-row">
+              <input class="lk-input" type="text" placeholder="ФИО руководителя *">
+              <input class="lk-input" type="tel" placeholder="Телефон руководителя *">
+            </div>
+            <input class="lk-input" type="email" placeholder="E-mail руководителя *">
+          </div>
+
+          <div class="reg-group">
+            <h3 class="reg-section-title">Специалист по взаимодействию с подрядчиками (по окнам)</h3>
+            <div class="lk-field-row">
+              <input class="lk-input" type="text" placeholder="ФИО специалиста *">
+              <input class="lk-input" type="tel" placeholder="Телефон специалиста *">
+            </div>
+            <input class="lk-input" type="email" placeholder="E-mail специалиста *">
+            <input class="lk-input" type="url" placeholder="Сайт компании">
+          </div>
+
+          <div class="reg-actions">
+            <button class="lk-btn lk-btn--outline" type="button" data-step-prev>← Назад</button>
+            <button class="lk-btn lk-btn--primary" type="button" data-step-next>Далее</button>
+          </div>
+        </div>
+
+        <!-- Шаг 3: Публикация -->
+        <div class="reg-form" data-step="3" hidden>
+          <div>
+            <h2 class="reg-form__title">Публикация страницы</h2>
+            <p class="reg-form__sub">Выберите режим присутствия на платформе Schüco Home</p>
+          </div>
+
+          <div class="reg-group">
+            <h3 class="reg-section-title">Публичная страница на сайте Schüco Home</h3>
+            <div class="lk-radio-grid">
+              <label class="lk-radio-card is-checked">
+                <input type="radio" name="bld-pub" checked>
+                <span>
+                  <span class="lk-radio-card__title">Опубликовать страницу</span>
+                  <span class="lk-radio-card__desc">Данные доступны всем пользователям платформы</span>
+                </span>
+              </label>
+              <label class="lk-radio-card">
+                <input type="radio" name="bld-pub">
+                <span>
+                  <span class="lk-radio-card__title">Не публиковать страницу</span>
+                  <span class="lk-radio-card__desc">Данные доступны только внутри системы</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="reg-actions">
+            <button class="lk-btn lk-btn--outline" type="button" data-step-prev>← Назад</button>
+            <button class="lk-btn lk-btn--primary" type="button" data-step-next>Отправить заявку</button>
+          </div>
+        </div>
+
+        <!-- Шаг 4: Заявка отправлена -->
+        <div class="reg-form" data-step="4" hidden>
+          <span class="reg-done-icon">✓</span>
+          <div>
+            <h2 class="reg-form__title">Заявка отправлена!</h2>
+            <p class="reg-form__sub">Статус заявки — «Новая». После одобрения вы получите доступ к кабинету, BIM-библиотеке и базе знаний Schüco.</p>
+          </div>
+
+          <div class="reg-status-box">
+            <h3 class="reg-section-title">Возможные статусы заявки</h3>
+            <div class="reg-status-list">
+              <div class="reg-status-item"><span class="lk-badge lk-badge--new">Новая</span><span class="reg-status-item__text">Заявка принята, ожидает рассмотрения</span></div>
+              <div class="reg-status-item"><span class="lk-badge lk-badge--review">На проверке</span><span class="reg-status-item__text">Администратор изучает документы</span></div>
+              <div class="reg-status-item"><span class="lk-badge lk-badge--clarify">Требуются уточнения</span><span class="reg-status-item__text">Администратор отметил поля — вы получите письмо</span></div>
+              <div class="reg-status-item"><span class="lk-badge lk-badge--done">Завершена</span><span class="reg-status-item__text">Заявка одобрена — кабинет активирован</span></div>
+              <div class="reg-status-item"><span class="lk-badge lk-badge--rejected">Отклонена</span><span class="reg-status-item__text">Причина в письме + возможность повторной подачи</span></div>
+            </div>
+          </div>
+
+          <div class="reg-actions">
+            <button class="lk-btn lk-btn--outline" type="button" data-reg-reset>← К выбору роли</button>
+            <a class="lk-btn lk-btn--primary" href="lk.html">Перейти в личный кабинет</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/lk.js"></script>
+</body>
+</html>

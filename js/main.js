@@ -223,6 +223,10 @@
         invalid.focus();
         return;
       }
+      if (layer.getAttribute('data-dialog') === 'login') {
+        window.location.href = 'lk.html';
+        return;
+      }
       status.textContent = 'Форма заполнена. Отправка будет подключена при интеграции с 1С-Битрикс.';
     });
   });

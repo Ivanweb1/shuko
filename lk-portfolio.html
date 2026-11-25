@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Портфолио — Личный кабинет Schüco Home</title>
+  <link rel="preload" href="assets/fonts/Stem_Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/lk.css">
+</head>
+<body>
+
+  <header class="lk-header">
+    <div class="lk-header__in">
+      <div class="lk-header__left">
+        <button class="lk-burger" type="button" data-lk-burger aria-label="Меню кабинета" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+        <a class="lk-logo" href="index.html">SchücoHome</a>
+      </div>
+      <div class="lk-header__right">
+        <a class="lk-icon-btn" href="lk-notifications.html" data-open-notif aria-label="Уведомления">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+          <span class="lk-icon-btn__dot"></span>
+        </a>
+        <a class="lk-icon-btn" href="register.html" title="Регистрация / Выход" aria-label="Регистрация">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="lk-shell">
+    <aside class="lk-sidebar" data-lk-sidebar>
+      <nav class="lk-nav" aria-label="Разделы кабинета">
+        <a class="lk-nav__item" href="lk.html">Профиль компании</a>
+        <a class="lk-nav__item is-active" href="lk-portfolio.html">Портфолио</a>
+        <a class="lk-nav__item" href="lk-projects.html">Проекты</a>
+        <a class="lk-nav__item" href="systems.html">База знаний</a>
+        <a class="lk-nav__item" href="lk-chat.html">Консультации <span class="lk-nav__badge">2</span></a>
+        <a class="lk-nav__item" href="lk-notifications.html">Уведомления</a>
+      </nav>
+      <div class="lk-user">
+        <img class="lk-user__ava" src="assets/img/lk/ee1a910a001b.png" alt="">
+        <div>
+          <div class="lk-user__name">АлюмПроГрупп</div>
+          <div class="lk-user__role">Производитель</div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="lk-content" data-portfolio-app>
+
+      <!-- Тёмный баннер «Портфолио» (1440x150 bg=#000) -->
+      <section class="lk-card lk-card--dark lk-profile-banner">
+        <div style="max-width:485px;">
+          <h1 class="lk-profile-banner__name" style="color:#fff;">Портфолио</h1>
+          <p class="lk-profile-banner__desc">Управляйте своими проектами и формируйте портфолио. Добавляйте новые проекты, отслеживайте их статус и публикуйте только те, которые готовы показать клиентам.</p>
+        </div>
+        <div class="lk-profile-banner__actions">
+          <a class="lk-btn lk-btn--lg lk-btn--outline-dark" href="partner.html" target="_blank" rel="noopener">Публичная страница</a>
+          <button class="lk-btn lk-btn--lg lk-btn--white" type="button" data-open-project-modal="add">Добавить проект</button>
+        </div>
+      </section>
+
+      <!-- Сетка проектов портфолио -->
+      <section>
+        <div class="lk-sec-head">
+          <h2 class="lk-sec-head__title">Портфолио</h2>
+          <span class="lk-sec-head__meta">6 проектов</span>
+        </div>
+
+        <div class="lk-tabs" style="margin-bottom:12px;">
+          <button class="lk-tab is-active" type="button" data-port-tab="all">Все</button>
+          <button class="lk-tab" type="button" data-port-tab="published">Опубликованные</button>
+          <button class="lk-tab" type="button" data-port-tab="draft">Черновики</button>
+        </div>
+
+        <div class="lk-port-grid">
+          <article class="lk-pcard" data-port-card data-status="published">
+            <div class="lk-pcard__top">
+              <div>
+                <div class="lk-pcard__name">Chalet en El Escorial</div>
+                <div class="lk-pcard__date">15 января 2025</div>
+              </div>
+              <div class="lk-pcard__right">
+                <span class="lk-badge lk-badge--done">Завершён</span>
+                <button class="lk-pcard__menu-btn" type="button" data-open-project-modal="edit" title="Редактировать" aria-label="Редактировать">⋮</button>
+              </div>
+            </div>
+            <img class="lk-pcard__img" src="assets/img/lk/8b5269b04f14.png" alt="">
+            <div class="lk-pcard__meta">
+              <span>Madrid, Spain</span>
+              <span>Архитектор: Бюро «Форма»</span>
+            </div>
+            <div class="lk-pcard__tags">
+              <span class="lk-pcard__tag">AWS 75 BS.SI</span>
+              <span class="lk-pcard__tag">FW 50+</span>
+            </div>
+            <div class="lk-pcard__foot">
+              <button class="lk-btn lk-btn--lg lk-btn--outline-muted lk-btn--full" type="button" data-toggle-pub>Снять с публикации</button>
+            </div>
+          </article>
+
+          <article class="lk-pcard" data-port-card data-status="published">
+            <div class="lk-pcard__top">
+              <div>
+                <div class="lk-pcard__name">F+C House</div>
+                <div class="lk-pcard__date">15 января 2025</div>
+              </div>
+              <div class="lk-pcard__right">
+                <span class="lk-badge lk-badge--done">Завершён</span>
+                <button class="lk-pcard__menu-btn" type="button" data-open-project-modal="edit" title="Редактировать" aria-label="Редактировать">⋮</button>
+              </div>
+            </div>
+            <img class="lk-pcard__img" src="assets/img/lk/8dc68d653d1a.png" alt="">
+            <div class="lk-pcard__meta">
+              <span>Verona, Italy</span>
+              <span>Архитектор: Бюро «Форма»</span>
+            </div>
+            <div class="lk-pcard__tags">
+              <span class="lk-pcard__tag">AWS 75 BS.SI</span>
+              <span class="lk-pcard__tag">FW 50+</span>
+            </div>
+            <div class="lk-pcard__foot">
+              <button class="lk-btn lk-btn--lg lk-btn--outline-muted lk-btn--full" type="button" data-toggle-pub>Снять с публикации</button>
+            </div>
+          </article>
+
+          <article class="lk-pcard" data-port-card data-status="published">
+            <div class="lk-pcard__top">
+              <div>
+                <div class="lk-pcard__name">Private Home</div>
+                <div class="lk-pcard__date">15 января 2025</div>
+              </div>
+              <div class="lk-pcard__right">
+                <span class="lk-badge lk-badge--done">Завершён</span>
+                <button class="lk-pcard__menu-btn" type="button" data-open-project-modal="edit" title="Редактировать" aria-label="Редактировать">⋮</button>
+              </div>
+            </div>
+            <img class="lk-pcard__img" src="assets/img/lk/39e1a6b9e151.png" alt="">
+            <div class="lk-pcard__meta">
+              <span>Molde, Norway</span>
+              <span>Архитектор: Бюро «Форма»</span>
+            </div>
+            <div class="lk-pcard__tags">
+              <span class="lk-pcard__tag">AWS 75 BS.SI</span>
+              <span class="lk-pcard__tag">FW 50+</span>
+            </div>
+            <div class="lk-pcard__foot">
+              <button class="lk-btn lk-btn--lg lk-btn--outline-muted lk-btn--full" type="button" data-toggle-pub>Снять с публикации</button>
+            </div>
+          </article>
+
+          <article class="lk-pcard" data-port-card data-status="draft">
+            <div class="lk-pcard__top">
+              <div>
+                <div class="lk-pcard__name">Villa Reilstad</div>
+                <div class="lk-pcard__date">20 января 2025</div>
+              </div>
+              <div class="lk-pcard__right">
+                <span class="lk-badge lk-badge--draft">Черновик</span>
+                <button class="lk-pcard__menu-btn" type="button" data-open-project-modal="edit" title="Редактировать" aria-label="Редактировать">⋮</button>
+              </div>
+            </div>
+            <img class="lk-pcard__img" src="assets/img/lk/bdb2ea0eb224.png" alt="">
+            <div class="lk-pcard__meta">
+              <span>Reilstad, Norway</span>
+              <span>Архитектор: Бюро «Форма»</span>
+            </div>
+            <div class="lk-pcard__tags">
+              <span class="lk-pcard__tag">AWS 75 BS.SI</span>
+              <span class="lk-pcard__tag">ADS 65 HD</span>
+            </div>
+            <div class="lk-pcard__foot">
+              <button class="lk-btn lk-btn--lg lk-btn--outline-muted lk-btn--full" type="button" data-toggle-pub>Опубликовать</button>
+            </div>
+          </article>
+
+          <article class="lk-pcard" data-port-card data-status="published">
+            <div class="lk-pcard__top">
+              <div>
+                <div class="lk-pcard__name">Клубный дом, Рублёвка</div>
+                <div class="lk-pcard__date">12 февраля 2025</div>
+              </div>
+              <div class="lk-pcard__right">
+                <span class="lk-badge lk-badge--done">Завершён</span>
+                <button class="lk-pcard__menu-btn" type="button" data-open-project-modal="edit" title="Редактировать" aria-label="Редактировать">⋮</button>
+              </div>
+            </div>
+            <img class="lk-pcard__img" src="assets/img/lk/0961e09a3b44.png" alt="">
+            <div class="lk-pcard__meta">
+              <span>Москва, Россия</span>
+              <span>Архитектор: Бюро «Форма»</span>
+            </div>
+            <div class="lk-pcard__tags">
+              <span class="lk-pcard__tag">ASE 67 PD</span>
+              <span class="lk-pcard__tag">FWS 50</span>
+            </div>
+            <div class="lk-pcard__foot">
+              <button class="lk-btn lk-btn--lg lk-btn--outline-muted lk-btn--full" type="button" data-toggle-pub>Снять с публикации</button>
+            </div>
+          </article>
+
+          <article class="lk-pcard" data-port-card data-status="published">
+            <div class="lk-pcard__top">
+              <div>
+                <div class="lk-pcard__name">Резиденция Репино</div>
+                <div class="lk-pcard__date">04 марта 2025</div>
+              </div>
+              <div class="lk-pcard__right">
+                <span class="lk-badge lk-badge--done">Завершён</span>
+                <button class="lk-pcard__menu-btn" type="button" data-open-project-modal="edit" title="Редактировать" aria-label="Редактировать">⋮</button>
+              </div>
+            </div>
+            <img class="lk-pcard__img" src="assets/img/lk/c9b39dee6c0c.png" alt="">
+            <div class="lk-pcard__meta">
+              <span>Санкт-Петербург</span>
+              <span>Архитектор: Анна Морозова</span>
+            </div>
+            <div class="lk-pcard__tags">
+              <span class="lk-pcard__tag">AWS 90.SI+</span>
+              <span class="lk-pcard__tag">ASE 80.HI</span>
+            </div>
+            <div class="lk-pcard__foot">
+              <button class="lk-btn lk-btn--lg lk-btn--outline-muted lk-btn--full" type="button" data-toggle-pub>Снять с публикации</button>
+            </div>
+          </article>
+        </div>
+
+        <div class="lk-port-actions">
+          <button class="lk-btn lk-btn--lg lk-btn--primary" type="button" data-open-project-modal="add">Добавить проект</button>
+          <a class="lk-btn lk-btn--lg lk-btn--outline-muted" href="lk-projects.html">Перейти в таблицу проектов</a>
+        </div>
+      </section>
+
+      <!-- Таблица заявок/проектов под портфолио (как в макете) -->
+      <section class="lk-table-card" data-projects-table>
+        <div class="lk-table-bar">
+          <label class="lk-search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,.4)" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" data-table-search placeholder="Поиск по названию, номеру, поставщику...">
+          </label>
+          <button class="lk-btn lk-btn--lg lk-btn--primary" type="button" data-open-project-modal="add">Добавить проект</button>
+        </div>
+
+        <div class="lk-tabs">
+          <button class="lk-tab is-active" type="button" data-table-tab="all">Все</button>
+          <button class="lk-tab" type="button" data-table-tab="review">На проверке</button>
+          <button class="lk-tab" type="button" data-table-tab="draft">Черновик</button>
+          <button class="lk-tab" type="button" data-table-tab="done">Завершена</button>
+        </div>
+
+        <div class="lk-table-wrap">
+          <table class="lk-table">
+            <thead>
+              <tr><th>№</th><th>Название</th><th>Статус</th><th>Дата</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr data-status="review"><td>54623</td><td>Остекление коттеджа</td><td><span class="lk-badge lk-badge--review">На проверке</span></td><td>30.03.2026</td><td><button class="lk-pcard__menu-btn" type="button" data-open-project-modal="edit">⋮</button></td></tr>
+              <tr data-status="draft"><td>54624</td><td>Вилла на Новой Риге</td><td><span class="lk-badge lk-badge--draft">Черновик</span></td><td>30.03.2026</td><td><button class="lk-pcard__menu-btn" type="button" data-open-project-modal="edit">⋮</button></td></tr>
+              <tr data-status="rejected"><td>54625</td><td>Панорамная терраса</td><td><span class="lk-badge lk-badge--rejected">Отклонена</span></td><td>30.03.2026</td><td><button class="lk-pcard__menu-btn" type="button" data-open-project-modal="edit">⋮</button></td></tr>
+              <tr data-status="done"><td>54626</td><td>Клубный дом, Рублёвка</td><td><span class="lk-badge lk-badge--done">Завершена</span></td><td>30.03.2026</td><td><button class="lk-pcard__menu-btn" type="button" data-open-project-modal="edit">⋮</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Модалка добавления / редактирования проекта с drag-and-drop фото -->
+  <div class="lk-overlay lk-overlay--center" data-modal data-project-modal hidden>
+    <div class="lk-modal lk-modal--wide" role="dialog" aria-modal="true">
+      <div class="lk-modal__head">
+        <h2 class="lk-modal__title" data-proj-modal-title>Добавить новый проект</h2>
+        <button class="lk-modal__close" type="button" data-close-modal aria-label="Закрыть">×</button>
+      </div>
+
+      <form class="reg-group" data-project-form>
+        <div>
+          <div class="lk-field__label" style="margin-bottom:8px;">Загрузите фото проекта</div>
+          <div class="lk-photo-row" data-photo-sortable>
+            <label class="lk-photo-add">
+              <input type="file" multiple accept=".jpg,.jpeg,.png,.pdf,.zip">
+              <span>+</span>
+              <span>PDF, ZIP<br>до 50 МБ</span>
+            </label>
+            <div class="lk-photo-item" draggable="true">
+              <img src="assets/img/lk/bdb2ea0eb224.png" alt="">
+              <button class="lk-photo-item__del" type="button" aria-label="Удалить фото">×</button>
+            </div>
+            <div class="lk-photo-item" draggable="true">
+              <img src="assets/img/lk/0961e09a3b44.png" alt="">
+              <button class="lk-photo-item__del" type="button" aria-label="Удалить фото">×</button>
+            </div>
+            <div class="lk-photo-item" draggable="true">
+              <img src="assets/img/lk/c9b39dee6c0c.png" alt="">
+              <button class="lk-photo-item__del" type="button" aria-label="Удалить фото">×</button>
+            </div>
+          </div>
+          <div class="lk-photo-hint">Перетащите, чтобы изменить порядок</div>
+        </div>
+
+        <input class="lk-input" type="url" placeholder="Или добавьте ссылку на папку с проектами">
+
+        <div class="lk-field-row">
+          <input class="lk-input" type="text" value="Villa Reilstad" placeholder="Название объекта *">
+          <input class="lk-input" type="text" value="Reilstad, Norway" placeholder="Локация *">
+        </div>
+
+        <div class="lk-field">
+          <span class="lk-field__label">Системы Schüco в проекте</span>
+          <div class="lk-chips">
+            <button class="lk-chip is-active" type="button" data-chip-toggle>AWS 75 BS.SI</button>
+            <button class="lk-chip is-active" type="button" data-chip-toggle>ADS 65 HD</button>
+            <button class="lk-chip" type="button" data-chip-toggle>FW 50+</button>
+            <button class="lk-chip" type="button" data-chip-toggle>ASE 67 PD</button>
+          </div>
+        </div>
+
+        <div class="lk-toggle-row">
+          <div>
+            <div class="lk-toggle-row__title">Показывать системы Schüco на странице</div>
+            <div class="lk-toggle-row__desc">Подтверждённые компетенции компании</div>
+          </div>
+          <label class="lk-switch">
+            <input type="checkbox" checked>
+            <span class="lk-switch__slider"></span>
+          </label>
+        </div>
+
+        <div class="lk-field">
+          <span class="lk-field__label">Статус проекта</span>
+          <select class="lk-select" data-proj-status>
+            <option value="work">В работе</option>
+            <option value="done">Завершён</option>
+          </select>
+        </div>
+
+        <div class="lk-field-row" data-proj-done-fields hidden>
+          <input class="lk-input" type="text" placeholder="Год завершения (например, 2025)">
+          <input class="lk-input" type="text" placeholder="Площадь остекления, кв.м.">
+        </div>
+
+        <textarea class="lk-textarea" placeholder="Описание проекта"></textarea>
+
+        <div class="reg-actions">
+          <button class="lk-btn lk-btn--outline" type="button" data-close-modal>Назад</button>
+          <button class="lk-btn lk-btn--primary" type="submit">Сохранить изменения</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Панель уведомлений -->
+  <div class="lk-overlay" data-notif-drawer hidden>
+    <div class="lk-notif-panel" data-notif-scope>
+      <div class="lk-modal__head">
+        <h2 class="lk-modal__title">Уведомления</h2>
+        <button class="lk-modal__close" type="button" data-close-modal aria-label="Закрыть">×</button>
+      </div>
+      <div class="lk-tabs" style="padding:0;">
+        <button class="lk-tab is-active" type="button" data-notif-tab="all">Все</button>
+        <button class="lk-tab" type="button" data-notif-tab="projects">Проекты</button>
+        <button class="lk-tab" type="button" data-notif-tab="chat">Консультации</button>
+        <button class="lk-tab" type="button" data-notif-tab="docs">База знаний</button>
+      </div>
+      <div class="lk-notif-list">
+        <article class="lk-notif" data-notif-item data-cat="projects">
+          <div class="lk-notif__top"><span class="lk-notif__title">Проект одобрен администратором</span><span class="lk-notif__meta">Сегодня, 12:00 <button class="lk-notif__del" type="button" data-notif-del>×</button></span></div>
+          <div class="lk-notif__text">«Клубный дом, Рублёвка» прошёл модерацию и теперь виден на вашей публичной странице.</div>
+        </article>
+        <article class="lk-notif" data-notif-item data-cat="chat">
+          <div class="lk-notif__top"><span class="lk-notif__title">Ответ на консультацию</span><span class="lk-notif__meta">Сегодня, 12:00 <button class="lk-notif__del" type="button" data-notif-del>×</button></span></div>
+          <div class="lk-notif__text">Специалист Schüco ответил на ваш вопрос по монтажу AWS 75 и приложил документацию.</div>
+        </article>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/lk.js"></script>
+</body>
+</html>
