@@ -41,7 +41,9 @@ body {
   color: var(--lk-text);
   background: var(--lk-bg);
   -webkit-font-smoothing: antialiased;
+  font-synthesis: none;
 }
+h1, h2, h3, h4 { font-weight: 500; }
 body.is-reg { background: var(--lk-surface); }
 body.is-reg .lk-header { border-bottom: 0; }
 body.is-reg .lk-icon-btn { color: var(--lk-text-40); }
