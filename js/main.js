@@ -384,7 +384,14 @@
       wide.matches ? go() : setTimeout(go, 330);
     }
     if (opts.scroll && wide.matches) {
-      list.scrollTo({ top: item.el.offsetTop - list.offsetTop, behavior: 'smooth' });
+      var scrollToItem = function (behavior) {
+        var top = list.scrollTop + item.el.getBoundingClientRect().top - list.getBoundingClientRect().top;
+        list.scrollTo({ top: Math.max(0, top), behavior: behavior });
+      };
+      scrollToItem('smooth');
+      setTimeout(function () {
+        if (current === item) scrollToItem('smooth');
+      }, 320);
     }
   }
 
