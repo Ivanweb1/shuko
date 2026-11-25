@@ -163,12 +163,14 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .lk-btn--lg { height: 52px; }
 .lk-btn--xl { height: 56px; }
-.lk-btn--white-flat {
-  background: #fff;
-  color: #000;
+.lk-btn--news-all {
+  background: #000;
+  color: #fff;
   border: 0;
+  justify-content: space-between;
+  padding: 0 24px;
 }
-.lk-btn--white-flat:hover { background: #ececee; }
+.lk-btn--news-all:hover { background: #222; }
 .lk-btn--primary {
   background: var(--lk-accent);
   color: #fff;
@@ -884,10 +886,10 @@ ul { list-style: none; margin: 0; padding: 0; }
   border-radius: 14px;
   font-size: 14px;
   line-height: 20px;
-  color: #000;
+  color: var(--lk-text-40);
   transition: background-color var(--lk-ease), color var(--lk-ease);
 }
-.lk-nav__item:hover { background: rgba(244, 244, 245, .6); }
+.lk-nav__item:hover { color: #000; background: rgba(244, 244, 245, .6); }
 .lk-nav__item.is-active {
   background: var(--lk-bg);
   border-radius: 0;
@@ -897,7 +899,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   width: 20px;
   height: 20px;
   flex: none;
-  color: #000;
+  color: currentColor;
 }
 .lk-nav__badge {
   margin-left: auto;
@@ -922,7 +924,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .lk-user__ava {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 4px;
   object-fit: cover;
   background: #e5e5e5;
   flex: none;
@@ -1035,7 +1037,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   font-size: 16px;
   line-height: 22px;
   text-transform: uppercase;
-  color: #000;
+  color: var(--lk-text-40);
 }
 .lk-sec-head__toggle {
   display: inline-flex;
@@ -1044,10 +1046,10 @@ ul { list-style: none; margin: 0; padding: 0; }
   font-size: 16px;
   line-height: 22px;
   text-transform: uppercase;
-  color: #000;
-  transition: opacity var(--lk-ease);
+  color: var(--lk-text-40);
+  transition: color var(--lk-ease);
 }
-.lk-sec-head__toggle:hover { opacity: .65; }
+.lk-sec-head__toggle:hover { color: #000; }
 
 /* Profile details 2-column grid */
 .lk-details-grid {
@@ -1101,14 +1103,27 @@ ul { list-style: none; margin: 0; padding: 0; }
   gap: 8px;
 }
 .lk-projects-widget__thumbs {
+  position: relative;
   display: flex;
-  gap: 8px;
+  align-items: center;
+  padding: 6px 8px;
   flex: none;
 }
 .lk-projects-widget__thumbs img {
-  width: 169px;
+  width: 170px;
   height: 122px;
   object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .14);
+}
+.lk-projects-widget__thumbs img:first-child {
+  position: relative;
+  z-index: 2;
+  transform: rotate(-3deg);
+}
+.lk-projects-widget__thumbs img:last-child {
+  margin-left: -24px;
+  margin-top: 10px;
+  transform: rotate(3deg);
 }
 
 /* ---------- Tabs ---------- */
@@ -1164,6 +1179,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 .lk-pcard__name {
   font-size: 14px;
   line-height: 20px;
+  text-transform: uppercase;
   color: var(--lk-accent);
 }
 .lk-pcard__date {
@@ -1195,9 +1211,20 @@ ul { list-style: none; margin: 0; padding: 0; }
 .lk-pcard__meta {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   font-size: 14px;
   line-height: 20px;
+  color: var(--lk-text-40);
+}
+.lk-pcard__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.lk-pcard__meta svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
   color: var(--lk-text-40);
 }
 .lk-pcard__tags {
@@ -1246,6 +1273,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   margin: 0;
   font-size: 14px;
   line-height: 20px;
+  text-transform: uppercase;
   color: var(--lk-accent);
 }
 .lk-ncard__text {
@@ -1727,8 +1755,8 @@ ul { list-style: none; margin: 0; padding: 0; }
   .lk-radio-grid {
     grid-template-columns: 1fr;
   }
-  .lk-projects-widget__thumbs { width: 100%; }
-  .lk-projects-widget__thumbs img { flex: 1; width: 0; }
+  .lk-projects-widget__thumbs { width: 100%; padding: 0; gap: 8px; }
+  .lk-projects-widget__thumbs img { flex: 1; width: 0; box-shadow: none; transform: none !important; margin: 0 !important; }
   .lk-profile-banner__actions { width: 100%; }
   .lk-profile-banner__actions .lk-btn { flex: 1; }
   .lk-table-bar { flex-direction: column; align-items: stretch; }

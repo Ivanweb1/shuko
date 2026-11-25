@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Личный кабинет — Schüco Home</title>
   <link rel="preload" href="assets/fonts/Stem_Medium.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/lk.css?v=5">
+  <link rel="stylesheet" href="css/lk.css?v=6">
 </head>
 <body>
 
@@ -61,7 +61,6 @@
         <a class="lk-nav__item" href="lk-chat.html">
           <svg class="lk-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.4 0-2.7-.3-3.9-.9L3 21l1.9-5.1A8.5 8.5 0 1 1 21 11.5Z"/></svg>
           <span>Консультации</span>
-          <span class="lk-nav__badge">2</span>
         </a>
       </nav>
 
@@ -144,11 +143,9 @@
             <a class="lk-btn lk-btn--lg lk-btn--outline-muted lk-btn--full" href="lk-chat.html">Запросить изменение</a>
           </div>
         </div>
-      </section>
 
-      <!-- Проекты в работе -->
-      <section data-role-projects>
-        <div class="lk-projects-widget">
+        <!-- Проекты в работе (идёт сразу под заголовком «Управление профилем» как в макете) -->
+        <div class="lk-projects-widget" data-role-projects>
           <div class="lk-projects-widget__left">
             <div>
               <div class="lk-sec-head" style="padding:0;margin-bottom:8px;">
@@ -160,7 +157,7 @@
             </div>
             <div class="lk-projects-widget__btns">
               <a class="lk-btn lk-btn--lg lk-btn--primary" href="lk-portfolio.html">Добавить проект</a>
-              <a class="lk-btn lk-btn--lg lk-btn--outline-muted" href="lk-projects.html">Перейти</a>
+              <a class="lk-btn lk-btn--lg lk-btn--outline" href="lk-projects.html">Перейти</a>
             </div>
           </div>
           <div class="lk-projects-widget__thumbs">
@@ -185,12 +182,12 @@
                 <div class="lk-pcard__name">Chalet en El Escorial</div>
                 <div class="lk-pcard__date">15 января 2025</div>
               </div>
-              <span class="lk-badge lk-badge--done">Завершён</span>
+              <div class="lk-pcard__right"><span class="lk-badge lk-badge--done">Завершён</span><a class="lk-pcard__menu-btn" href="lk-portfolio.html" aria-label="Меню">⋮</a></div>
             </div>
             <img class="lk-pcard__img" src="assets/img/lk/8b5269b04f14.png" alt="Chalet en El Escorial">
             <div class="lk-pcard__meta">
-              <span>Madrid, Spain</span>
-              <span>Архитектор: Бюро «Форма»</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6-5.4-6-10a6 6 0 1 1 12 0c0 4.6-6 10-6 10Z"/><circle cx="12" cy="11" r="2"/></svg>Madrid, Spain</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.3-5 8-5s6.5 1.5 8 5"/></svg>Архитектор: Бюро «Форма»</span>
             </div>
             <div class="lk-pcard__tags">
               <span class="lk-pcard__tag">AWS 75 BS.SI</span>
@@ -207,12 +204,12 @@
                 <div class="lk-pcard__name">F+C House</div>
                 <div class="lk-pcard__date">15 января 2025</div>
               </div>
-              <span class="lk-badge lk-badge--done">Завершён</span>
+              <div class="lk-pcard__right"><span class="lk-badge lk-badge--done">Завершён</span><a class="lk-pcard__menu-btn" href="lk-portfolio.html" aria-label="Меню">⋮</a></div>
             </div>
             <img class="lk-pcard__img" src="assets/img/lk/8dc68d653d1a.png" alt="F+C House">
             <div class="lk-pcard__meta">
-              <span>Verona, Italy</span>
-              <span>Архитектор: Бюро «Форма»</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6-5.4-6-10a6 6 0 1 1 12 0c0 4.6-6 10-6 10Z"/><circle cx="12" cy="11" r="2"/></svg>Verona, Italy</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.3-5 8-5s6.5 1.5 8 5"/></svg>Архитектор: Бюро «Форма»</span>
             </div>
             <div class="lk-pcard__tags">
               <span class="lk-pcard__tag">AWS 75 BS.SI</span>
@@ -229,12 +226,12 @@
                 <div class="lk-pcard__name">Private Home</div>
                 <div class="lk-pcard__date">15 января 2025</div>
               </div>
-              <span class="lk-badge lk-badge--done">Завершён</span>
+              <div class="lk-pcard__right"><span class="lk-badge lk-badge--done">Завершён</span><a class="lk-pcard__menu-btn" href="lk-portfolio.html" aria-label="Меню">⋮</a></div>
             </div>
             <img class="lk-pcard__img" src="assets/img/lk/39e1a6b9e151.png" alt="Private Home">
             <div class="lk-pcard__meta">
-              <span>Molde, Norway</span>
-              <span>Архитектор: Бюро «Форма»</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6-5.4-6-10a6 6 0 1 1 12 0c0 4.6-6 10-6 10Z"/><circle cx="12" cy="11" r="2"/></svg>Molde, Norway</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.3-5 8-5s6.5 1.5 8 5"/></svg>Архитектор: Бюро «Форма»</span>
             </div>
             <div class="lk-pcard__tags">
               <span class="lk-pcard__tag">AWS 75 BS.SI</span>
@@ -251,12 +248,12 @@
                 <div class="lk-pcard__name">Villa S</div>
                 <div class="lk-pcard__date">12 января 2025</div>
               </div>
-              <span class="lk-badge lk-badge--done">Завершён</span>
+              <div class="lk-pcard__right"><span class="lk-badge lk-badge--done">Завершён</span><a class="lk-pcard__menu-btn" href="lk-portfolio.html" aria-label="Меню">⋮</a></div>
             </div>
             <img class="lk-pcard__img" src="assets/img/lk/0961e09a3b44.png" alt="Villa S">
             <div class="lk-pcard__meta">
-              <span>Москва, Россия</span>
-              <span>Архитектор: Бюро «Форма»</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6-5.4-6-10a6 6 0 1 1 12 0c0 4.6-6 10-6 10Z"/><circle cx="12" cy="11" r="2"/></svg>Москва, Россия</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.3-5 8-5s6.5 1.5 8 5"/></svg>Архитектор: Бюро «Форма»</span>
             </div>
             <div class="lk-pcard__tags">
               <span class="lk-pcard__tag">AWS 75 BS.SI</span>
@@ -273,12 +270,12 @@
                 <div class="lk-pcard__name">Клубный дом, Рублёвка</div>
                 <div class="lk-pcard__date">10 января 2025</div>
               </div>
-              <span class="lk-badge lk-badge--done">Завершён</span>
+              <div class="lk-pcard__right"><span class="lk-badge lk-badge--done">Завершён</span><a class="lk-pcard__menu-btn" href="lk-portfolio.html" aria-label="Меню">⋮</a></div>
             </div>
             <img class="lk-pcard__img" src="assets/img/lk/bdb2ea0eb224.png" alt="Клубный дом, Рублёвка">
             <div class="lk-pcard__meta">
-              <span>Московская область</span>
-              <span>Архитектор: Бюро «Форма»</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6-5.4-6-10a6 6 0 1 1 12 0c0 4.6-6 10-6 10Z"/><circle cx="12" cy="11" r="2"/></svg>Московская область</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.3-5 8-5s6.5 1.5 8 5"/></svg>Архитектор: Бюро «Форма»</span>
             </div>
             <div class="lk-pcard__tags">
               <span class="lk-pcard__tag">FW 50+</span>
@@ -295,12 +292,12 @@
                 <div class="lk-pcard__name">Residence Nord</div>
                 <div class="lk-pcard__date">8 января 2025</div>
               </div>
-              <span class="lk-badge lk-badge--done">Завершён</span>
+              <div class="lk-pcard__right"><span class="lk-badge lk-badge--done">Завершён</span><a class="lk-pcard__menu-btn" href="lk-portfolio.html" aria-label="Меню">⋮</a></div>
             </div>
             <img class="lk-pcard__img" src="assets/img/lk/c9b39dee6c0c.png" alt="Residence Nord">
             <div class="lk-pcard__meta">
-              <span>Санкт-Петербург</span>
-              <span>Архитектор: Бюро «Форма»</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6-5.4-6-10a6 6 0 1 1 12 0c0 4.6-6 10-6 10Z"/><circle cx="12" cy="11" r="2"/></svg>Санкт-Петербург</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-3.5 4.3-5 8-5s6.5 1.5 8 5"/></svg>Архитектор: Бюро «Форма»</span>
             </div>
             <div class="lk-pcard__tags">
               <span class="lk-pcard__tag">AWS 75 BS.SI</span>
@@ -378,7 +375,10 @@
         </div>
 
         <div style="margin-top:20px;">
-          <a class="lk-btn lk-btn--xl lk-btn--white-flat lk-btn--full" href="blog.html">Смотреть все новости</a>
+          <a class="lk-btn lk-btn--xl lk-btn--news-all lk-btn--full" href="blog.html">
+            <span>Смотреть все новости</span>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
       </section>
 
