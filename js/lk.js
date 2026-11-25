@@ -536,6 +536,50 @@
     }
   }
 
+  /* ---------- ADD PROJECT PAGE (lk-add-project.html) ---------- */
+  var addProjApp = document.querySelector('[data-add-project-app]');
+  if (addProjApp) {
+    var statusSel = addProjApp.querySelector('[data-proj-status]');
+    var doneRow = addProjApp.querySelector('[data-proj-done-fields]');
+    var sysSel = addProjApp.querySelector('[data-sys-select]');
+    var sysChips = addProjApp.querySelector('[data-sys-chips]');
+    var addForm = addProjApp.querySelector('[data-add-project-form]');
+
+    if (statusSel && doneRow) {
+      statusSel.addEventListener('change', function () {
+        statusSel.classList.toggle('has-value', Boolean(statusSel.value));
+        doneRow.hidden = statusSel.value !== 'done';
+      });
+    }
+    if (sysSel && sysChips) {
+      sysSel.addEventListener('change', function () {
+        var val = sysSel.value;
+        if (!val) return;
+        var exists = Array.from(sysChips.querySelectorAll('[data-sys-chip]')).some(function (b) { return b.textContent === val; });
+        if (!exists) {
+          var chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'lk-chip lk-chip--static';
+          chip.setAttribute('data-sys-chip', '');
+          chip.title = 'Нажмите, чтобы убрать';
+          chip.textContent = val;
+          sysChips.appendChild(chip);
+        }
+        sysSel.selectedIndex = 0;
+      });
+      sysChips.addEventListener('click', function (e) {
+        var c = e.target.closest('[data-sys-chip]');
+        if (c) c.remove();
+      });
+    }
+    if (addForm) {
+      addForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        window.location.href = 'lk-projects.html';
+      });
+    }
+  }
+
   /* ---------- PROJECTS TABLE: SEARCH & STATUS TABS ---------- */
   document.querySelectorAll('[data-projects-table]').forEach(function (wrap) {
     var search = wrap.querySelector('[data-table-search]');

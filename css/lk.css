@@ -1456,6 +1456,69 @@ ul { list-style: none; margin: 0; padding: 0; }
   background: var(--lk-bg);
 }
 
+/* ---------- Add Project Full Page (Figma: ЛК_Добавить проект_портфолио) ---------- */
+.lk-add-card {
+  background: #fff;
+  padding: 40px 24px 56px;
+}
+.lk-add-form {
+  max-width: 611px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.lk-add-form .lk-btn {
+  text-transform: none;
+}
+.lk-input-icon-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.lk-input-icon-wrap .lk-input {
+  padding-right: 28px;
+}
+.lk-input-icon {
+  position: absolute;
+  right: 0;
+  bottom: 10px;
+  width: 18px;
+  height: 18px;
+  color: #000;
+  pointer-events: none;
+}
+.lk-select-wrap {
+  position: relative;
+}
+.lk-select-wrap .lk-select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 24px;
+  color: var(--lk-text-40);
+  cursor: pointer;
+}
+.lk-select-wrap .lk-select.has-value {
+  color: #000;
+}
+.lk-select-wrap::after {
+  content: "";
+  position: absolute;
+  right: 4px;
+  bottom: 16px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid #000;
+  pointer-events: none;
+}
+.lk-toggle-row--plain {
+  border-top: 0;
+  padding: 0;
+}
+.lk-add-actions {
+  margin-top: 8px;
+}
+
 /* ---------- Project Editor & Drag-and-Drop Photos ---------- */
 .lk-editor {
   background: #fff;
