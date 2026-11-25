@@ -27,26 +27,49 @@
     });
   }
 
-  // Notifications filter & delete (works both in drawer and on lk-notifications.html)
+  // Notifications filter & delete with Undo toast (works both in drawer and on lk-notifications.html)
   document.querySelectorAll('[data-notif-scope]').forEach(function (scope) {
     var tabs = scope.querySelectorAll('[data-notif-tab]');
     var items = function () { return scope.querySelectorAll('[data-notif-item]'); };
+    var lastRemoved = null;
+    var toastTimer = null;
 
     tabs.forEach(function (tab) {
       tab.addEventListener('click', function () {
         var filter = tab.getAttribute('data-notif-tab');
         tabs.forEach(function (t) { t.classList.toggle('is-active', t === tab); });
         items().forEach(function (item) {
-          item.hidden = filter !== 'all' && item.getAttribute('data-cat') !== filter;
+          if (filter === 'all') item.hidden = false;
+          else if (filter === 'unread') item.hidden = !item.hasAttribute('data-unread');
+          else item.hidden = item.getAttribute('data-cat') !== filter;
         });
       });
     });
 
     scope.addEventListener('click', function (e) {
+      var undoBtn = e.target.closest('[data-notif-undo]');
+      if (undoBtn && lastRemoved) {
+        lastRemoved.parent.insertBefore(lastRemoved.node, lastRemoved.next);
+        lastRemoved = null;
+        var t = scope.querySelector('.lk-notif-toast');
+        if (t) t.remove();
+        clearTimeout(toastTimer);
+        return;
+      }
       var del = e.target.closest('[data-notif-del]');
       if (!del) return;
       var card = del.closest('[data-notif-item]');
-      if (card) card.remove();
+      if (!card) return;
+      lastRemoved = { node: card, parent: card.parentNode, next: card.nextSibling };
+      card.remove();
+      var old = scope.querySelector('.lk-notif-toast');
+      if (old) old.remove();
+      var toast = document.createElement('div');
+      toast.className = 'lk-notif-toast';
+      toast.innerHTML = '<span>Уведомление удалено</span><button type="button" data-notif-undo>Отменить</button>';
+      scope.insertBefore(toast, scope.firstChild);
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { if (toast.parentNode) toast.remove(); }, 5000);
     });
   });
 

@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex, nofollow">
   <title>Уведомления — Личный кабинет Schüco Home</title>
   <link rel="preload" href="assets/fonts/Stem_Medium.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/lk.css?v=12">
+  <link rel="stylesheet" href="css/lk.css?v=13">
 </head>
 <body>
 
@@ -66,16 +66,16 @@
         </div>
 
         <div class="lk-tabs" style="padding:0;">
-          <button class="lk-tab is-active" type="button" data-notif-tab="all">Все</button>
-          <button class="lk-tab" type="button" data-notif-tab="projects">Проекты</button>
-          <button class="lk-tab" type="button" data-notif-tab="chat">Консультации</button>
-          <button class="lk-tab" type="button" data-notif-tab="docs">База знаний</button>
+          <button class="lk-tab is-active" type="button" data-notif-tab="all">Все 4</button>
+          <button class="lk-tab" type="button" data-notif-tab="unread">Непрочитанные</button>
+          <button class="lk-tab" type="button" data-notif-tab="projects">По проектам</button>
+          <button class="lk-tab" type="button" data-notif-tab="chat">По консультациям</button>
         </div>
 
         <div class="lk-notif-list">
-          <article class="lk-notif" data-notif-item data-cat="projects">
+          <article class="lk-notif" data-notif-item data-cat="projects" data-unread>
             <div class="lk-notif__top">
-              <span class="lk-notif__title">Проект одобрен администратором</span>
+              <span class="lk-notif__title"><span class="lk-notif__dot"></span>Проект одобрен администратором</span>
               <span class="lk-notif__meta">Сегодня, 12:00 <button class="lk-notif__del" type="button" data-notif-del aria-label="Удалить">×</button></span>
             </div>
             <div class="lk-notif__text">«Клубный дом, Рублёвка» прошёл модерацию и теперь виден на вашей публичной странице.</div>
@@ -109,6 +109,6 @@
     </main>
   </div>
 
-  <script src="js/lk.js?v=5"></script>
+  <script src="js/lk.js?v=6"></script>
 </body>
 </html>
