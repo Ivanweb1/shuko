@@ -557,13 +557,13 @@
         if (!val) return;
         var exists = Array.from(sysChips.querySelectorAll('[data-sys-chip]')).some(function (b) { return b.textContent === val; });
         if (!exists) {
-          var chip = document.createElement('button');
-          chip.type = 'button';
-          chip.className = 'lk-chip lk-chip--static';
-          chip.setAttribute('data-sys-chip', '');
-          chip.title = 'Нажмите, чтобы убрать';
-          chip.textContent = val;
-          sysChips.appendChild(chip);
+        var chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = sysSel.classList.contains('lk-select-pills__sel') ? 'lk-chip lk-chip--gray' : 'lk-chip lk-chip--static';
+        chip.setAttribute('data-sys-chip', '');
+        chip.title = 'Нажмите, чтобы убрать';
+        chip.textContent = val;
+        sysChips.appendChild(chip);
         }
         sysSel.selectedIndex = 0;
       });
@@ -578,7 +578,72 @@
         window.location.href = addProjApp.getAttribute('data-redirect') || 'lk-projects.html';
       });
     }
+
+    var addPhotoRow = addProjApp.querySelector('[data-photo-sortable]');
+    if (addPhotoRow) {
+      var dragEl = null;
+      addPhotoRow.addEventListener('dragstart', function (e) {
+        var it = e.target.closest('.lk-photo-item');
+        if (!it) return;
+        dragEl = it;
+        it.classList.add('is-dragging');
+        e.dataTransfer.effectAllowed = 'move';
+      });
+      addPhotoRow.addEventListener('dragend', function () {
+        if (dragEl) dragEl.classList.remove('is-dragging');
+        addPhotoRow.querySelectorAll('.is-over').forEach(function (el) { el.classList.remove('is-over'); });
+        dragEl = null;
+      });
+      addPhotoRow.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        var target = e.target.closest('.lk-photo-item');
+        if (!target || target === dragEl) return;
+        addPhotoRow.querySelectorAll('.is-over').forEach(function (el) { el.classList.remove('is-over'); });
+        target.classList.add('is-over');
+      });
+      addPhotoRow.addEventListener('drop', function (e) {
+        e.preventDefault();
+        var target = e.target.closest('.lk-photo-item');
+        if (!target || !dragEl || target === dragEl) return;
+        var items = Array.from(addPhotoRow.querySelectorAll('.lk-photo-item'));
+        if (items.indexOf(dragEl) < items.indexOf(target)) target.after(dragEl);
+        else target.before(dragEl);
+      });
+      addPhotoRow.addEventListener('click', function (e) {
+        var del = e.target.closest('.lk-photo-item__del');
+        if (del) del.closest('.lk-photo-item').remove();
+      });
+    }
   }
+
+  /* ---------- PORTFOLIO CARD CONTEXT MENU (⋮ -> Редактировать / Предпросмотр / Удалить) ---------- */
+  document.addEventListener('click', function (e) {
+    var delAction = e.target.closest('[data-card-delete]');
+    if (delAction) {
+      var card = delAction.closest('.lk-pcard, tr');
+      if (card) card.remove();
+      return;
+    }
+    var menuBtn = e.target.closest('.lk-pcard .lk-pcard__menu-btn');
+    var existing = document.querySelector('.lk-card-menu');
+    if (!menuBtn) {
+      if (existing && !e.target.closest('.lk-card-menu')) existing.remove();
+      return;
+    }
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    var host = menuBtn.parentElement;
+    var already = host.querySelector('.lk-card-menu');
+    if (existing) existing.remove();
+    if (already) return;
+    var menu = document.createElement('div');
+    menu.className = 'lk-card-menu';
+    menu.innerHTML =
+      '<a class="lk-card-menu__item" href="lk-edit-project.html"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25ZM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83Z"/></svg><span>Редактировать</span></a>' +
+      '<a class="lk-card-menu__item" href="project.html" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="3"/></svg><span>Предпросмотр</span></a>' +
+      '<button class="lk-card-menu__item" type="button" data-card-delete><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12ZM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4Z"/></svg><span>Удалить</span></button>';
+    host.appendChild(menu);
+  }, true);
 
   /* ---------- PROJECTS TABLE: SEARCH & STATUS TABS ---------- */
   document.querySelectorAll('[data-projects-table]').forEach(function (wrap) {
