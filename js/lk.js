@@ -361,13 +361,22 @@
     var detailsLabel = detailsToggle && detailsToggle.querySelector('[data-toggle-label]');
     var detailsBody = lkApp.querySelector('[data-profile-details]');
     if (detailsToggle && detailsBody) {
-      detailsToggle.addEventListener('click', function () {
-        var open = detailsBody.hidden;
+      function setDetailsOpen(open) {
         detailsBody.hidden = !open;
         detailsToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
         if (detailsLabel) detailsLabel.textContent = open ? 'Скрыть' : 'Подробнее';
         else detailsToggle.textContent = open ? 'Скрыть' : 'Подробнее';
+      }
+      detailsToggle.addEventListener('click', function () {
+        setDetailsOpen(detailsBody.hidden);
       });
+      var moreBtn = lkApp.querySelector('[data-open-details]');
+      if (moreBtn) {
+        moreBtn.addEventListener('click', function () {
+          setDetailsOpen(true);
+          detailsBody.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+      }
     }
 
     // Edit field modal («Редактировать»)

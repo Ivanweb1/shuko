@@ -966,7 +966,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .lk-profile-banner__info {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 16px;
   max-width: 570px;
 }
@@ -980,8 +980,8 @@ ul { list-style: none; margin: 0; padding: 0; }
 }
 .lk-profile-banner__title-row {
   display: flex;
-  align-items: baseline;
-  gap: 10px;
+  align-items: center;
+  gap: 8px;
   flex-wrap: wrap;
 }
 .lk-profile-banner__name {
@@ -992,8 +992,9 @@ ul { list-style: none; margin: 0; padding: 0; }
   text-transform: uppercase;
 }
 .lk-profile-banner__role {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 22px;
+  text-transform: uppercase;
   color: var(--lk-text-40);
 }
 .lk-profile-banner__desc {
@@ -1003,6 +1004,15 @@ ul { list-style: none; margin: 0; padding: 0; }
   font-weight: 400;
   color: var(--lk-text-40);
 }
+.lk-profile-banner__more {
+  display: inline-block;
+  margin-top: 2px;
+  color: var(--lk-text-40);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--lk-ease);
+}
+.lk-profile-banner__more:hover { color: #000; }
 .lk-card--dark .lk-profile-banner__desc { color: rgba(255, 255, 255, .8); }
 .lk-profile-banner__actions {
   display: flex;
