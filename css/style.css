@@ -3067,9 +3067,9 @@ section[id] { scroll-margin-top: var(--header-h); }
   .scard:hover .scard__head { background: #e5e5e5; color: var(--c-text); }
 }
 
-/* ---------- Решения: чёрный блок с двумя кнопками ---------- */
+/* ---------- Решения: светлый CTA-блок в тонкой чёрной рамке с двумя кнопками ---------- */
 .scta { padding: 80px var(--gutter); }
-.scta__box { padding: 60px 53px; color: #fff; background: #000; }
+.scta__box { padding: 60px 53px; color: #000; background: #fff; border: 1px solid #000; }
 .scta__title {
   max-width: 861px;
   margin: 0;
@@ -3078,7 +3078,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   font-weight: 500;
   text-transform: uppercase;
 }
-.scta__text { max-width: 612px; margin: 12px 0 0; font-size: 16px; line-height: 24px; color: rgba(255, 255, 255, .4); }
+.scta__text { max-width: 612px; margin: 12px 0 0; font-size: 16px; line-height: 24px; color: rgba(0, 0, 0, .6); }
 .scta__btns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 40px; }
 .scta__btn {
   display: flex;
@@ -3087,15 +3087,16 @@ section[id] { scroll-margin-top: var(--header-h); }
   gap: 20px;
   height: 80px;
   padding: 0 24px;
-  background: rgba(255, 255, 255, .08);
+  background: #f4f4f5;
+  color: #000;
   font-size: 16px;
   line-height: 24px;
   text-transform: uppercase;
   transition: background-color var(--ease);
 }
-.scta__btn:hover { background: rgba(255, 255, 255, .16); }
-.scta__btn--light { background: #fff; color: #000; }
-.scta__btn--light:hover { background: #e5e5e5; }
+.scta__btn:hover { background: #e5e5e5; }
+.scta__btn--light { background: #fff; color: #000; border: 1px solid #000; }
+.scta__btn--light:hover { background: #f4f4f5; }
 .scta__arrow { flex: none; width: 40px; height: 40px; transition: transform var(--ease); }
 .scta__btn:hover .scta__arrow { transform: rotate(45deg); }
 
