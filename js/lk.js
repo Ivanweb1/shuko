@@ -347,9 +347,13 @@
     }
 
     var roleSelect = document.querySelector('[data-role-select]');
+    var initRole = new URLSearchParams(window.location.search).get('role') || 'manufacturer';
     if (roleSelect) {
+      roleSelect.value = ROLES[initRole] ? initRole : 'manufacturer';
       roleSelect.addEventListener('change', function () { renderRole(roleSelect.value); });
       renderRole(roleSelect.value);
+    } else {
+      renderRole(initRole);
     }
 
     // Expand / collapse «Управление профилем»
